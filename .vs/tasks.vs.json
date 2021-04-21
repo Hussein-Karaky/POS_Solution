@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-POS_Solution",
+      "appliesTo": "/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-BLL",
+      "appliesTo": "BLL/",
+      "type": "launch"
+    }
+  ]
+}

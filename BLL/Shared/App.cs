@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace POS_Solutions.BLL
+namespace POS_Solutions.BLL.Shared
 {
 	public class App
 	{
