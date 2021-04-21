@@ -1,0 +1,17 @@
+﻿.home-banner-0 {
+    background-image: url("../images/banner3.png");
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    height: 310px;
+}
+
+.banner-header {
+    background: transparent;
+    background: linear-gradient(to right, #0062E633, #33AEFF88);
+    border: none;
+}
+.home-banner-body {
+    background-color: transparent;
+}

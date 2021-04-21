@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Material Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js/moment-with-locales.js"></script>
+    <script type="application/javascript" src="~/lib/stepper/mstepper.min.js"></script>
+    <script src="~/js/QATemplate.js"></script>
+
+    <script>
+        var baseUrl = window.location.origin;
+        $(document).ready(function () {
+            createObject();
+            testDescription();
+            $('#btnStartTest').click(function () {
+                startTest();
+                this.setAttribute('disabled', 'disabled')
+            });
+        });
+    </script>
+}
+@section Styles {
+    <link href="~/css/sweetalert2/dark.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/material-ui.css" rel="stylesheet" />
+    <link href="~/css/steps.css" rel="stylesheet" />
+    <link href="~/lib/stepper/mstepper.min.css" rel="stylesheet" />
+    <link href="~/css/materialTest.css" rel="stylesheet" />
+}
+
+<h1 class="countdown"></h1>
+
+<div id="TestDescription" class="text-center full-width"></div>
+
+<div id="timingTable" class="text-center full-width" ></div>
+
+<div class="text-center full-width">
+    <div id="MaterialTest" class="material-test">
+    </div>
+</div>
+
+
+<div class="row">
+    <div id="DivResult" class="md-form col-12 ml-auto hiddendiv divResult">
+        <div class="row"><h1><strong><i>Your Test Results are as follow:</i></strong></h1></div>
+        <table id="ResultTable" class="table table-responsive-sm table-bordered table-striped table-hover">
+            <thead>
+                <tr class="bg-info">
+                    <th class="text-center text-white showResultsStyle">Question</th>
+                    <th class="text-center text-white showResultsStyle">Result</th>
+                    <th class="text-center text-white showResultsStyle">Points</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/MenuSupport.cshtml";
+}
+@section Styles {
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/StudentCss/HelpCenter.css" />
+}
+<section class="section hero">
+    <div class="hero-inner">
+        <span style="display:block; height: 70px;"></span>
+        <h1 style="color:white; font-size: 55px"> How can we help? </h1>
+
+        <form role="search" class="search search-full" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓"><input type="search" name="query" id="query" placeholder="Enter a question, keyword or topic" autocomplete="off" aria-label="Enter a question, keyword or topic"></form>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <section class="section knowledge-base">
+            <section class="categories blocks">
+                <ul class="blocks-list">
+                    <li class="blocks-item">
+                        <a href="#" class="blocks-item-link">
+                            <img src="~/images/c0cb1c544c0d0bc7aaa2734c4f8eeffce50a7fd6.png">
+                            <h4 class="blocks-item-title">Technical Support</h4>
+                            <p class="blocks-item-description"></p>
+                        </a>
+                    </li>
+                    <li class="blocks-item">
+                        <a href="#" class="blocks-item-link">
+                            <img src="~/images/5fb707b7d168da7ecdc96d56e22814d1c6311a03.png">
+                            <h4 class="blocks-item-title">Help for Parents and Students</h4>
+                            <p class="blocks-item-description"></p>
+                        </a>
+                    </li>
+                    <li class="blocks-item">
+                        <a href="#" class="blocks-item-link">
+                            <h4 class="blocks-item-title">Help for Tutors</h4>
+                            <p class="blocks-item-description"></p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>

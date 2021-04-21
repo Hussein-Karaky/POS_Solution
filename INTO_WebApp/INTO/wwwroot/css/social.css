@@ -1,0 +1,113 @@
+﻿.social-svg a {
+    text-decoration: none;
+}
+
+.social-svg svg[role="img"] {
+    width: 100px;
+    height: 100px;
+    border-radius: 5%;
+    fill: white;
+    margin: 2rem;
+}
+
+svg[aria-label="Facebook"] {
+    background: #3b5998;
+}
+
+svg[aria-label="Twitter"] {
+    background: #55acee;
+}
+
+svg[aria-label="Steam"], svg[aria-label="CodePen"], svg[aria-label="500px"], svg[aria-label="Deviant Art"] {
+    background: #000;
+}
+
+svg[aria-label="Linkedin"] {
+    background: #006699;
+}
+
+svg[aria-label="Google+"] {
+    background: #DC4A38;
+}
+
+svg[aria-label="Pinterest"] {
+    background: #BD081C;
+}
+
+svg[aria-label="Vimeo"] {
+    background: #1ab7ea;
+}
+
+svg[aria-label="YouTube"] {
+    background: #cd201f;
+}
+
+    svg[aria-label="YouTube"].gradient {
+        background: linear-gradient(#E52D27, #BF171D);
+    }
+
+svg[aria-label="Github"] {
+    background: #131313;
+}
+
+svg[aria-label="Flickr"], svg[aria-label="Xing"], svg[aria-label="Instagram"] {
+    background: #eee;
+}
+
+#instagram circle, #instagram path {
+    fill: #000;
+}
+
+svg[aria-label="Tumblr"] {
+    background: #314358
+}
+
+svg[aria-label="RSS"] {
+    background: #FB9E3A;
+}
+
+svg[aria-label="Deviant Art"] {
+    fill: #05CC47;
+}
+
+svg[aria-label="Adobe Portfolio"] {
+    fill: #69abdd;
+    background: #0a1933;
+}
+
+svg[aria-label="Behance"] {
+    background: #1769ff;
+}
+
+#flickr circle:first-child {
+    fill: #0059D4;
+}
+
+#flickr circle:last-child {
+    fill: #DA1593;
+}
+
+#xing path:first-child {
+    fill: #005A5F;
+}
+
+#xing path:last-child {
+    fill: #D4D600;
+}
+
+.octoholes {
+    fill: #000;
+}
+
+.social-icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+}
+
+.social a {
+    color: #3b5998 !important;
+    background-color: white !important;
+    display: inline-block !important;
+    border-radius: 7px !important;
+}

@@ -1,0 +1,36 @@
+﻿.testimonial-card .card-up {
+    height: min(18vw + 10px);
+    min-height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.testimonial-card .avatar {
+    width: 20%;
+    min-width: 120px;
+    margin-top: calc(50vw - 62%);
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    margin-left: 6% !important;
+}
+
+.testimonial-card .card-up.mini {
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.testimonial-card .avatar.mini {
+    width: 120px;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 50%;
+}
+
+.testimonial-card .avatar img {
+    width: 100%;
+}

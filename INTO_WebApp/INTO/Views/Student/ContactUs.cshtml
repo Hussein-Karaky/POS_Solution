@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/StudentCss/ContactUs.css" />
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><h2><b>Get in Touch</b></h2></div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <form method="POST">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Name -->
+                        <div class="md-form">
+                            <input type="text" class="form-control-sm" style="width:90%">
+                            <label data-error="wrong" class="">Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Email -->
+                        <div class="md-form">
+                            <input type="text" class="form-control-sm" style="width:90%">
+                            <label data-error="wrong" class="">Email</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Subject -->
+                        <div class="md-form">
+                            <input type="text" class="form-control-sm" style="width:90%;">
+                            <label data-error="wrong" class="">Subject</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Message -->
+                        <div class="md-form">
+                            <textarea type="text" class="form-control-sm" style="width:90%;padding: 4em;"></textarea>
+                            <label data-error="wrong" class="">Message</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <button type="button" class="btn btn-info white-text light-blue darken-1" style="width:89%;">Send Email</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row clear-bottommargin" style="margin-top:10em;">
+        <div class="col-md-4 col-sm-6 bottommargin clearfix" style="">
+            <div class="feature-box fbox-center fbox-bg fbox-plain">
+                <div class="fbox-icon">
+                    <a href="mailto:technology.dynasoft@gmail.com" target="_blank"><i class="icon-email"></i></a>
+                </div>
+                <h5 class="font">Email <br><span class="subtitle">technology.dynasoft@gmail.com</span></h5>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 bottommargin clearfix">
+            <div class="feature-box fbox-center fbox-bg fbox-plain">
+                <div class="fbox-icon">
+                    <a href="#"><i class="icon-magnifier"></i></a>
+                </div>
+                <h5 class="font">
+                    Search For FAQS
+                    <br>
+                    <span class="subtitle" dir="ltr">We’ve created a library of FAQs.</span>
+                </h5>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 bottommargin clearfix">
+            <div class="feature-box fbox-center fbox-bg fbox-plain">
+                <div class="fbox-icon">
+                    <a href="javascript:void(0);"><i class="icon-telephone"></i></a>
+                </div>
+                <h5 class="font">
+                    Telephone
+                    <br>
+                    <span class="subtitle" dir="ltr">+961 81 649972</span>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>

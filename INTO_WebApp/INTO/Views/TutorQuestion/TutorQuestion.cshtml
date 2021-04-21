@@ -1,0 +1,293 @@
+﻿@model INTO.Models.TutorModel
+
+@{
+    ViewData["Title"] = "TutorQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section TopScripts{
+    @*    <script src="~/js/TutorQuestion.js"></script>*@
+
+
+    <script src="~/lib/bootpag/bootpag.min.js"></script>
+    <script src="~/js/TutorQuestion/SharedTutorQuestion.js"></script>
+    <script src="~/js/TutorQuestion/AllQuestions.js"></script>
+    <script>
+        $(document).ready(function () {
+            getGlobalTexts(window.location.origin + '/TutorQuestion/Getlookups', 42, function () {
+                GetDDL('QCategories', window.location.origin + '/TutorQuestion/GetTutorQuestionsDDL', { lang: language }, false, onChange);
+            });
+        });
+    </script>
+}
+@section Styles{
+    <link href="~/css/preLoader.css" rel="stylesheet" />
+
+
+    <link href="~/lib/bootpag/bootpag.css" rel="stylesheet" />
+    <link href="~/css/tutorQuestion.css" rel="stylesheet" />
+
+    <link href="~/css/sweetalert2/dark.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/material-ui.css" rel="stylesheet" />
+    <link href="~/css/materialTest.css" rel="stylesheet" />
+}
+
+<div class="loader-wrapper">
+    <div id="loader"></div>
+</div>
+
+<div class="row mb-4">
+    <div class="PicDiv col-12 flex-vertical-center flex-horizontal-center"><h1 class="text-white text-center" id="pageTitle">My Questions</h1></div>
+</div>
+
+<div class="text-center mb-3">
+    <label for="QCategories" class="text-bold"></label>
+    <select id="QCategories" class="ddlSelect" style="display:none">
+    </select>
+</div>
+
+<div id="addedDiv" class="hiddenDiv" >
+    <div id="addedQDiv" >
+        <div id="loading-page-selection-added" class="text-center">Loading</div>
+    </div>
+    <div class="card mb-4 wow fadeIn col-md-7 col-lg-7 offset-md-1 offset-lg-1 col-sm-12 mt-4 add-question-div">
+        <div class="card-body text-center">
+            <h5 class="text-center mb-4 reach-more"></h5>
+            <div class="text-center mb-4">
+                <a class="btn btn-info text-white text-center AddQuestion" href="/TutorQuestion/AddTutorQuestion">
+                    <span class="fa fa-chalkboard-teacher"></span>
+                </a>
+            </div>
+            <p class="card-text text-center post-question"></p>
+        </div>
+    </div>
+    <div id="page-selection-added" class="text-center"></div>
+</div>
+
+<div id="answeredDiv" class="hiddenDiv">
+    <div id="answeredQDiv">
+        <div id="loading-page-selection-answered" class="text-center">Loading</div>
+    </div>
+    <div class="card mb-4 wow fadeIn col-md-7 col-lg-7 offset-md-1 offset-lg-1 col-sm-12 mt-4 add-question-div">
+        <div class="card-body text-center">
+            <h5 class="text-center mb-4 reach-more"></h5>
+            <div class="text-center mb-4">
+                <a class="btn btn-info text-white text-center AddQuestion" href="/TutorQuestion/AddTutorQuestion">
+                    <span class="fa fa-chalkboard-teacher"></span>
+                </a>
+            </div>
+            <p class="card-text text-center post-question"></p>
+        </div>
+    </div>
+    <div id="page-selection-answered" class="text-center"></div>
+</div>
+
+<div id="followedDiv" class="hiddenDiv">
+    <div id="followedQDiv">
+        <div id="loading-page-selection-followed" class="text-center">Loading</div>
+    </div>
+    <div class="card mb-4 wow fadeIn col-md-7 col-lg-7 offset-md-1 offset-lg-1 col-sm-12 mt-4 add-question-div">
+        <div class="card-body text-center">
+            <h5 class="text-center mb-4 reach-more"></h5>
+            <div class="text-center mb-4">
+                <a class="btn btn-info text-white text-center AddQuestion" href="/TutorQuestion/AddTutorQuestion">
+                    <span class="fa fa-chalkboard-teacher"></span>
+                </a>
+            </div>
+            <p class="card-text text-center post-question"></p>
+        </div>
+    </div>
+    <div id="page-selection-followed" class="text-center"></div>
+</div>
+
+<div class="flex-vertical-center flex-horizontal-center">
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <div class="row">
+        <div class="col-md-7 offset-md-1 offset-lg-1 col-lg-7 col-sm-12">
+            <div>
+                <div class="card mb-4 wow fadeIn">
+                    <label for="selectQuestiontype">Choose a category:</label>
+                    <select class="btn btn-info text-white text-center" id="selectQuestiontype">
+                        @for (int i = 0; i <= Model.DDL.Count - 1; i++)
+                        {
+                            <option value="@Model.DDL[i].DataType">@Model.DDL[i].LookupDetailsDescription</option>
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div id="QuestionAnsweredDiv">
+                @for (int i = 0; i <= Model.QuestionAnswered.Count - 1; i++)
+                {
+                    <div class="card mb-4 wow fadeIn hoverborder" question-id="@Model.QuestionAnswered[i].Id" tutor-id="@Model.QuestionAnswered[i].TutorId">
+                        <div class="card-header font-weight-bold">
+                            <span>Topics</span>
+                            @for (int b = 0; b <= Model.QuestionAnswered[i].tags.Count - 1; b++)
+                            {
+                                <span class="badge badge-info pull-right" tag-id="@("tag-"+@Model.QuestionAnswered[i].tags[b].Id)">@Model.QuestionAnswered[i].tags[b].Name</span>
+                            }
+                        </div>
+                        <!--Card content-->
+                        <div class="card-body">
+                            <div class="media d-block d-md-flex mt-3">
+                                <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                    <h5 class="mt-0 font-weight-bold">
+                                        @Model.QuestionAnswered[i].Title
+                                    </h5>
+                                    @Html.Raw(Model.QuestionAnswered[i].Description)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer font-weight-bold">
+                            <div class="row">
+                                <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-wifi"></span>Follows &nbsp; @Model.QuestionAnswered[i].FollowsNumber</h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-check-circle"></span>Answer &nbsp; @Model.QuestionAnswered[i].AnswersNumber</h5></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="hiddenDiv" id="QuestionFollowedDiv">
+                @for (int i = 0; i <= Model.QuestionFollowed.Count - 1; i++)
+                {
+                    <div class="card mb-4 wow fadeIn hoverborder" question-id="@Model.QuestionFollowed[i].Id" tutor-id="@Model.QuestionFollowed[i].TutorId">
+                        <div class="card-header font-weight-bold">
+                            <span>Topics</span>
+                            @for (int b = 0; b <= Model.QuestionFollowed[i].tags.Count - 1; b++)
+                            {
+                                <span class="badge badge-info pull-right" tag-id="@("tag-"+@Model.QuestionFollowed[i].tags[b].Id)">@Model.QuestionFollowed[i].tags[b].Name</span>
+                            }
+                        </div>
+                        <!--Card content-->
+                        <div class="card-body">
+                            <div class="media d-block d-md-flex mt-3">
+                                @*<img class="d-flex mb-3 mx-auto z-depth-1" src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image" style="width: 100px;">*@
+@*<div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                       <h5 class="mt-0 font-weight-bold">
+                                           @Model.QuestionFollowed[i].Title
+                                       </h5>
+                                       @Html.Raw(Model.QuestionFollowed[i].Description)
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="card-footer font-weight-bold">
+                               <div class="row">
+                                   <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-wifi"></span>Follows &nbsp; @Model.QuestionFollowed[i].FollowsNumber</h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                   <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-check-circle"></span>Expert Answers &nbsp; @Model.QuestionFollowed[i].AnswersNumber</h5></div>
+                               </div>
+                           </div>
+                       </div>
+                   }
+               </div>
+               <div class="hiddenDiv" id="QuestionAddedDiv">
+                   @for (int i = 0; i <= Model.QuestionAdded.Count - 1; i++)
+                   {
+                       <div class="card mb-4 wow fadeIn hoverborder" question-id="@Model.QuestionAdded[i].Id" tutor-id="@Model.QuestionAdded[i].TutorId">
+                           <div class="card-header font-weight-bold">
+                               <span>Topics</span>
+                               @for (int b = 0; b <= Model.QuestionAdded[i].tags.Count - 1; b++)
+                               {
+                                   <span class="badge badge-info pull-right" tag-id="@("tag-"+@Model.QuestionAdded[i].tags[b].Id)">@Model.QuestionAdded[i].tags[b].Name</span>
+                               }
+                           </div>
+                           <!--Card content-->
+                           <div class="card-body">
+                               <div class="media d-block d-md-flex mt-3">
+                                   <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                                       <h5 class="mt-0 font-weight-bold">
+                                           @Model.QuestionAdded[i].Title
+                                       </h5>
+                                       @Html.Raw(Model.QuestionAdded[i].Description)
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="card-footer font-weight-bold">
+                               <div class="row">
+                                   <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-wifi"></span>Follows &nbsp; @Model.QuestionAdded[i].FollowsNumber</h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                   <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-check-circle"></span>Expert Answer &nbsp; @Model.QuestionAdded[i].AnswersNumber</h5></div>
+                               </div>
+                           </div>
+                       </div>
+                   }
+               </div>
+               <div class="row">
+                   <div class="dropdown-divider"></div>
+               </div>
+               <div class="card mb-4 wow fadeIn AddQuestionDiv">
+                   <div class="card-body text-center">
+                       <h5 class="text-center">Reach more students by adding questions they are searching for</h5>
+                       <br /><br />
+                       <div class="text-center"><button class="btn btn-info text-white text-center" id="btnAddAnswerGoPage">Add A Question <span class="fa fa-chalkboard-teacher"></span></button></div>
+                       <br /><br />
+                       <p class="card-text text-center">Once you post a question, you’ll be able to showcase your expertise by answering it.</p>
+                   </div>
+               </div>
+           </div>
+           <div class="col-md-3 col-lg-3 col-sm-12">
+               <div>
+                   <div class="card mb-4 wow fadeIn">
+                       <div class="card-body">
+                           <span class="fa fa-heart" style="color:red"></span>
+                           <h5 class="card-title">Your Topics</h5>
+                           <p class="card-text">
+                               @{
+                                   List<string> tags = new List<string>();
+
+                               }
+                               @foreach (var item in Model.QuestionAdded)
+                               {
+                                   foreach (var tag in item.tags)
+                                   {
+                                       if (tags.FindIndex(e => e.Equals(tag.Name)) < 0)
+                                       {
+                                           tags.Add(tag.Name);
+                                           <span class="badge badge-info HandCursor TopicToGetQuestion" id="@(tag.Name+"Tag")">@tag.Name</span>
+
+                                       }
+
+                                   }
+                               }
+                           </p>
+                           <h5 class="card-title">Other Topics</h5>
+                           <p class="card-text">
+                               @if (Model.RandomTags != null)
+                               {
+                                   for (int i = 0; i <= Model.RandomTags.Count - 1; i++)
+                                   {
+                                       <span class="badge badge-info HandCursor TopicToGetQuestion" id="@(Model.RandomTags[i].Name+"Tag")">@Model.RandomTags[i].Name</span>
+                                   }
+                               }
+                           </p>
+                       </div>
+                   </div>
+               </div>
+               <div>
+                   <div class="card mb-4 wow fadeIn"><img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="/images/board0.png" data-holder-rendered="true" style="width: 500px; height: 500px;"></div>
+               </div>
+           </div>
+       </div>
+    @section Scripts{
+           <script>
+               $(document).ready(TutorQuestion);
+           </script>
+       }
+
+*@

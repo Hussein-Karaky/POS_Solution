@@ -1,0 +1,74 @@
+﻿
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    
+}
+
+@section Styles{
+    <link href="~/css/signup-first-page.css" rel="stylesheet" />
+}
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
+
+
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <h2 class="section-heading">Select business type </h2>
+        <p>Having your own certificate doesn't have to mean pouring pints. With Our App you can  make a difference.</p>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-2">
+        <div>
+            <div class="purpose-radio" title="parent" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="As a parent ..">
+                <input type="radio" name="businessTypeRadio" id="rbParent" class="purpose-radio-input" value="3" data-role="parent-type-radio">
+                <label for="rbParent" class="purpose-radio-label waves-effect waves-dark shadow-1-5 border-1-grey">
+                    <span class="label-icon">
+                        <img height="128" src="~/images/parent_sm.png" alt="branding" class="label-icon-active">
+                    </span>
+                    <span class="label-text txtBusinesstype">I'm a parent</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div>
+            <div class="purpose-radio" title="student" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="As a student ..">
+                <input type="radio" name="businessTypeRadio" id="rbStudent" class="purpose-radio-input" value="2" data-role="student-type-radio">
+                <label for="rbStudent" class="purpose-radio-label waves-effect waves-dark shadow-1-5 border-1-grey">
+                    <span class="label-icon">
+                        <img height="128" src="~/images/student_sm.png" alt="branding" class="label-icon-active">
+                    </span>
+                    <span class="label-text txtBusinesstype">I'm a student</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div>
+            <div class="purpose-radio" title="tutor" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="As a tutor ..">
+                <input type="radio" name="businessTypeRadio" id="rbTutor" class="purpose-radio-input" value="1" data-role="tutor-type-radio">
+                <label for="rbTutor" class="purpose-radio-label waves-effect waves-dark shadow-1-5 border-1-grey">
+                    <span class="label-icon">
+                        <img height="128" src="~/images/tutor_sm.png" alt="branding" class="label-icon-active radio-image">
+                    </span>
+                    <span class="label-text txtBusinesstype">Apply as tutor</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+

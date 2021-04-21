@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Id = ViewBag.Id;
+    var ID = ViewBag.Id++;
+}
+
+<div class="container">
+    <div class="row"> </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/images/tutor1.png" alt="branding" class="label-icon-active shadow-1-5" style="display: block; margin-left: auto; margin-right: auto; width: 80%; border-radius: 10px;" />
+        </div>
+        <div class="col-md-6">
+            <div style=" margin: auto auto 24px; padding: 0px 20px; max-width: 480px;">
+                <h2>The best student job in town</h2>
+                <p style=" word-break: break-all;">
+                    Having a student job doesn't have to mean pouring pints. With MyTutor you can earn good money, set your own hours, and make a difference.
+                </p>
+            </div>
+            <a role="button" class="btn btn-floating btn-outline btn-next waves-effect waves-dark square-40 shadow-1-5" href="~/SignUp/TutorSecondDocumentary/@ID">
+                <i class="icon-forward"></i>
+            </a>
+        </div>
+    </div>
+
+</div>

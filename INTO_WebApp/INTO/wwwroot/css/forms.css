@@ -1,0 +1,207 @@
+﻿* {
+    font-family: 'Roboto', sans-serif;
+}
+
+@keyframes click-wave {
+    0% {
+        width: 40px;
+        height: 40px;
+        opacity: 0.35;
+        position: relative;
+        border-radius: 50%;
+    }
+
+    100% {
+        height: 80px;
+        width: 80px;
+        margin-left: -21px;
+        margin-top: -21px;
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+.option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    min-width: 12px;
+    min-height: 12px;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: all 0.15s ease-out 0s;
+    background: #fff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 100;
+}
+
+    .option-input.square-24 {
+        top: 7px;
+    }
+
+    .option-input:hover {
+        background: #eeeeee;
+    }
+
+    .option-input:checked {
+        background: white;
+    }
+
+        .option-input:checked::before {
+            width: inherit;
+            min-width: 12px;
+            height: inherit;
+            min-height: 12px;
+            position: absolute;
+            content: url(../images/vector/checkmark-52.svg);
+            display: inline-block;
+            font-size: 26.66667px;
+            text-align: center;
+            line-height: inherit;
+        }
+
+input[type=radio].option-input ~ label, input[type=checkbox].option-input ~ label {
+    cursor: pointer;
+}
+
+.square-24.option-input:checked::before {
+    line-height: 5px;
+}
+
+.option-input:not(:checked) {
+    /*content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" class="plus" width="40" height="40" viewBox="0 0 160 160" fill="gray"> <rect class="horizontal-line" x="30" y="80" width="100" height="5"/> </svg>');*/
+}
+
+.option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: white;
+    content: ' ';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+
+input[type=checkbox].option-input {
+    border-radius: 4px;
+}
+
+input[type=radio].option-input {
+    border-radius: 50%;
+}
+
+.option-input.radio {
+    border-radius: 50%;
+}
+
+    .option-input.radio::after {
+        border-radius: 50%;
+    }
+
+.form-check-input[type="checkbox"].md + label:before,
+.form-check-input[type="checkbox"]:not(.filled-in).md + label:after,
+label.btn input[type="checkbox"].md + label:before,
+label.btn input[type="checkbox"]:not(.filled-in).md + label:after {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--blue);
+    border-radius: 3px;
+}
+
+.form-check-input[type="checkbox"].sm + label:before,
+.form-check-input[type="checkbox"]:not(.filled-in).sm + label:after,
+label.btn input[type="checkbox"].sm + label:before,
+label.btn input[type="checkbox"]:not(.filled-in).sm + label:after {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+}
+
+.input-prefix.unit {
+    top: 66%;
+    left: 94%;
+    padding-right: 50px;
+    padding-top: 10px;
+}
+
+.form-row .col input, .form-row .col select {
+    width: 100% !important;
+}
+
+input[data-role=file-upload] {
+    background-color: lightgrey;
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 4px;
+    border: 2px dashed lightslategrey;
+    height: 100px;
+}
+input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+input[data-role=file-upload]::before {
+    content: 'Drag and drop or click';
+    display: block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    /* text-shadow: 1px 1px #fff; */
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+input[data-role=file-upload]:hover::before {
+    border-color: black;
+}
+
+input[data-role=file-upload]:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+input[data-role=file-upload][type="file" i] {
+    appearance: initial;
+    /* background-color: initial; */
+    cursor: default;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-align: start !important;
+    /* padding: initial; */
+    /* border: initial; */
+    overflow: hidden;
+}
+.file-custom:before {
+    position: absolute;
+    top: -.075rem;
+    right: -.075rem;
+    bottom: -.075rem;
+    z-index: 6;
+    display: block;
+    content: "Browse";
+    height: 2.5rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color: #555;
+    background-color: #eee;
+    border: .075rem solid #ddd;
+    border-radius: 0 .25rem .25rem 0;
+}
+

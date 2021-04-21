@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Http
+@model TutorModel
+@{
+    ViewData["Title"] = "Subjects";
+    ViewData["PageName"] = "Subjects";
+    ViewData["StepId"] = 2;
+    Layout = "~/Views/Tutor/_LayoutWizardSteps.cshtml";
+}
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/subjects.js"></script>
+}
+<div class="container">
+    @await Html.PartialAsync("../Tutor/ManageSubjects", Model)
+    <div class="row">
+        <button class="btn btn-primary waves-effect waves-light pt-1 pr-2 pl-4 white-text lang-dependant-inv" data-role="btn-next">
+            @Model.Globals["Next"]
+            <i class="icon-right ml-1 square-40 inline-block" style="margin-bottom: -15px;"></i>
+        </button>
+    </div>
+</div>

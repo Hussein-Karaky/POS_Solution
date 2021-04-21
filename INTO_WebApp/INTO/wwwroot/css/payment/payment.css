@@ -1,0 +1,822 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300);
+/* @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');*/
+/* GENERAL RESETS */
+:root {
+    --main-header-color: #33A7D7;
+    --scnd-header-color: #fff;
+    --main-bg-color: #DDE1E0;
+    --scnd-bg-color: #F6F6F6;
+    --third-bg-color: #fff;
+    --main-text-color: #fff;
+    --scnd-text-color: #9ba0a1;
+    --third-text-color: #7e8181;
+    --hover-link-color: #33A7D7;
+    --hover-li-color: #33A7D7;
+    --animation1-load-delay: 1s;
+    --animation2-load-delay: 2s;
+    --animation3-load-delay: 3s;
+    --animation6-load-delay: 1s;
+    --animation8-load-delay: 1s;
+    --animation12-load-delay: 1s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+a {
+    color: var(--main-header-color);
+}
+/* UTILITIES */
+.card-shadow {
+    -webkit-box-shadow: -3px 0px 45px -6px var(--scnd-bg-color);
+    -moz-box-shadow: -3px 0px 45px -6px var(--scnd-bg-color);
+    box-shadow: -3px 0px 45px -6px var(--scnd-bg-color);
+}
+
+.center {
+    text-align: center;
+}
+/* PAYMENT PAGE */
+.pymt-container {
+    /* font: 16px/26px "Raleway", sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    opacity:0.8;
+    background:var(--main-bg-color); */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+    font: 16px/26px "Raleway", sans-serif;
+}
+/* section1 */
+.pymt-wrapper {
+    /* position: absolute;
+    margin: auto;
+    top: 10%;
+    right: 20%;
+    width: 60%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background: var(--third-bg-color); */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    height: 85%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 1s;
+    animation-name: animatetop;
+    animation-duration: 1s
+}
+
+.PymtClose {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 5px 10px;
+}
+
+    .PymtClose:hover,
+    .PymtClose:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -400px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -400px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+/* section2 */
+.pymt-header {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding-top: 0;
+    float: left;
+    width: 100%;
+    height: 50px;
+    padding-top: 5px;
+    border: 0;
+    background: var(--main-header-color);
+    -webkit-box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    -moz-box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+}
+
+.pymt-logo {
+    background: url("./../../images/into_icon_w_64.png") left no-repeat;
+    background-size: contain;
+    min-width: 45px;
+    height: 45px;
+}
+
+.pymt-header p {
+    color: var(--main-text-color);
+    font-size: 2em;
+    text-align: left;
+    flex: 65%;
+    padding-top: 7px;
+    /* background-color: RED;*/
+}
+
+.pymnt-amonut {
+    color: white;
+    flex: 30%;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+    .pymnt-amonut i {
+        padding-top: 10px;
+    }
+/* section3 */
+.pymt-progressBar-wrapper {
+    width: 100%;
+    padding: 10px;
+    top: 0;
+    background-color: #fff;
+    color: var(--scnd-text-color);
+    font-weight: 300;
+    -webkit-box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    -moz-box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    width: 100%;
+    counter-reset: step;
+    height: 70px;
+}
+
+.pymt-progressBar li {
+    list-style-type: none;
+    float: left;
+    width: 25%;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+}
+
+    .pymt-progressBar li:before {
+        margin: 0 auto 2px auto;
+        content: counter(step);
+        counter-increment: step;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 2px solid var(--scnd-text-color);
+        display: block;
+        text-align: center;
+        border-radius: 50%;
+        color: var(--scnd-text-color);
+        z-index: 2;
+        position: relative;
+    }
+
+    .pymt-progressBar li:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--scnd-text-color);
+        top: 15px;
+        left: -43%;
+        z-index: -1;
+    }
+
+    .pymt-progressBar li:first-child:after {
+        content: none;
+    }
+
+    .pymt-progressBar li.active {
+        color: var(--hover-li-color);
+    }
+
+        .pymt-progressBar li.active:before {
+            content: "\2713";
+            color: var(--scnd-header-color);
+            border-color: var(--hover-li-color);
+            background-color: var(--hover-li-color);
+        }
+
+        .pymt-progressBar li.active + li:after {
+            background-color: var(--hover-li-color);
+        }
+/* section4 */
+.pymt-section {
+    width: 100%;
+    height: 90%;
+}
+.pymt-section-wrapper {
+    margin-top: 3px;
+    /* min-height: 72%; */
+    /*flex: 1;*/
+    display: flex;
+    /*flex-direction: column;*/
+    width: 94%;
+    margin: 25px 3%;
+    height: 80%;
+}
+
+.pymt-section-wrapper.PymtTitle {
+        text-transform: uppercase;
+        text-align: left;
+        color: #000;
+        padding: 0 10px;
+    }
+
+.pymt-section-wrapper .PymtSubtitle {
+        text-align: left;
+        color: var(--third-text-color);
+        padding: 0 10px;
+        font-size: 13px;
+        width: 100%;
+    }
+
+.pymt-section-wrapper .info {
+        text-align: left;
+        color: var(--third-text-color);
+        padding: 0 10px;
+        font-size: 13px;
+        color: #059;
+        background-color: #BEF;
+        border-radius: 3px 3px 3px 3px;
+        width: 80%;
+        margin: 10px auto;
+    }
+
+.pymt-section-wrapper .success {
+        text-align: left;
+        color: var(--third-text-color);
+        padding: 0 10px;
+        font-size: 13px;
+        color: var(--main-header-color);
+        background-color: #DFF2BF;
+        border-radius: 3px 3px 3px 3px;
+        margin-top: 10px;
+    }
+
+.pymt-method {
+    background-color: var(--scnd-bg-color);
+    flex: 70%;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.pymt-tab {
+    overflow: hidden;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(4,1fr);
+    padding: 10px;
+    width: 96%;
+    height: 100px;
+    margin-left: 2%;
+}
+
+.pymt-tab button {
+    line-height: 0.2;
+    padding: 0px 0;
+    border: 1px solid var(--scnd-text-color);
+    border-radius: 4px;
+    font-size: 18px;
+    /* background-color: var(--third-bg-color);*/
+}
+
+.pymt-Method-details {
+}
+
+.pymt-summary {
+    flex: 30%;
+    margin: 0 0 0 30px;
+    padding: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 10px;
+    background-color: var(--scnd-bg-color);
+}
+
+.pymt-button, .PaymentBtn {
+    line-height: 0.2;
+    padding: 0px 0;
+    border: 1px solid var(--hover-li-color);
+    background-color: var(--main-header-color);
+    color: white;
+    font-size: 1.2em;
+    border-radius: 4px;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    justify-self: center;
+    cursor: pointer;
+}
+.PaymentBtn1 {
+    color: var(--main-header-color);
+    background-color: white;
+    line-height: 0.2;
+    padding: 0px 0;
+    border: 1px solid var(--hover-li-color);
+    font-size: 1.2em;
+    border-radius: 4px;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.pymt-tab button i {
+    color: var(--scnd-text-color);
+    font-size: 18px;
+    width: auto;
+    height: auto;
+}
+
+.pymt-button:hover, .PaymentBtn1:hover, .PaymentBtn:hover {
+    border: 1px solid var(--hover-li-color);
+    -webkit-box-shadow: 0px 0px 9px -2px var(--hover-li-color);
+    -moz-box-shadow: 0px 0px 9px -2px var(--hover-li-color);
+    box-shadow: 0px 0px 9px -2px var(--hover-li-color);
+}
+
+    .pymt-button:hover i {
+        transform: translateX(5px);
+        transition: 0.9s;
+    }
+
+.pymt-tab button:hover, .pymt-tab button:active, .pymt-tab button.active {
+    border: 1px solid var(--hover-li-color);
+    -webkit-box-shadow: 0px 0px 9px -4px var(--hover-li-color);
+    -moz-box-shadow: 0px 0px 9px -4px var(--hover-li-color);
+    box-shadow: 0px 0px 9px -4px var(--hover-li-color);
+    color: var(--main-header-color);
+}
+
+    .pymt-tab button:hover i, .pymt-tab button.active i {
+        color: var(--main-header-color);
+    }
+
+.pymt-tabcontent {
+    display: none;
+    padding: 6px 12px;
+}
+.pymt-secure {
+    width: auto;
+    margin: 10px auto;
+    color: var(--scnd-text-color);
+    opacity:0.5;
+}
+#pymtdefaultTap .subtitle,#pymtCash .subtitle {
+    width: 80%;
+    color: var(--scnd-text-color);
+    font-size: 12px;
+    margin: 5px 10%;
+}
+#pymtdefaultTap .success {
+    width: 80%;
+    margin-top: 20px;
+    font-size: 12px;
+    margin: 5px 10%;
+}
+#pymt-cardForm {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    text-align: left;
+    width: 96%;
+    margin: 0 2%;
+    grid-column-gap: 10px;
+}
+
+    #pymt-cardForm .label {
+        padding: 10px 0;
+    }
+
+    #pymt-cardForm .input {
+    }
+
+    #pymt-cardForm div:nth-child(2), #pymt-cardForm div:nth-child(4) {
+        grid-column: 2 / 6;
+    }
+
+    #pymt-cardForm div:nth-child(8) {
+        text-align: right;
+    }
+
+    #pymt-cardForm .SaveCard {
+        grid-column: 1 / 6;
+    }
+
+    #pymt-cardForm .sndButton {
+        grid-column: 1 / 6;
+        text-align: center;
+    }
+#pymtCard {
+    grid-template-columns: 1fr;
+    grid-gap:10px;
+}
+.card-details {
+    display: none;
+    border: 1px solid #DDE1E0;
+    border-radius: 10px;
+    padding: 10px;
+}
+.card-form {
+    border: 1px solid #DDE1E0;
+    border-radius: 10px;
+    padding: 10px;
+}
+    .card-details:hover, .card-form:hover, .card-details:focus, .card-form:focus {
+        border: 1px solid #33A7D7;
+    }
+    .pymt-tabcontent input[type=text], .pymt-tabcontent input[type=number], select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#pymt-expMonth {
+}
+
+#pymt-expYear {
+}
+
+.pymt-tabcontent input[type=text]:active, select:active {
+    border: 1px solid #08C552;
+}
+
+#pymtPaypal img {
+    margin: 0 auto;
+}
+
+#pymtReview ul, ul.pymt-details {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+    grid-column-gap: 10px;
+    list-style: none;
+    justify-content: space-evenly;
+    color: var(--third-text-color);
+}
+
+.pymt-summary ul.pymt-details {
+    font-size: 12px;
+    text-align: left;
+}
+
+#pymtReview ul li:nth-child(odd), ul.pymt-details li:nth-child(odd) {
+    /* text-transform: uppercase; */
+    /* font-weight: 300; */
+}
+
+#pymtReview ul li:nth-child(even), ul.pymt-details li:nth-child(even) {
+    /*text-align: right;*/
+    /* font-weight: 200; */
+}
+
+.summary-details {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 100%;
+    margin: 0 auto;
+    grid-column-gap: 10px;
+    list-style: none;
+    justify-content: space-evenly;
+    color: var(--third-text-color);
+    font-size: 12px;
+    text-align: left;
+}
+.summary-title {
+    font-size: 12px;
+    color: var(--scnd-text-color);
+}
+.summary-details li.pymt-title {
+    /* text-transform: uppercase; */
+    /* font-weight: 300; */
+    grid-column: 1/3;
+    color: #13395e;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 2px 0;
+}
+.summary-details li.pymt-desc {
+    text-align: left;
+    grid-column: 1/3;
+    /* font-weight: 200; */
+}
+.pymt-session-details {
+    grid-column: 1/3;
+    text-align: left;
+}
+.pymt-important {
+    font-weight: 500;
+    color: var(--main-header-color);
+    text-align: left;
+    font-size: 18px;
+    margin: 10px 0;
+}
+.line 
+{
+    height: 1px;
+    grid-column: 1/3;
+    background-color: var(--scnd-text-color);
+    opacity: 0.6;
+}
+#pymtComplete, #pymtError {
+    text-align: center;
+}
+
+#pymtComplete i {
+    color: var(--main-header-color);
+    margin: 50px 0 20px 0;
+}
+#pymtError i {
+color: darkred;
+margin: 50px 0 20px 0;
+}
+
+#pymtComplete p, #pymtError p {
+    margin: 5px 0;
+}
+
+#pymtComplete p.PymtSubtitle {
+}
+
+#pymtComplete strong, #pymtError strong {
+    margin: 5px 0;
+    font-weight: 400;
+    font-size: 1.8em;
+    color: var(--main-header-color);
+}
+/* section5 */
+.payment-footer {
+    background-color: var(--main-bg-color);
+    text-decoration: none;
+    text-align: center;
+    color: var(--scnd-text-color);
+    -webkit-box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    -moz-box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+    box-shadow: 1px 2px 4px -1px var(--scnd-text-color);
+}
+
+    .payment-footer a, .payment-footer p {
+        text-decoration: none;
+        color: var(--scnd-text-color);
+        font-size: 12px;
+    }
+
+.payment-footer a:hover {
+    text-decoration: underline;
+    color: var(--hover-li-color);
+}
+
+#operations {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 92%;
+    margin: 10px auto;
+}
+
+#operations td, #operations th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#operations tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#operations tr:hover {
+    background-color: #ddd;
+}
+
+#operations th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: var(--main-header-color);
+    color: white;
+}
+@keyframes slideUpElement {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDownElement {
+    0% {
+        transform: translateY(-40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes showSection {
+    0% {
+        transform: translateY(-40px);
+        display: contents;
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeftElement {
+    0% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-80px);
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes loadingElement {
+    0% {
+        color: #fff;
+    }
+
+    25% {
+        color: rgb(226, 225, 225);
+    }
+
+    50% {
+        color: #cccf;
+    }
+
+    75% {
+        color: #bdbdbd;
+    }
+
+    100% {
+        color: #fff;
+    }
+}
+
+@keyframes slideRightElement {
+    0% {
+        transform: translateY(-40px);
+        display: contents;
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width:760px) {
+    .pymt-tab {
+        grid-template-columns: repeat(2,1fr);
+        row-gap: 10px;
+    }
+}
+
+
+/*LOADER*/
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 50px auto;
+}
+
+    .lds-ellipsis div {
+        position: absolute;
+        top: 33px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #cef;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}

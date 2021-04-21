@@ -1,0 +1,144 @@
+
+body{font-family: sans-serif;}
+.opr-header
+{
+    display: flex;
+    justify-content: space-between
+  }
+  .calendar-action
+  {
+      height: 30px;
+      justify-content: space-between;
+      display: flex;
+      padding: 2px 5px;
+      background-color: #fff;
+    }
+  .calendar-action #ShowCalendar
+  {
+      border: none;
+      padding: 2px 10px;cursor: pointer;
+}
+  .calendar-action .date-filter
+  {
+      display: flex;
+}
+  .calendar-action .date-filter .single
+  {
+      padding: 5px 10px;
+}
+  .calendar-action .date-filter .date-from
+  {
+      padding: 5px 10px;
+}
+  .calendar-action .date-filter .pymtarrow-right
+  {
+      padding: 5px ;
+}
+  .calendar-action .date-filter .date-to
+  {
+      padding: 5px 10px;
+}
+  .calendar-action #ClearDateFilter
+  {
+      border: none;
+      padding: 2px 10px;
+      cursor: pointer;}
+.date-filter
+  {
+      display: flex;
+    }
+
+.opr-filter {
+    width: 100%;
+    background-color: rgb(123, 141, 147);
+    padding: 10px 0;
+    margin: 10px auto;
+    gap: 5px;
+}
+.opr-filter div {
+    width:80%;
+    margin:0 10%;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 1fr 1fr;
+}
+
+#filterTags{
+    list-style: none;
+    display: flex;
+}
+#filterTags li{
+    margin:0 10px;
+    padding: 1rem 1.3rem;
+}
+    #filterTags .close {
+        border: none;
+        background-color: inherit;
+        position: absolute;
+        top: -1px;
+        right: 2px;
+    }
+#filterTags .close:hover{
+    color:#dc3545;
+}
+.Opr-btn {
+    border-radius: 3px;
+    border: 1px solid rgb(223, 231, 235);
+    padding: 0px 20px;
+    font-size: 13px;
+    line-height: 40px;
+    cursor: pointer;
+    color: #33A7D7;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(123 141 147 / 15%) 0px 1px 3px 0px;
+}
+
+#RefundPayment, #VoidPayment {
+    position: absolute;
+    right: 45px;
+    top: 30px;
+}
+
+    #VoidPayment:hover, #RefundPayment:hover {
+        border-color: #33A7D7;
+        background: rgb(255, 255, 255);
+        box-shadow: rgb(121 131 149 / 25%) 0px 2px 5px 0px;
+        color: #33A7D7;
+    }
+
+.modal-header .close {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+}
+
+.Amount {
+    color: #33A7D7;
+    font-size: 46px;
+    margin: 0 5px 0 20px;
+}
+
+.currency {
+    font-size: 16px;
+    color: rgb(165, 178, 184);
+}
+
+.Opr-info {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(223, 231, 235, 0.5);
+}
+    .Opr-info .captured i, .Opr-info .captured p {
+        color: #33A7D7;
+    }
+.Opr-info .NotCaptured i ,.Opr-info .NotCaptured p {
+        color: rgb(165, 178, 184);
+    }
+.Opr-title {
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: rgb(53, 76, 85);
+}
+
+.Opr-text {
+    font-size: 14px;
+    color: rgb(165, 178, 184);
+}

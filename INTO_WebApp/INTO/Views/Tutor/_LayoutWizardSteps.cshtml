@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" href="~/css/steps.css" />
+    <link rel="stylesheet" href="~/css/inner-nav.css" />
+    @RenderSection("StepsStyles", false);
+}
+@section TopScripts{
+    <script type="application/javascript">
+        var pageName = '@ViewData["PageName"]';
+        var stepId = @ViewData["StepId"];
+        $(document).ready(function(){
+            $("[data-rel='@ViewData["PageName"]']").addClass("active");
+        });
+    </script>
+    @RenderSection("StepsTopScripts", false)
+}
+
+<div class="container">
+    <div class="row border-bottom pb-1 mb-4">
+        <div class="match-parent" style="z-index: 1025;">
+            <div class="pill-container md-pills pills-info">
+                <input role="navigation" type="checkbox" id="menu">
+                <label for="menu" onclick></label>
+
+                <nav role="off-canvas">
+                    <ul>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @RenderBody()
+</div>
+
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/steps/steps.js"></script>
+    @RenderSection("Scripts", required: false)
+}

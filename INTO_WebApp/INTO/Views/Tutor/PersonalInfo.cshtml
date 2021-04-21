@@ -1,0 +1,55 @@
+﻿@using BLL.Shared;
+
+
+
+@section StepsStyles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/time/date-picker.css" />
+}
+@section StepsTopScripts
+{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/time/bootstrap-datepicker.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/jquery-ui.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/basicInfo.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/geo.js"></script>
+    <script src="~/js/functionsInterview.js"></script>
+
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTxMpi6L2dxwNUl5CxijeneRvqA6-VLg&callback=initMap&language=ar&region=EG&libraries=places"></script>
+}
+
+
+
+@model TutorModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="form-row">
+    <div class="col flex mb-2">
+        <h4 class="mt-2">Personal Info</h4>
+    </div>
+</div>
+
+<div class="md-form">
+    <label for="number"> Id</label>
+    <input id="Uid" class="result form-control-sm" type="number">
+
+</div>
+<div class="md-form">
+    <label for="text">Name</label>
+    <input id="FullName" class="result form-control-sm" type="text">
+
+</div>
+<div class="md-form">
+    <label for="text">Date of Birth</label>
+    <input id="DOB" class="result form-control-sm" type="text">
+</div>
+<div class="md-form">
+    <label for="text">Gender</label>
+    <input id="Gender" class="result form-control-sm" type="text">
+
+</div>
+<div class="md-form">
+    <label for="email">Email</label>
+
+    <input id="Email" class="result form-control-sm" type="email">
+</div>
+

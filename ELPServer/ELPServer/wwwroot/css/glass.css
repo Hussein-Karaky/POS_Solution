@@ -1,0 +1,60 @@
+﻿.glass {
+    /* background styles */
+    position: relative;
+    display: inline-block;
+    padding: 15px 25px;
+    /* text styles */
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: 100;
+    border-radius: 3px;
+    box-shadow: 0px 1px 4px -2px #333;
+    text-shadow: 0px -1px #333;
+    background-color: green; /*for compatibility with older browsers*/
+    background-image: linear-gradient(green,lightgreen);
+    /*background: linear-gradient(#258,#aef);skyBlue*/
+    /*background: linear-gradient(#700,#f00);red*/
+    /*background: linear-gradient(#740,gold);gold*/
+    /*background: linear-gradient(#507,#eaf);pink*/
+    /*background: linear-gradient(#b40,orange);orange*/
+    /*background: linear-gradient(#073,#0fa);geen*/
+    /*background: linear-gradient(#000,#888);black*/
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+    -webkit-transition: background 1s ease-out;
+    -moz-transition: background 1s ease-out;
+    -o-transition: background 1s ease-out;
+    transition: background 1s ease-out;
+}
+    .glass:after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 5px;
+        width: calc(86% - 4px);
+        height: 54%;
+        background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));skyBlue*/
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));red*/
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));gold*/
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));pink*/
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));orange*/
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));green*/
+        /*background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));black*/
+        border-radius: 100%;
+    }
+    .glass:hover {
+        background: linear-gradient(#073,#0fa);
+        /*        transition: all .4s ease;
+        -webkit-transition: all .4s ease;*/
+    }
+    .glass:active {
+        background: linear-gradient(#0fa,#073);
+        /*        transition: all .4s ease;
+        -webkit-transition: all .4s ease;*/
+    }
+

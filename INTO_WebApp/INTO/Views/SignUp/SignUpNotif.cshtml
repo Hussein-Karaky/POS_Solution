@@ -1,0 +1,21 @@
+﻿@model SignUpModel
+@{
+    ViewBag.Title = "SignUp Notification";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <div class="card text-center">
+        <div class="card-header">
+            One Step Away
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Welcome @Model.User.FirstName</h5>
+            <p class="card-text">Please check your inbox (@Model.User.Email) to activate your account.</p>
+            <a href="javascript: showSignIn()" class="btn btn-primary text-light">Login</a>
+        </div>
+        <div class="card-footer text-muted">
+            2 days ago
+        </div>
+    </div>
+</div>

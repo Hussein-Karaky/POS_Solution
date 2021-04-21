@@ -1,0 +1,57 @@
+﻿:root {
+    --success: rgb(102, 187, 106) !important;
+    --success-transparent: rgba(102, 187, 106, .2) !important;
+    --info: rgb(0, 153, 204) !important;
+    --info-transparent: rgba(0, 153, 204, .2) !important;
+    --question: rgb(255, 112, 67) !important;
+    --question-transparent: rgba(255, 112, 67, .2) !important;
+    --warning: rgb(255, 136, 0) !important;
+    --warning-transparent: rgba(255, 136, 0, .2) !important;
+    --error: rgb(204, 0, 0) !important;
+    --error-transparent: rgba(204, 0, 0, .2) !important;
+    --input-border-color: #5599aa !important;
+    --color: black !default;
+    --bg-color: white !default;
+    --gold: #FFD600;
+    --light-gold: #FFEC60;
+}
+
+.swal2-popup.success {
+    --color: var(--success);
+    --bg-color: var(--success-transparent);
+    color: var(--color) !important;
+    background-color: var(--bg-color) !important;
+    border-color: var(--color) !important;
+}
+
+.swal2-popup.info {
+    --color: var(--info);
+    --bg-color: var(--info-transparent);
+    color: var(--color) !important;
+    background-color: var(--bg-color) !important;
+    border-color: var(--color) !important;
+}
+
+.swal2-popup.warning {
+    --color: var(--warning);
+    --bg-color: var(--warning-transparent);
+    color: var(--color) !important;
+    background-color: var(--bg-color) !important;
+    border-color: var(--color) !important;
+}
+
+.swal2-popup.error {
+    --color: var(--error);
+    --bg-color: var(--error-transparent);
+    color: var(--color) !important;
+    background-color: var(--bg-color) !important;
+    border-color: var(--color) !important;
+}
+
+.parent-color{
+    color: inherit !important;
+}
+
+.swal2-popup.swal2-toast .swal2-icon [class^=swal2-x-mark-line] {
+    background-color: var(--color) !important;
+}

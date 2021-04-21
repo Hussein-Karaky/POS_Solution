@@ -1,0 +1,103 @@
+﻿@using BLL.Shared;
+
+@model TutorModel
+@{
+    ViewBag.Title = "Basic Information";
+    ViewData["PageName"] = "BasicInformation";
+    ViewData["StepId"] = 4;
+    Layout = "~/Views/Tutor/_LayoutWizardSteps.cshtml";
+}
+
+@section StepsStyles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/time/date-picker.css" />
+}
+@section StepsTopScripts
+{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/time/bootstrap-datepicker.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/jquery-ui.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/basicInfo.js"></script>
+    @*<script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/mdb-file-upload.min.js"></script>
+        <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/upload/jquery.ui.widget.js"></script>
+        <script src="~/js/upload/jquery.iframe-transport.js"></script>
+        <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/upload/jquery.fileupload.js"></script>
+        <script src="~/js/upload/jquery.fileupload-process.js"></script>
+        <script src="~/js/upload/jquery.fileupload-image.js"></script>
+        <script src="~/js/upload/jquery.fileupload-audio.js"></script>
+        <script src="~/js/upload/jquery.fileupload-video.js"></script>
+        <script src="~/js/upload/jquery.fileupload-validate.js"></script>
+        <script src="~/js/upload/jquery.fileupload-ui.js"></script>
+        <script src="~/js/upload/demo.js"></script>*@
+
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/geo.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTxMpi6L2dxwNUl5CxijeneRvqA6-VLg&callback=initMap&language=ar&region=EG&libraries=places"></script>
+}
+
+<div class="container">
+    <div class="row mb-4">
+    </div>
+    <form id="frmFiles" method="post" enctype="multipart/form-data" asp-action="FileUpload" asp-controller="Files" data-role="tutor-info-input">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-row">
+                    <div class="col flex mb-2">
+                        <h4 class="mt-2">Personal Info</h4>
+                        <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-32 info-save" data-role="save-basic-info">
+                            <i class="icon-save"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="persInfoGender" class="col">
+                    </div>
+                </div>
+                <div class="md-form">
+                    <input id="txtDoB" class="result form-control-sm" type="text" data-role="date">
+                    <label for="date">Date of birth</label>
+                </div>
+                <div class="md-form">
+                    <div class="form-group">
+                        <div class="col-md-10 flex mb-2">
+                            <h6 class="mt-3">Background Check</h6>
+                        </div>
+                        <div id="uploadedBgFiles">
+                        </div>
+                        <div id="bgCheckUploader" class="match-parent">
+                            <input type="file" name="files" data-role="file-upload" data-rel="save-tutor-bgcheck" class="col-10" multiple />
+                            <input type="hidden" name="userId" value='@Model.User.UserId' data-role="user-id" />
+                            <input type="hidden" name="sourceType" value="100178" data-role="source-type" />
+                            <button type="submit" class="btn btn-floating btn-outline waves-effect waves-dark square-32 bgcheck-save col-2" data-role="save-tutor-bgcheck">
+                                <i class="icon-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="selectedFiles" class="form-group">
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-row">
+                    <div class="col flex mb-2">
+                        <h4 class="mt-2">Education</h4>
+                        <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-32 edu-save" data-role="save-tutor-edu">
+                            <i class="icon-save"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="eduInput"></div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("../Tutor/LocationSettings", Model)
+        </div>
+    </form>
+    <div class="row">
+        <button class="btn btn-primary waves-effect waves-light pt-1 pr-2 pl-4 white-text lang-dependant-inv" data-role="btn-next">
+            @Model.Globals["Next"]
+            <i class="icon-right ml-1 square-40 inline-block" style="margin-bottom: -15px;"></i>
+        </button>
+    </div>
+</div>
+u

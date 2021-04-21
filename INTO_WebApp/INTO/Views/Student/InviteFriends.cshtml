@@ -1,0 +1,70 @@
+﻿@model INTO.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Give $10 , get $10</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h6>
+                Invite your friends to sign up to our site. We'll give them $10 off their first lesson, and you'll get $10 when they book.
+            </h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="card-title">Send email invite</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="POST" asp-action="InviteFriends" asp-controller="Student" data-role="invite-friend">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="md-form">
+                                            <input type="text" id="txtEmail" class="form-control-sm" data-role="invite-via-email" style="width:100%">
+                                            <label data-error="wrong" data-success="right" for="txtEmail">Your Friend's Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="button" class="btn btn-info white-text light-blue darken-1" data-role="invite-friend-via-email" style="width:50%;margin-top:1.5em;float:right;">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            @*<button type="button" class="btn btn-info white-text light-blue darken-1">Share Facebook</button>*@
+                            <div class="fb-share-button btn white-text" style="width:50%;float:right;"
+                                 data-href="https://www.mytutor.co.uk/signup.html?rc=MYTUTOR">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

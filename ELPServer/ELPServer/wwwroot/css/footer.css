@@ -1,0 +1,25 @@
+﻿footer {
+    color: #757575 !important;
+    background: linear-gradient(to right, EFEFEF, #FFFFFF);
+}
+
+.social {
+    position: relative;
+/*    left: -10px*/
+}
+
+.social .fa-lg {
+    padding: 0rem !important;
+}
+
+hr.mx-0.px-0 {
+    border-color: #33AEFF;
+}
+
+.copy-rights {
+    color: #039be5;
+}
+
+pb-0, .py-0 {
+    padding-bottom: 32px !important;
+}

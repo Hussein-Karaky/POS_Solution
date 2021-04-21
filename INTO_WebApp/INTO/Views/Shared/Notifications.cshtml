@@ -1,0 +1,40 @@
+﻿@section Styles{
+    <link href="~/css/TutorDashboard.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/dark.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/material-ui.css" rel="stylesheet" />
+    <link href="~/css/materialTest.css" rel="stylesheet" />
+    @*<link href="~/lib/scroll-table/customStyle.css" rel="stylesheet" />*@
+}
+
+<div class="container-fluid row">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 col-12">
+        <h1 class="h3 mb-0 text-gray-800">Notifications</h1>
+    </div>
+    <div class="col-12 col-md-9" id ="notifications"></div>
+
+
+</div>
+
+@section Scripts {
+    @*<script src="~/lib/scroll-table/DataContainerObject.js"></script>*@
+    <script>
+        //when document is loaded and ready, call this function
+        $(document).ready(function () {
+
+            let dataCont = new DataContainer("notifications",
+                window.location.origin.concat("/Account/GetNotifications"),
+                {
+                    paging: { enabled: true, remainingField: "RemainingPages", pageSize: 5, page: 1 },
+                    main_classes: null,
+                    no_more_data: null
+                },
+                "table-cards"
+            );
+            dataCont.dataBind();
+
+            //addTableRowOnClickEvent();
+        });
+    </script>
+
+}

@@ -1,0 +1,437 @@
+﻿@using BLL.Shared;
+@model LoginModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IList<Country> countries = new List<Country>();
+    countries = INTO.Models.LoginModel.AllCountries.ToList();
+    IList<LookUpDetails> InstituteTypes = new List<LookUpDetails>();
+    InstituteTypes = INTO.Models.LoginModel.InstituteTypes.ToList();
+    IList<LookUpDetails> Curriculum = new List<LookUpDetails>();
+    Curriculum = INTO.Models.LoginModel.Curriculums.ToList();
+    IList<LookUpDetails> Classes = new List<LookUpDetails>();
+    Classes = INTO.Models.LoginModel.Classes.ToList();
+    IList<Language> languages = new List<Language>();
+    languages = INTO.Models.LoginModel.AllLanguages.ToList();
+    IList<LookUpDetails> TutorServices = new List<LookUpDetails>();
+    TutorServices = INTO.Models.LoginModel.TutorService.ToList();
+
+    IList<string> searchStep1 = new List<string>();
+    IList<string> searchStep3 = new List<string>();
+    IList<string> searchStep4 = new List<string>();
+    IList<string> searchStep5 = new List<string>();
+    IList<string> searchStep6 = new List<string>();
+    IList<string> searchStep7 = new List<string>();
+    IList<string> searchStep8 = new List<string>();
+    IList<string> searchStep9 = new List<string>();
+    searchStep1 = ViewBag.SearchStep1;
+    searchStep3 = ViewBag.SearchStep3;
+    searchStep4 = ViewBag.SearchStep4;
+    searchStep5 = ViewBag.SearchStep5;
+    searchStep6 = ViewBag.SearchStep6;
+    searchStep7 = ViewBag.SearchStep7;
+    searchStep8 = ViewBag.SearchStep8;
+    searchStep9 = ViewBag.SearchStep9;
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/MultiStepWithAnimatedBar/StyleSheet.css" />
+    <link href="~/css/geo/demo.css" rel="stylesheet" />
+    <link href="~/css/geo/svgMap.min.css" rel="stylesheet" />
+}
+<div class="row d-flex justify-content-sm-end justify-content-start px-5">
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+</div>
+<div class="row d-flex justify-content-sm-end justify-content-start px-5">
+    <div class="count text-center">
+        <p class="mb-sm-0 pb-sm-0"><strong><span style="color:black !important;" id="cnt" data-role="progress-value" ></span></strong> <span class="yellow-text">Completed</span></p>
+    </div>
+</div>
+<div class=" px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4">
+            <svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 467.17 518.57" version="1.0">
+                <defs id="defs4">
+                    <linearGradient id="grad1" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="#00ff22"></stop>
+                        <stop offset="100%" stop-color="#99ffee"></stop>
+                    </linearGradient>
+                    <linearGradient id="linearGradient3006">
+                        <stop id="stop3008" offset="0" />
+                        <stop id="stop3010" stop-color="#bcbcbc" offset="1" />
+                    </linearGradient>
+                    <linearGradient id="linearGradient2944">
+                        <stop id="stop2946" offset="0" />
+                        <stop id="stop2950" stop-color="#fff" offset=".5" />
+                        <stop id="stop2948" offset="1" />
+                    </linearGradient>
+                    <linearGradient id="linearGradient2865" y2="775.03" gradientUnits="userSpaceOnUse" x2="332.95" y1="775.03" x1="283.56">
+                        <stop id="stop2834" stop-color="#2d2d2d" offset="0" />
+                        <stop id="stop2844" stop-color="#2d2d2d" offset=".7214" />
+                        <stop id="stop2840" stop-color="#696969" offset=".82151" />
+                        <stop id="stop2842" stop-color="#2d2d2d" offset=".91284" />
+                        <stop id="stop2836" stop-color="#2d2d2d" offset="1" />
+                    </linearGradient>
+                    <linearGradient id="linearGradient2916" y2="775.28" gradientUnits="userSpaceOnUse" y1="775.28" x2="333.03" x1="283.56">
+                        <stop id="stop2897" stop-color="#282828" offset="0" />
+                        <stop id="stop2901" stop-color="#7d7d7d" offset=".5" />
+                        <stop id="stop2903" stop-color="#7fa7ce" offset=".57798" />
+                        <stop id="stop2905" stop-color="#fff" offset=".72717" />
+                        <stop id="stop2907" stop-color="#fff" offset=".80476" />
+                        <stop id="stop2911" stop-color="#282828" offset=".84954" />
+                        <stop id="stop2909" stop-color="#d7d7d7" offset="1" />
+                    </linearGradient>
+                    <linearGradient id="linearGradient2942" y2="574.67" xlink:href="#linearGradient2944" gradientUnits="userSpaceOnUse" x2="401.15" gradientTransform="translate(269.59 -388.78)" y1="574.67" x1="381.57" />
+                    <linearGradient id="linearGradient2988" y2="574.67" xlink:href="#linearGradient2944" gradientUnits="userSpaceOnUse" x2="401.15" gradientTransform="translate(269.59 -410.78)" y1="574.67" x1="381.57" />
+                    <linearGradient id="linearGradient3012" y2="260.03" xlink:href="#linearGradient3006" gradientUnits="userSpaceOnUse" x2="598.97" y1="513.4" x1="320.68" />
+                    <linearGradient id="linearGradient3028" y2="546.2" xlink:href="#linearGradient3006" gradientUnits="userSpaceOnUse" x2="588.37" y1="239.53" x1="288.88" />
+                </defs>
+                <g id="layer1" transform="translate(-172.82 -292.01)">
+                    <g id="g2849" transform="matrix(.76238 .64713 -.64713 .76238 547.19 -100.73)">
+                        <path id="rect1933" d="m283.56 638.34v273.38h0.28c-0.16 0.18-0.28 0.37-0.28 0.56 0 2.21 11.1 4 24.75 4s24.72-1.79 24.72-4c0-0.19-0.12-0.38-0.28-0.56h0.19v-273.38h-49.38z" fill="url(#linearGradient2865)" fill-rule="evenodd" />
+                        <path id="path2822" d="m340.16 629.53a26.474 6.2438 0 1 1 -52.95 0 26.474 6.2438 0 1 1 52.95 0z" transform="matrix(.93396 0 0 .64 15.326 235.37)" />
+                    </g>
+                    <rect id="rect2934" transform="rotate(40.326)" height="2.7014" width="19.585" y="184.54" x="651.16" fill="url(#linearGradient2942)" />
+                    <g id="g2879" fill="url(#linearGradient2916)" transform="matrix(.34237 .29061 -.048736 .057415 308.81 443.77)">
+                        <path id="path2881" d="m283.56 638.34v273.38h0.28c-0.16 0.18-0.28 0.37-0.28 0.56 0 2.21 11.1 4 24.75 4s24.72-1.79 24.72-4c0-0.19-0.12-0.38-0.28-0.56h0.19v-273.38h-49.38z" fill-rule="evenodd" />
+                        <path id="path2883" d="m340.16 629.53a26.474 6.2438 0 1 1 -52.95 0 26.474 6.2438 0 1 1 52.95 0z" transform="matrix(.93396 0 0 .64 15.326 235.37)" />
+                    </g>
+                    <rect id="rect2986" transform="rotate(40.326)" height="2.7014" width="19.585" y="162.54" x="651.16" fill="url(#linearGradient2988)" />
+                    <g id="g2922" fill="url(#linearGradient2916)" transform="matrix(.38053 .323 -.048736 .057415 311.1 417.05)">
+                        <path id="path2924" d="m283.56 638.34v273.38h0.28c-0.16 0.18-0.28 0.37-0.28 0.56 0 2.21 11.1 4 24.75 4s24.72-1.79 24.72-4c0-0.19-0.12-0.38-0.28-0.56h0.19v-273.38h-49.38z" fill-rule="evenodd" />
+                        <path id="path2926" d="m340.16 629.53a26.474 6.2438 0 1 1 -52.95 0 26.474 6.2438 0 1 1 52.95 0z" transform="matrix(.93396 0 0 .64 15.326 235.37)" />
+                    </g>
+                    <g id="g2974" fill="url(#linearGradient2916)" transform="matrix(.34237 .29061 -.10866 .12801 392.19 345.54)">
+                        <path id="path2976" d="m283.56 638.34v273.38h0.28c-0.16 0.18-0.28 0.37-0.28 0.56 0 2.21 11.1 4 24.75 4s24.72-1.79 24.72-4c0-0.19-0.12-0.38-0.28-0.56h0.19v-273.38h-49.38z" fill-rule="evenodd" />
+                        <path id="path2978" d="m340.16 629.53a26.474 6.2438 0 1 1 -52.95 0 26.474 6.2438 0 1 1 52.95 0z" transform="matrix(.93396 0 0 .64 15.326 235.37)" />
+                    </g>
+                    <path id="path2990" d="m569.11 380.56a131.3 124.64 0 1 1 -262.61 0 131.3 124.64 0 1 1 262.61 0z" transform="matrix(.73263 .62188 -.66271 .78073 443.81 -149.5)" stroke="#000" stroke-width="1.7307" fill="url(#linearGradient3012)" />
+                    <path id="path3026" d="m569.11 380.56a131.3 124.64 0 1 1 -262.61 0 131.3 124.64 0 1 1 262.61 0z" fill="url(#linearGradient3028)" transform="matrix(.70532 .59870 -.63437 .74734 445.9 -113.36)" />
+                    <path id="path3030" fill="#fff" d="m592.24 338.93c-51.12-43.39-128.03-36.87-171.68 14.55-31.92 37.61-37.25 88.86-17.8 130.67 6.92 11.79 15.89 22.62 26.88 31.95 53.1 45.08 133.22 38.07 178.81-15.65 10.04-11.82 17.57-24.92 22.65-38.65 11.18-43.72-2.33-91.86-38.86-122.87z" />
+                    <path id="path3041" fill-opacity=".51488" fill="#e7f2ff" d="m593.96 331.96c-52.3-44.39-131.28-37.37-176.3 15.67-32.93 38.79-38.61 91.49-18.82 134.39 7.06 12.09 16.22 23.19 27.47 32.73 54.32 46.11 136.59 38.57 183.62-16.83 10.35-12.2 18.13-25.69 23.4-39.82 11.67-44.99-2-94.41-39.37-126.14z" />
+                    <path id="path3051" d="m377.05 333.14a29.004 27.044 0 1 1 -58 0 29.004 27.044 0 1 1 58 0z" fill="#fff" transform="matrix(.69010 .58578 -.59276 .69832 472.89 -93.742)" />
+                    <path id="path3053" d="m377.05 333.14a29.004 27.044 0 1 1 -58 0 29.004 27.044 0 1 1 58 0z" fill="#fff" transform="matrix(.24720 .20983 -.24112 .28406 551 170.9)" />
+                    <path id="path3061" fill="#fff" d="m394 434.01c0.87 20.12 7.17 40.43 19.4 58.8 26.46 39.74 73.27 59.49 118.18 54.16 13.07-2.8 25.85-7.72 37.75-14.9 22.92-13.84 39.21-33.95 48.16-56.74-9.86 17.71-24.41 33.2-43.28 44.59-12.36 7.46-25.6 12.56-39.17 15.47-46.63 5.55-95.23-14.91-122.68-56.13-9.5-14.27-15.54-29.65-18.36-45.25z" />
+                </g>
+                <text x="340" y="146" class="path-fill" fill="#03a9f4" text-anchor="middle" data-role="progress-value">64%</text>
+                <circle cx="340" cy="134" r="116" fill="transparent" stroke-width="2%" stroke-dashoffset="0" stroke="url(#grad1)" id="loader-circle" class="path path-round" style="stroke-dasharray: 0, 728.8495; stroke-dashoffset: 0px; transition: dash 1s ease 0s;">
+
+                </circle>
+                <metadata>
+                    <rdf:RDF>
+                        <cc:Work>
+                            <dc:format>image/svg+xml</dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                            <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+                            <dc:publisher>
+                                <cc:Agent rdf:about="http://openclipart.org/">
+                                    <dc:title>Openclipart</dc:title>
+                                </cc:Agent>
+                            </dc:publisher>
+                            <dc:title>Magnifying Glass</dc:title>
+                            <dc:date>2006-12-21T01:35:32</dc:date>
+                            <dc:description>Magnifying Glass</dc:description>
+                            <dc:source>http://openclipart.org/detail/2202/magnifying-glass-by-deelight</dc:source>
+                            <dc:creator>
+                                <cc:Agent>
+                                    <dc:title>deelight</dc:title>
+                                </cc:Agent>
+                            </dc:creator>
+                            <dc:subject>
+                                <rdf:Bag>
+                                    <rdf:li>clip art</rdf:li>
+                                    <rdf:li>clipart</rdf:li>
+                                    <rdf:li>glass</rdf:li>
+                                    <rdf:li>image</rdf:li>
+                                    <rdf:li>look</rdf:li>
+                                    <rdf:li>magnify</rdf:li>
+                                    <rdf:li>magnifying</rdf:li>
+                                    <rdf:li>magnifying glass</rdf:li>
+                                    <rdf:li>media</rdf:li>
+                                    <rdf:li>png</rdf:li>
+                                    <rdf:li>public domain</rdf:li>
+                                    <rdf:li>search</rdf:li>
+                                    <rdf:li>svg</rdf:li>
+                                    <rdf:li>tool</rdf:li>
+                                </rdf:Bag>
+                            </dc:subject>
+                        </cc:Work>
+                        <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+                            <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction" />
+                            <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution" />
+                            <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+                        </cc:License>
+                    </rdf:RDF>
+                </metadata>
+            </svg>
+        </div>
+        <div class="col-md-8 p-0">
+            <div class="card rounded-0 b-0">
+                <div class="card-header" style="border-bottom:none;">
+                </div>
+                <div class="card-body show pt-0" data-name="country">
+                    <h4 class="heading mb-4 pb-1">Select Country</h4>
+
+                    <div class="demo-wrapper" style="width: 800px; max-height: 400px;">
+                        <div class="demo-container">
+                            <div id="svgMapPopulation">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:1em;">
+                        <select id="txtCountry" name="txtCountry" class="country-select" data-role="select-country" required>
+                            <option value="">Select your country</option>
+                            @foreach (var country in countries)
+                            {
+                                <option value="@country.Id" data-code="@country.Alpha2Code">@country.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline next mx-2" id="next0" onclick="validate1(0)">Next</button> </div>
+                </div>
+                <div class="card-body pt-0" data-name="service">
+                    <h4 class="heading mb-4 pb-1">@searchStep1[0]</h4>
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 margin-bottom">
+                            <h5>@searchStep1[3]</h5>
+                        </div>
+                    </div>
+                    @foreach (var service in TutorServices.Where<LookUpDetails>(l => l.Context.Equals("Online")))
+                    {
+                        <div class="row radio-group justify-content-between px-3">
+                            <div class="col-md-12 margin-bottom tutor-margin-left">
+                                <div>
+                                    <div class="tutor-radio">
+                                        <input type="radio" name="tutorServiceRadio" id="rbOnline_@service.Keyword" class="choice-tutoring-service option-input btn-outline square-24" value="@service.LookupDetailsId" data-role="tutoring-service">
+                                        <label for="rbOnline_@service.Keyword" class="tutor-radio-label">
+                                            <span class="label-text">@service.LookupDetailsDescription</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 margin-bottom">
+                            <h5>@searchStep1[1]</h5>
+                        </div>
+                    </div>
+                    @foreach (var service in TutorServices.Where<LookUpDetails>(l => l.Context.Equals("InPerson")))
+                    {
+                        <div class="row radio-group justify-content-between px-3">
+                            <div class="col-md-12 margin-bottom tutor-margin-left">
+                                <div class="tutor-radio">
+                                    <input type="radio" name="tutorServiceRadio" id="rbFaceToFace_@service.Keyword" class="choice-tutoring-service option-input btn-outline square-24" value="@service.LookupDetailsId" data-role="tutoring-service">
+                                    <label for="rbFaceToFace_@service.Keyword" class="tutor-radio-label">
+                                        <span class="label-text"> @service.LookupDetailsDescription</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 margin-bottom">
+                            <h5>@searchStep1[2]</h5>
+                        </div>
+                    </div>
+                    @foreach (var service in TutorServices.Where<LookUpDetails>(l => l.Context.Equals("School")))
+                    {
+                        <div class="row radio-group justify-content-between px-3">
+                            <div class="col-md-12 margin-bottom tutor-margin-left">
+                                <div class="tutor-radio">
+                                    <input type="radio" name="tutorServiceRadio" id="rbTutorForSchool_@service.Keyword" class="choice-tutoring-service option-input btn-outline square-24" value="@service.LookupDetailsId" data-role="tutoring-service">
+                                    <label for="rbTutorForSchool_@service.Keyword" class="tutor-radio-label">
+                                        <span class="label-text"> @service.LookupDetailsDescription</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 margin-bottom">
+                            <div class="tutor-radio">
+                                <input type="radio" name="tutorServiceRadio" id="rbTutorForSchool" class="choice-tutoring-service option-input btn-outline square-24" value="0" data-role="tutoring-service">
+                                <label for="rbTutorForSchool" class="tutor-radio-label">
+                                    <span class="label-text"> Not sure yet</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next1" onclick="validate1(0)">Next</button></div>
+                </div>
+                <div class="card-body pt-0" data-name="academic-level">
+                    <h4 class="heading mb-4 pb-1">@searchStep3[0]</h4>
+                    @foreach (var instituteType in InstituteTypes)
+                    {
+                        <div class="row radio-group justify-content-between px-3">
+                            <div class="col-md-12 margin-bottom">
+                                <div class="tutor-radio">
+                                    <label for="rbLevel_@instituteType.LookupDetailsId" class="tutor-radio-label">
+                                        <input type="radio" value="@instituteType.LookupDetailsId" id="rbLevel_@instituteType.LookupDetailsId" name="userLevelRadio" class="choice-user-academic-level option-input btn-outline square-24">
+                                        <span class="label-text">@instituteType.LookupDetailsDescription</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 margin-bottom">
+                            <div class="tutor-radio">
+                                <input type="radio" name="userLevelRadio" id="rbTutorForSchool" class="choice-tutoring-service option-input btn-outline square-24" value="0" data-role="tutoring-service">
+                                <label for="rbTutorForSchool" class="tutor-radio-label">
+                                    <span class="label-text"> Not sure yet</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next2">Next</button> </div>
+                </div>
+                <div class="card-body pt-0" data-name="curriculum">
+                    <h4 class="heading mb-4 pb-1">@searchStep4[0]</h4>
+                    <div class="form-group">
+                        <select id="txtCurriculum" name="txtCurriculum" class="curriculum-select" data-role="choice-curriculum">
+                            <option value="">Select your curriculum</option>
+                            @foreach (var curriculum in Curriculum)
+                            {
+
+                                <option value="@curriculum.LookupDetailsId">@curriculum.LookupDetailsDescription</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next3">Next</button> </div>
+                </div>
+                <div class="card-body pt-0" data-name="education-class">
+                    <h4 class="heading mb-4 pb-1">@searchStep5[0]</h4>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <select id="txtClasses" name="txtClasses" class="class-select" data-role="choice-class">
+                                    <option value="">Select your class</option>
+                                    @foreach (var educationClass in Classes)
+                                    {
+                                        <option value="@educationClass.LookupDetailsId">@educationClass.LookupDetailsDescription</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next4">Next</button> </div>
+                </div>
+                <div class="card-body pt-0" data-name="subjects">
+                    <h4 class="heading mb-4 pb-1">@searchStep6[0]</h4>
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 card-block">
+                            <div class="tutor-radio choice-user-subject" id="choice-user-subject">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next5">Next</button> </div>
+                </div>
+                <div class="card-body pt-0" data-name="language">
+                    <h4 class="heading mb-4 pb-1">@searchStep7[0]</h4>
+                    <div class="form-group">
+                        <select id="txtLanguages" name="txtLanguages" class="language-select" data-role="choice-language">
+                            <option value="">Select language</option>
+                            @foreach (var language in languages)
+                            {
+
+                                <option value="@language.Id">@language.Description</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next6">Next</button> </div>
+                </div>
+                <div class="card-body pt-0" data-name="availability">
+                    <h4 class="heading mb-4 pb-1">@searchStep8[0]</h4>
+                    <div class="form-group">
+                        <div class="choice-user-availability" id="choice-user-availability">
+
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next7">Next</button> </div>
+                </div>
+                @* no values with ids in db so its static *@
+                <div class="card-body pt-0" data-name="startingTime">
+                    <h4 class="heading mb-4 pb-1">@searchStep9[0]</h4>
+                    <div class="row radio-group justify-content-between px-3">
+                        <div class="col-md-12 margin-bottom">
+                            <div>
+                                <div class="tutor-radio">
+                                    <input type="radio" name="startingTimeRadio" id="rbNow" class="choice-starting-time option-input btn-outline square-24" value="Now" data-role="choice-starting-time">
+                                    <label for="rbNow" class="tutor-radio-label">
+                                        <span class="label-text">@searchStep9[1]</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 margin-bottom">
+                            <div>
+                                <div class="tutor-radio">
+                                    <input type="radio" name="startingTimeRadio" id="rbInOneDay" class="choice-starting-time option-input btn-outline square-24" value="InOneDay" data-role="choice-starting-time">
+                                    <label for="rbInOneDay" class="tutor-radio-label">
+                                        <span class="label-text">@searchStep9[2]</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 margin-bottom">
+                            <div>
+                                <div class="tutor-radio">
+                                    <input type="radio" name="startingTimeRadio" id="rbThisWeek" class="choice-starting-time option-input btn-outline square-24" value="ThisWeek" data-role="choice-starting-time">
+                                    <label for="rbThisWeek" class="tutor-radio-label">
+                                        <span class="label-text">@searchStep9[3]</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 margin-bottom">
+                            <div>
+                                <div class="tutor-radio">
+                                    <input type="radio" name="startingTimeRadio" id="rbWithinTwoWeeks" class="choice-starting-time option-input btn-outline square-24" value="WithinTwoWeeks" data-role="choice-starting-time">
+                                    <label for="rbWithinTwoWeeks" class="tutor-radio-label">
+                                        <span class="label-text">@searchStep9[4]</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 margin-bottom">
+                            <div>
+                                <div class="tutor-radio">
+                                    <input type="radio" name="startingTimeRadio" id="rbThisMonth" class="choice-starting-time option-input btn-outline square-24" value="ThisMonth" data-role="choice-starting-time">
+                                    <label for="rbThisMonth" class="tutor-radio-label">
+                                        <span class="label-text">@searchStep9[5]</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 margin-bottom">
+                            <div>
+                                <div class="tutor-radio">
+                                    <input type="radio" name="startingTimeRadio" id="rbNotSure" class="choice-starting-time option-input btn-outline square-24" value="NotSure" data-role="choice-starting-time">
+                                    <label for="rbNotSure" class="tutor-radio-label">
+                                        <span class="label-text">@searchStep1[8]</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"><button class="btn btn-outline prev mx-2">Back</button> <button class="btn btn-outline next mx-2" id="next8" data-role="search-filter-submit">Next</button> </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-2">
+        </div>*@
+    </div>
+</div>
+
+@section TopScripts {
+    <script type="application/javascript" src="~/js/MultiStepWithAnimatedBar/search.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="~/js/sched.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    <script src="~/js/geo/svgMap.min.js"></script>
+    <script src="~/js/geo/population.js"></script>
+    <script src="~/js/geo/mapSelect.js"></script>
+}

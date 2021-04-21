@@ -1,0 +1,33 @@
+﻿@section Styles{
+    <link href="~/css/TutorDashboard.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/dark.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/material-ui.css" rel="stylesheet" />
+    <link href="~/css/materialTest.css" rel="stylesheet" />
+}
+
+<div class="container-fluid">
+
+     <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    </div>
+
+    <div id="boardTarget"></div>
+    <div id="progress"></div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/TutorDashboard.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            tutorDashboard("boardTarget", window.location.origin + '/TutorDashboard/GetBoardData', "");
+            let div = makeProgressBar('Tasks','10');
+            let div1 = makeProgressBar('Lectures','30');
+            let div2 = makeProgressBar('Assigments','90');
+            let div3 = makeProgressBar('Exams','100');
+            $('#progress').append(div).append(div1).append(div2).append(div3);
+        });
+    </script>
+
+}

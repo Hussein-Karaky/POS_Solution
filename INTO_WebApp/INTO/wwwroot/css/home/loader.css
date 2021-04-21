@@ -1,0 +1,154 @@
+:root {
+    --main-color: #00cbfd;
+    --scnd-color: #0092fd;
+}
+/* =========  Loader Animation ========= */
+#preloader {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: linear-gradient(var(--scnd-color),var(--main-color),var(--scnd-color));
+    z-index: 11000;
+    position: fixed;
+    display: block;
+}
+
+.LoadingLogo {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin: 0 auto;
+    animation-delay: 2.5s;
+    animation-duration: 1.5s;
+    animation-name: pump;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.26,-0.53,.57,2.32);
+}
+
+.logoLeft {
+    transform: rotate(12deg) skew(10deg, 10deg);
+    background: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 90px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 220px;
+    height: 125px;
+    position: absolute;
+    right: 0;
+    top: 195px;
+    animation-name: openLeft;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    opacity: 0;
+}
+
+.logoCenter {
+    background: white;
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    top: 10px;
+    left: -80px;
+    animation-name: slideUp;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+    animation-duration: 1.5s;
+    opacity: 0;
+}
+
+.logoSmile {
+    background: var(--primary-color);
+    width: 80px;
+    height: 35px;
+    position: absolute;
+    top: 108px;
+    left: 46px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.logoRight {
+    transform: rotate(-12deg) skew(-10deg, -10deg);
+    background: white;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 220px;
+    height: 125px;
+    position: absolute;
+    left: 0;
+    top: 195px;
+    animation-name: openRight;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    opacity: 0;
+}
+
+@keyframes pump {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        top: 100px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        top: 10px;
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        width: 0px;
+        opacity: 0;
+    }
+
+    100% {
+        width: 400px;
+        opacity: 1;
+    }
+}
+
+@keyframes openLeft {
+    0% {
+        transform: rotate(20deg) skew(10deg, 10deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(12deg) skew(10deg, 10deg);
+        opacity: 1;
+    }
+}
+
+@keyframes openRight {
+    0% {
+        transform: rotate(-20deg) skew(-10deg, -10deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(-12deg) skew(-10deg, -10deg);
+        opacity: 1;
+    }
+}

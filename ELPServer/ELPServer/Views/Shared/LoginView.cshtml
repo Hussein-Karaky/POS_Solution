@@ -1,0 +1,122 @@
+﻿@model ELPServer.Models.LoginModel
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-hidden="true" aria-modal="true">
+                    <div class="modal-dialog cascading-modal" role="document">
+                        <!--Content-->
+                        <div class="modal-content">
+
+                            <!--Modal cascading tabs-->
+                            <div class="modal-c-tabs">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-1" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link white-text active" data-toggle="tab" data-auth-modal-tab="sign-in" aria-controls="sign-in" href="#sign-in" role="tab">
+                                            <i class="fas fa-user mr-1"></i>
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link white-text" data-toggle="tab" data-auth-modal-tab="sign-up" aria-controls="sign-up" href="#sign-up" role="tab">
+                                            <i class="fas fa-user-plus mr-1"></i>
+                                            Sign Up
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <!-- Tab panels -->
+                                <div class="tab-content">
+                                    <!--Panel 7-->
+                                    <div class="tab-pane fade in show active" data-auth-modal-tab="sign-in" id="sign-in" role="tabpanel">
+
+                                        <!--Body-->
+                                        <div class="modal-body mb-1">
+                                            <div class="md-form form-sm mb-5">
+                                                <i class="fas fa-envelope prefix orange-text"></i>
+                                                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                                                <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                                            </div>
+
+                                            <div class="md-form form-sm mb-4">
+                                                <i class="fas fa-lock prefix orange-text"></i>
+                                                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                                                <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                                            </div>
+                                            <div class="text-center mt-2">
+                                                <button class="btn btn-info white-text light-blue darken-1">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                                            </div>
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer">
+                                            <div class="options text-center text-md-right mt-1">
+                                                <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
+                                                <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                                            </div>
+                                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal" style="visibility:hidden;">Close</button>
+                                        </div>
+
+                                    </div>
+                                    <!--/.Panel 7-->
+                                    <!--Panel 8-->
+                                    <div class="tab-pane fade" data-auth-modal-tab="sign-up" id="sign-up" role="tabpanel">
+
+                                        <!--Body-->
+                                        <div class="modal-body">
+                                            <div class="md-form form-sm mb-5">
+                                                <i class="fas fa-envelope prefix orange-text"></i>
+                                                <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                                                <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                                            </div>
+
+                                            <div class="md-form form-sm mb-5">
+                                                <i class="fas fa-lock prefix orange-text"></i>
+                                                <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                                                <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+                                            </div>
+
+                                            <div class="md-form form-sm mb-4">
+                                                <i class="fas fa-lock prefix orange-text"></i>
+                                                <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
+                                                <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+                                            </div>
+
+                                            <div class="text-center form-sm mt-2">
+                                                <button class="btn btn-info white-text light-blue darken-1">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                                            </div>
+
+                                        </div>
+                                        <!--Footer-->
+                                        <div class="modal-footer">
+                                            <div class="options text-right">
+                                                <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
+                                            </div>
+                                            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal" style="visibility:hidden;">Close</button>
+                                        </div>
+                                    </div>
+                                    <!--/.Panel 8-->
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--/.Content-->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setupModal("modalLRForm");
+        });
+    </script>
+
+
+}

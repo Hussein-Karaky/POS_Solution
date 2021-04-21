@@ -1,0 +1,326 @@
+﻿@model INTO.Models.TutorModel
+@{
+    ViewData["Title"] = "Add Tutor Question Answer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="~/css/preLoader.css" rel="stylesheet" />
+
+    <link href="~/css/tutorQuestion.css" rel="stylesheet" />
+    <link href="~/lib/summernote/bs-summer-btns.css" rel="stylesheet" />
+    <link href="~/lib/summernote/summernote.min.css" rel="stylesheet" />
+
+    <link href="~/css/sweetalert2/dark.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/material-ui.css" rel="stylesheet" />
+    <link href="~/css/materialTest.css" rel="stylesheet" />
+}
+@section TopScripts{
+
+    <script src="~/lib/summernote/summernote.js"></script>
+    <script src="~/js/TutorQuestion/SharedTutorQuestion.js"></script>
+    <script src="~/js/TutorQuestion/AddTutorQuestionAnswer.js"></script>
+    <script>
+        $(document).ready(function () {
+            getGlobalTexts(window.location.origin + '/TutorQuestion/Getlookups', 42, function () {
+                AddTutorQuestionAnswer();
+            });
+        });
+    </script>
+}
+<div class="loader-wrapper">
+    <div id="loader"></div>
+</div>
+<div class="row">
+    <div class="PicDiv col-12 flex-vertical-center flex-horizontal-center"><h1 class="text-white text-center" id="pageTitle"></h1></div>
+</div>
+<br />
+<div class="row">
+
+    <div class="col-md-3 col-lg-3 col-sm-12 offset-md-half offset-lg-half">
+        <div class="card mb-4 wow fadeIn">
+            <div class="card-header">
+
+            </div>
+            <div class="card-body" id="followersDiv">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-lg-5 col-sm-12">
+        <div id="QuestionDiv">
+            <div class="card mb-4 wow fadeIn">
+                <div class="card-header font-weight-bold">
+                    @* header *@
+                </div>
+
+                <div class="card-body">
+                    @* body : title + description *@
+                </div>
+                <div class="card-footer font-weight-bold">
+                    <div class="row">
+                        <a class="pull-left HandCursor mr-3" href="#AddAnswerDiv">
+                            <h5 class="text-info" id="addAnswerDiv">
+                                <span class="fa fa-plus-circle mr-1"></span>
+
+                            </h5>
+                        </a>
+                        <div class="pull-left HandCursor mr-3" id="DivFollow">
+                            @*follows number*@
+                            <h5 class="text-info">
+                            </h5>
+                        </div>
+                        <div class="pull-left HandCursor" id="AddCommentDiv">
+                            @*comments number*@
+                            <h5 class="text-info">
+                                <i class="fa fa-comment-medical mr-1"></i>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="hiddenDiv" id="DivComments">
+                        @* Comments section + new comments *@
+                        <div class="row comment-box">
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12" id="AddedTutorQuestionComments">
+
+                            </div>
+                            <div class="col-12 text-right">
+                                <input type="text" class="form-control col-12" id="txtTutorQuestionComment" placeholder="" />
+                                <button type="button" class="btn btn-info text-white col-md-6 col-sm-12" id="btnAddTutorQuestionComment"><span class="fa fa-comment-medical mr-1"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="AnswersDiv">
+
+        </div>
+
+
+        <div class="card mb-4 wow fadeIn" id="AddAnswerDiv">
+            <label for="summernote" class="text-bold"></label>
+            <textarea id="summernote" placeholder="" class="txtarea" rows="7"></textarea>
+            <button type="button" class="btn btn-info text-white text-center" id="btnAddAnswer"></button>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 col-lg-3 col-sm-12">
+        <div>
+            <div class="card mb-4 wow fadeIn">
+                <div class="card-body">
+                    <h5 class="card-title" id="yourTopicsTitle"></h5>
+                    <p class="card-text" id="yourTopics">
+
+                    </p>
+                    <h5 class="card-title" id="otherTopicsTitle"></h5>
+                    <p class="card-text" id="otherTopics">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="card mb-4 wow fadeIn"><img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="/images/board0.png" data-holder-rendered="true" style="width: 500px; height: 500px;"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+
+
+    <script>
+        function fileUploader(selector = "") {
+            if (!(this instanceof fileUploader)) {
+                return new fileUploader();
+            }
+            this.selector = selector;
+        }
+        fileUploader.prototype.UploadFiles = function (files, controllerName, actionName, paramName) {
+            let fileData = new FormData();
+            console.log(files, paramName);
+            if (!files) { return false; }
+            if (!files.length) {
+                files = [files];
+            }
+            for (let i = 0; i < files.length; i++) {
+                fileData.append(paramName, files[i]);
+                console.log(files[i])
+            }
+            return $.ajax({
+                method: 'POST',
+                url: `/${controllerName}/${actionName}`,
+                contentType: false,
+                processData: false,
+                dataType: "JSON",
+                data: fileData,
+            });
+        }
+    </script>
+
+
+
+
+    @*
+            <div class="row">
+
+                <div class="col-md-2 col-lg-2 col-sm-12 offset-md-1 offset-lg-1" style="background-color:lightyellow">
+                    Followers
+                </div>
+                <div class="col-md-5 col-lg-5 col-sm-12">
+                    <div id="QuestionDiv" question-id="@Model.tQuestion.Id" tutor-id="@Model.tQuestion.TutorId">
+                        <div class="card mb-4 wow fadeIn">
+                            <div class="card-header font-weight-bold">
+                                @if (Model.tQuestion != null && Model.tQuestion.tags !=null && Model.tQuestion.tags.Count > 0)
+        {
+        @for (int b = 0; b <= Model.tQuestion.tags.Count - 1; b++)
+        {
+            <span class="badge badge-info pull-right HandCursor" tag-id="@("tag-"+@Model.tQuestion.tags[b].Id)">@Model.tQuestion.tags[b].Name</span>
+        }
+        }
+        </div>
+        <div class="card-body">
+            <p class="media d-block d-md-flex mt-3">
+                <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                    <h5 class="mt-0 font-weight-bold">
+                        @Model.tQuestion.Title
+                    </h5>
+                    @Html.Raw(Model.tQuestion.Description)
+                </div>
+        </div>
+        <div class="card-footer font-weight-bold">
+            <div class="row">
+                <div class="pull-left HandCursor" id="anchorAddAnswer"><h5 class="text-info"><span class="fa fa-plus-circle"></span>Add Answer</h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="pull-left HandCursor" id="DivFollow"><h5 class="text-info" id="FollowsText"><span class="fa fa-wifi"></span>Follows &nbsp; @Model.tQuestion.FollowsNumber</h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="pull-left HandCursor" id="AddCommentDiv"><h5 class="text-info"><span class="fa fa-comment-medical"></span>Comment &nbsp; @Model.tQuestion.CommentsNumber</h5></div>
+            </div>
+        </div>
+        <div class="hiddenDiv" id="DivComments">
+            @if (Model.tQuestion != null && Model.tQuestion.tQuestionComments != null && Model.tQuestion.tQuestionComments.Count > 0)
+            {
+                @for (int i = 0; i <= Model.tQuestion.tQuestionComments.Count - 1; i++)
+                {
+                    <div class="card-footer">
+                        <h5>@Model.tQuestion.tQuestionComments[i].Description</h5>
+                        <h5 style="color:yellow;">@Model.tQuestion.tQuestionComments[i].UID</h5>
+                    </div>
+                }
+            }
+            <div id="AddedTutorQuestionComments">
+
+            </div>
+            <div>
+                <input type="text" class="form-control" id="txtTutorQuestionComment" placeholder="add your comment here" />
+                <button type="button" class="btn btn-info text-white" id="btnAddTutorQuestionComment"><span class="fa fa-comment-medical"></span>Add Comment</button>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+        <div id="AnswersDiv">
+
+
+                    @if (Model.tQuestion.tQuestionAnswers.Count > 0)
+                {
+                    @for (int x = 0; x <= Model.tQuestion.tQuestionAnswers.Count - 1; x++)
+                    {
+                        <strong>Answer</strong>
+                        <div class="card mb-4 wow fadeIn" id="DivAnswer" answer-id="@Model.tQuestion.tQuestionAnswers[x].Id" question-id="@("qid-"+Model.tQuestion.tQuestionAnswers[x].TQuestionId)">
+                            <div class="card-header font-weight-bold">
+                                @Model.tQuestion.tQuestionAnswers[x].UID
+                            </div>
+                            <div class="card-body">
+                                @Html.Raw(Model.tQuestion.tQuestionAnswers[x].Description)
+                            </div>
+                            <div class="card-footer font-weight-bold">
+                                <div class="row">
+                                    <div class="pull-left HandCursor Vote" vote="1" answer-id="@Model.tQuestion.tQuestionAnswers[x].Id"><h5 class="text-info"><span class="fa fa-thumbs-up"></span></h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="pull-left HandCursor Vote" vote="0" answer-id="@Model.tQuestion.tQuestionAnswers[x].Id"><h5 class="text-info"><span class="fa fa-thumbs-down"></span></h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="pull-left HandCursor showAnswerCommentDiv" question-id="@Model.tQuestion.Id" answer-id="@Model.tQuestion.tQuestionAnswers[x].Id"><h5 class="text-info"><span class="fa fa-comment-medical"></span>Comment @Model.tQuestion.tQuestionAnswers[x].AnswerCommentsNumber</h5></div>
+                                </div>
+                            </div>
+                            <div class="hiddenDiv" id="@("DivAnswerComments-"+Model.tQuestion.tQuestionAnswers[x].Id)">
+                                @if (Model.tQuestion.tQuestionAnswers[x].tAnswerComments.Count > 0)
+                                {
+                                    @for (int i = 0; i <= Model.tQuestion.tQuestionAnswers[x].tAnswerComments.Count - 1; i++)
+                                    {
+                                        <div class="card-footer">
+                                            <h5>@Model.tQuestion.tQuestionAnswers[x].tAnswerComments[i].Description</h5>
+                                            <h5 style="color:yellow;">@Model.tQuestion.tQuestionAnswers[x].tAnswerComments[i].UID</h5>
+                                        </div>
+                                    }
+                                }
+                                <div id="@("DivAddedTutorQuestionAnswerComments-"+Model.tQuestion.tQuestionAnswers[x].Id)">
+
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" id="@("txtTutorQuestionAnswerComment-"+Model.tQuestion.tQuestionAnswers[x].Id)" placeholder="add your comment here"/>
+                                    <button type="button" class="btn btn-info text-white addAnswerComment" answer-id="@Model.tQuestion.tQuestionAnswers[x].Id"><span class="fa fa-comment-medical"></span>Add Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+        </div>
+
+
+        <strong>Add your Answer</strong>
+        <div class="card mb-4 wow fadeIn" id="AddAnswerDiv">
+            <div class="card-header font-weight-bold">
+                <span class="badge badge-info">You</span>
+            </div>
+            <br />
+            <label for="summernote"><b>Answer Description</b></label>
+            <br />
+            <textarea id="summernote" style="width:500px;" placeholder="Add details to your question but DO NOT provide the answer here..." class="txtarea" rows="7"></textarea>
+            <button type="button" class="btn btn-info text-white text-center txtbox" id="btnAddAnswer">Submit Question</button>
+        </div>
+        </div>
+
+
+        <div class="col-md-3 col-lg-3 col-sm-12">
+            <div>
+                <div class="card mb-4 wow fadeIn">
+                    <div class="card-body">
+                        <span class="fa fa-heart" style="color:red"></span>
+                        <h5 class="card-title">Your Topics</h5>
+                        <p class="card-text">
+                            @if (Model.tQuestion != null && Model.tQuestion.tags != null && Model.tQuestion.tags.Count > 0)
+                            {
+                                @for (int b = 0; b <= Model.tQuestion.tags.Count - 1; b++)
+                                {
+                                    <span class="badge badge-info pull-right HandCursor" tag-id="@("tag-"+@Model.tQuestion.tags[b].Id)">@Model.tQuestion.tags[b].Name</span>
+                                }
+                            }
+                        </p>
+                        <h5 class="card-title">Other Topics</h5>
+                        <p class="card-text">
+                            @for (int i = 0; i <= Model.RandomTags.Count - 1; i++)
+                            {
+                                <span class="badge badge-info HandCursor TopicToGetQuestion" id="@(Model.RandomTags[i].Name+"Tag")">@Model.RandomTags[i].Name</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card mb-4 wow fadeIn"><img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="/images/board0.png" data-holder-rendered="true" style="width: 500px; height: 500px;"></div>
+            </div>
+        </div>
+        </div>*@
+
+}
+
+
+
+

@@ -1,0 +1,25 @@
+﻿.minimize-right {
+    transform: rotate3d(0, 1, 0, -64deg) !important;
+    left: 18% !important;
+}
+
+.minimize-left {
+    transform: rotate3d(0, 1, 0, 64deg) !important;
+    right: 18% !important;
+}
+
+.modal-include {
+    z-index: 1042 !important;
+}
+
+.emphasize-left {
+    width: 35% !important;
+    height: 35% !important;
+    left: 2% !important;
+}
+
+.emphasize-right {
+    width: 35% !important;
+    height: 35% !important;
+    right: 2%;
+}

@@ -1,0 +1,37 @@
+﻿@model EClassViewModel
+@{
+    ViewData["Title"] = "Class";
+}
+@section Styles
+{
+    <link href="~/css/wb/control.css" rel="stylesheet" />
+}
+@section Scripts
+{
+    <script type="application/javascript" src="~/js/wb/models.js"></script>
+    <script type="application/javascript" src="~/js/wb/Shape.js"></script>
+    <script type="application/javascript" src="~/js/wb/ComplexShape.js"></script>
+    <script type="application/javascript" src="~/js/wb/rect.js"></script>
+    <script type="application/javascript" src="~/js/wb/Point.js"></script>
+    <script type="application/javascript" src="~/js/wb/GeoPoint.js"></script>
+    <script type="application/javascript" src="~/js/wb/Path.js"></script>
+    <script type="application/javascript" src="~/js/wb/Triangle.js"></script>
+    <script type="application/javascript" src="~/js/wb/WhiteBoard.js"></script>
+    <script type="application/javascript" src="~/js/wb/Painter.js"></script>
+    <script type="application/javascript" src="~/js/wb/Interaction.js"></script>
+    <script type="application/javascript" src="~/js/wb/draw.js"></script>
+    <script type="application/javascript" src="~/js/wb/control.js"></script>
+}
+
+@if (Model.GetId() != null)
+{
+    <div id="toolbox" class="toolbox-collapse light-blue darken-1 shadow">
+        <a id="btnToolbox" class="btn-floating btn-info tool-toogle"><i class="fas fa-caret-down white-text"></i></a>
+    </div>
+    <div style="position:relative; width:auto; height:100%;">
+       
+    </div>
+}
+
+
+

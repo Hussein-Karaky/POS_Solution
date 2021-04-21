@@ -1,0 +1,42 @@
+.starrate span.starrate-ctrl {
+    position: absolute;
+    z-index: 2;
+}
+
+.starrate {
+    color: var(--gold);
+    cursor: pointer
+}
+
+    .starrate.saved {
+        color: var(--gold);
+    }
+
+    .starrate:hover {
+        color: var(--primary);
+    }
+
+    .starrate.saved:hover {
+        color: var(--light-gold);
+    }
+
+.icon-star-empty {
+    background: url(../images/vector/star_empty.svg) center center no-repeat;
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-star-fill {
+    background: url(../images/vector/star_fill.svg) center center no-repeat;
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-star-half {
+    background: url(../images/vector/star_half.svg) center center no-repeat;
+	display: inline-block;
+    width: 16px;
+    height: 16px;
+}

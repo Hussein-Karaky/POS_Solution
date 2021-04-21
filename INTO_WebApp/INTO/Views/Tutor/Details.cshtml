@@ -1,0 +1,312 @@
+﻿@using BLL.Tutor;
+@model INTO.Models.TutorModel
+
+@{
+    ViewData["Title"] = "Tutor Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/cards.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/carousel.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/cropper/cropper.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/cropper/croppie.css" />
+}
+
+@section Menus{
+    <li class="nav-item">
+        <a class="nav-link" href="#">@Model.User.FirstName @Model.User.LastName.ToCharArray()[0].</a>
+    </li>
+}
+
+<div class="card testimonial-card">
+
+    <!-- Background color -->
+    <div class="card-up indigo lighten-1 math">
+        <div class="mat-carousel shadow-in-18">
+            <div class="carousel-overlay shadow-in-lr-52-30"></div>
+            <div class="scene">
+                <div class="carousel" style="transform: translateZ(-195px) rotateY(-504deg);">
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(0deg) translateZ(195px);">C#</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(24deg) translateZ(195px);">Java</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(48deg) translateZ(195px);">C++</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(72deg) translateZ(195px);">JS</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(96deg) translateZ(195px);">MVC</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(120deg) translateZ(195px);">ES</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(144deg) translateZ(195px);">SQL</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(168deg) translateZ(195px);">CSS</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(192deg) translateZ(195px);">F#</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(216deg) translateZ(195px);">TS</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(240deg) translateZ(195px);">BS</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(264deg) translateZ(195px);">VB</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(288deg) translateZ(195px);">IOS</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(312deg) translateZ(195px);">OOP</div>
+                    <div class="carousel__cell" style="opacity: 1; transform: rotateY(336deg) translateZ(195px);">GO</div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-options invisible">
+            <p>
+                <label>
+                    <input class="cells-range" type="range" min="3" max="15" value="9">
+                </label>
+            </p>
+            <p>
+                <button class="previous-button invisible"><</button>
+                <button class="next-button invisible">></button>
+            </p>
+            <p>
+                Orientation:
+                <label>
+                    <input type="radio" name="orientation" value="horizontal" checked="">
+                    horizontal
+                </label>
+                <label>
+                    <input type="radio" name="orientation" value="vertical">
+                    vertical
+                </label>
+            </p>
+        </div>
+    </div>
+    <!-- Avatar -->
+    <div id="avatarSpace" class="avatar mx-auto white">
+        <a id="btnProfilePicture" alt="Profile Picture" class="waves-effect waves-light" data-toggle="modal" data-target="#modalCropper">
+            <img class="contains-user-picture rounded-circle"
+                 alt="Avatar">
+        </a>
+    </div>
+
+    <!-- Content -->
+    <div class="card-body">
+        <!-- Name -->
+        <h4 class="card-title" id="@Model.User.UserId">@Model.User.FirstName @Model.User.LastName</h4>
+        <hr>
+        <!-- Quotation -->
+        <p>
+            <i class="fas fa-quote-left"></i>
+            <span data-role="input-tutor-freeResponse" class="border-0"></span>
+        </p>
+    </div>
+
+</div>
+<!-- Card -->
+<br />
+<div class="classic-tabs">
+    <ul class="nav tabs-cyan" id="tabsProfileDetails" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link  waves-light active show" id="home-tab-md" data-toggle="tab" href="#cover-md" role="tab" aria-controls="cover-md"
+               aria-selected="true">Title & Cover</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" id="visibility-tab-md" data-toggle="tab" href="#visibility-md" role="tab" aria-controls="visibility-md"
+               aria-selected="false">Visibility</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" id="subjects-tab-md" data-toggle="tab" href="#subjects-md" role="tab" aria-controls="subjects-md"
+               aria-selected="false">Subjects</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" id="availability-tab-md" data-toggle="tab" href="#avail-md" role="tab" aria-controls="availability-md"
+               aria-selected="false">Availablity</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" id="location-tab-md" data-toggle="tab" href="#location-md" role="tab" aria-controls="location-md"
+               aria-selected="false">Location</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" id="payments-tab-md" data-toggle="tab" href="#payments-md" role="tab" aria-controls="payments-md"
+               aria-selected="false">Payments</a>
+        </li>
+    </ul>
+    <div class="tab-content border-right border-bottom border-left rounded-bottom" id="myTabContentMD">
+        <div class="tab-pane fade active show" id="cover-md" role="tabpanel" aria-labelledby="cover-tab-md">
+            @await Html.PartialAsync("../Tutor/TitleAndCover", Model)
+        </div>
+        <div class="tab-pane fade" id="visibility-md" role="tabpanel" aria-labelledby="visibility-tab-md">
+            <form id="frmFiles" method="post" enctype="multipart/form-data" asp-action="FileUpload" asp-controller="Files" data-role="tutor-info-input">
+                <p>
+                    Your profile is not visible yet to students. You still need to undergo a test.
+                </p>
+                <div class="md-form">
+                    <div class="form-group">
+                        <div class="col-md-10 flex mb-2">
+                            <h6 class="mt-3">Resume (for schools)</h6>
+                        </div>
+                        <div id="uploadedResumes">
+                        </div>
+                        <div id="resumeUploader">
+                            <input type="file" name="files" data-role="file-upload" data-rel="resume-upload" />
+                            <input type="hidden" name="userId" value='@Model.User.UserId' data-role="user-id" />
+                            <input type="hidden" name="sourceType" value="100179" data-role="source-type" />
+                            <button type="submit" class="btn btn-floating btn-outline waves-effect waves-dark square-32 resume-save" data-role="resume-upload">
+                                <i class="icon-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="selectedFiles" class="form-group">
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+                <p>
+                    <button type="button" class="btn btn-primary btn-rounded text-light waves-effect ml-auto tutor-register" data-role="go-tutor-test">
+                        Complete Your Registration
+                    </button>
+                </p>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="subjects-md" role="tabpanel" aria-labelledby="subjects-tab-md">
+            <p>
+                Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+                Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip
+                jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna
+                delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan
+                fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
+                richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus
+                tattooed echo park.
+            </p>
+            <div class="md-form ml-0 mr-0">
+                <a id="btnMaterials" alt="Add Materials" class="btn btn-outline-info btn-rounded light-blue lighten-5 blue-text btn-sm waves-effect waves-light" data-toggle="modal" data-target="#mdlAddMaterials">Add Materials</a><br />
+            </div>
+            <!--Table-->
+            <!--Table-->
+        </div>
+        <div class="tab-pane fade" id="avail-md" role="tabpanel" aria-labelledby="availability-tab-md">
+            <div class="container lang-dependant">
+                <div class="row">
+                    <div class="col-10 col-lg-10">
+                        <p id="availability">
+
+                        </p>
+                    </div>
+                    <div class="col-2 col-lg-2">
+                        <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 availability-save" data-role="save-tutor-availability">
+                            <i class="icon-save"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="location-md" role="tabpanel" aria-labelledby="location-tab-md">
+            @await Html.PartialAsync("../Tutor/LocationSettings", Model)
+        </div>
+        <div class="tab-pane fade" id="payments-md" role="tabpanel" aria-labelledby="payments-tab-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        @await Html.PartialAsync("../Tutor/BusinessSettings", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn-outline-info btn-rounded light-blue lighten-5 blue-text btn-sm waves-effect waves-light preview-back">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#03a9f4" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </svg>
+</button>
+
+<button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalSocial" style="display:none;">Social share</button>
+<form action="./">
+    <div class="modal fade" id="modalCropper" tabindex="-1" role="dialog" aria-hidden="true" aria-modal="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content" style="border-radius: 5px;">
+
+                <!--Modal cascading tabs-->
+                <div class="modal-c-tabs">
+                    @await Html.PartialAsync("../Tutor/PictureCropper", Model)
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+
+    <div class="modal fade" id="mdlEditMaterial" tabindex="-1" role="dialog" aria-labelledby="lblMaterialTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title w-100" id="lblMaterialTitle">Material title</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="editMatBody" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <div class="h-64">
+                        <label>Your Rates:</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <div class="form-row md-form mb-0 mt-0">
+                            <div class="col h-64">
+                                <input type="number" id="txtIndividual" class="form-control-sm" data-rel="lesson-type" data-role="price-Individual" data-id="1354" min="0" default="0">
+                                <label data-error="wrong" for="txtIndividual" class="">Individual</label>
+                            </div>
+                            <div class="col h-64">
+                                <input type="number" id="txtGroup" class="form-control-sm" data-rel="lesson-type" data-role="price-Group" data-id="1355" min="0" default="0">
+                                <label data-error="wrong" for="txtGroup" class="">Group</label>
+                            </div>
+                            <div class="col h-64">
+                                <input type="number" id="txtInPerson" class="form-control-sm" data-rel="lesson-type" data-role="price-In-Person" data-id="1356" min="0" default="0">
+                                <label data-error="wrong" for="txtInPerson" class="">In-Person</label>
+                            </div>
+                            <div class="col h-64">
+                                <select id="ddlCur">
+                                    <option value="1">USD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary btn-sm text-light" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="btnSaveMaterial" class="btn btn-primary btn-rounded text-light waves-effect ml-auto btn-sm" data-role="save-material">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Central Modal Small -->
+    <div class="modal fade" id="mdlAddMaterials" tabindex="-1" role="dialog" aria-labelledby="lblAddMaterial" aria-hidden="true">
+        <div class="modal-dialog modal-fluid modal-dialog-centered modal-lg" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <div class="match-parent inline-block" style="display: inline-flex;">
+                        <i class="icon-subjects"></i>
+                        <h4 class="modal-title inline-block mt-2" id="lblAddMaterial">
+                            Add Materials
+                        </h4>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    @await Html.PartialAsync("../Tutor/ManageSubjects", Model)
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/carousel.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/cropper/croppie.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/cropper/cropper.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/cropper/cam.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/profile/details.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/sched.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/subjects.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/geo.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTxMpi6L2dxwNUl5CxijeneRvqA6-VLg&callback=initMap&language=ar&region=EG&libraries=places"></script>
+}

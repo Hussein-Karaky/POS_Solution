@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <nav id="mainMenu" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+            <div class="container">
+                <a class="navbar-brand glass" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img width="32" src="~/images/into_icon_w_64.png" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1 mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="EClass" asp-action="Index">Class</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Find A Tutor
+                            </a>
+                            <div class="dropdown-menu animate slideIn shadow p-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Search For Tutors</a>
+                                <a class="dropdown-item" href="#">Request A Tutor</a>
+                                <a class="dropdown-item" href="#">Online Tutoring</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                How It Works
+                            </a>
+                            <div class="dropdown-menu animate slideIn shadow p-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">For Students</a>
+                                <a class="dropdown-item" href="#">For Higher Ed</a>
+                                <a class="dropdown-item" href="#">FAQ</a>
+                                <a class="dropdown-item" href="#">What Customers Say</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Start Tutoring
+                            </a>
+                            <div class="dropdown-menu animate slideIn shadow p-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Apply Now</a>
+                                <a class="dropdown-item" href="#">About Tutors Jobs</a>
+                                <a class="dropdown-item" href="#">Find Tutoring Jobs</a>
+                                <a class="dropdown-item" href="#">How It Works For Tutors</a>
+                                <a class="dropdown-item" href="#">FAQ</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                About Us
+                            </a>
+                            <div class="dropdown-menu animate slideIn shadow p-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">About Us</a>
+                                <a class="dropdown-item" href="#">Our Team</a>
+                                <a class="dropdown-item" href="#">Careers</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Contact Us</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg class="svg-inline--fa fa-user fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" style="height: 24px;">
+                                    <path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <div class="dropdown-menu animate slideIn shadow p-0" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="#">Activity Log</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login.html">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="btn-group">
+                        <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="navbarNotificationCounter" class="badge badge-primary">4</span>
+                            <svg height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g><path d="M381.7,225.9c0-97.6-52.5-130.8-101.6-138.2c0-0.5,0.1-1,0.1-1.6c0-12.3-10.9-22.1-24.2-22.1c-13.3,0-23.8,9.8-23.8,22.1   c0,0.6,0,1.1,0.1,1.6c-49.2,7.5-102,40.8-102,138.4c0,113.8-28.3,126-66.3,158h384C410.2,352,381.7,339.7,381.7,225.9z" />
+
+                            <path d="M256.2,448c26.8,0,48.8-19.9,51.7-43H204.5C207.3,428.1,229.4,448,256.2,448z" /></g></svg>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animate slideIn shadow p-0" id="navbarNotificationContent" aria-labelledby="navbarDropdownMenuLink" style="width: 250px;">
+                            <a gtm-id="Notifications" class="dropdown-item text-wrap" data-notification-date="06/23/2020 12:49" href="https://mdbootstrap.com/docs/standard/">
+                                <p class="small text-muted text-uppercase mb-2">June 23, 2020</p>
+                                <p class="mb-0">Bootstrap 5 with Material for Design 2.0 UI KIT released - download now</p>
+                            </a>
+
+                            <a gtm-id="Notifications" class="dropdown-item text-wrap" data-notification-date="06/17/2020 10:08" href="https://mdbootstrap.com/newsletter/">
+                                <p class="small text-muted text-uppercase mb-2">June 17, 2020</p>
+                                <p class="mb-0">Subscribe to our newsletter to be always up to date</p>
+                            </a>
+                            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+                                <div class="toast-header">
+                                    <img src="..." class="rounded mr-2" alt="...">
+                                    <strong class="mr-auto">Bootstrap</strong>
+                                    <small>11 mins ago</small>
+                                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="toast-body">
+                                    Hello, world! This is a toast message.
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

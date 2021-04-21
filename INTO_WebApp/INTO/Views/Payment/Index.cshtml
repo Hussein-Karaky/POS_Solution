@@ -1,0 +1,177 @@
+﻿@{
+    ViewData["Title"] = "Payment Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/payment/checkout.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/payment/payment.css" />
+}
+@section PaymentModal{<div id="PaymentModal" class="pymt-container"></div>}
+<style>
+    #btns {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 92%;
+        margin: 10px auto;
+    }
+
+        #btns td, #operations th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #btns tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #btns tr:hover {
+            background-color: #ddd;
+        }
+
+        #btns th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: var(--main-header-color);
+            color: white;
+        }
+</style>
+<table id="btns">
+    <tr>
+        <th>Id</th>
+        <th>Session Title</th>
+        <th>Session Date</th>
+        <th>Tutor</th>
+        <!--<th>Method</th>-->
+        <th>Pay Now</th>
+    </tr>
+    @if (Model.PaidSessions != null && Model.PaidSessions.Count != 0)
+    {
+        foreach (var item in Model.PaidSessions)
+        {
+            <tr data-session="@item.Id" data-title="@item.Title" data-AutoCapture="false" data-CaptureOn="@item.DateStamp" data-CancelationDate="@item.CancelationDate" data-date="@item.DateStamp" data-TutorId="@item.TutorId" data-tutorName="@item.TutorName" data-service="@item.Service" data-currency="@item.Currency" data-amount="@item.Amount">
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.DateStamp</td>
+                <td>@item.TutorName</td>
+                @*<td>@item.Service</td>*@
+                @if (@item.isPaid)
+                {
+            <td>                
+                <button class="PaymentBtn1" onclick="window.open(window.location.origin.concat('/Payment/Operations/').concat(@item.Id))">
+                    <span class="label" data-label="PymtDone"></span>!
+                </button>
+            </td>
+                }
+                else
+                {
+                    <td><button class="PaymentBtn"><span class="label" data-label="PayNow"></span> @item.Amount @item.Currency</button></td>
+                }
+            </tr>
+        }
+    }
+    else
+    {
+        <tr><td colspan="5">No Data Found.</td></tr>
+    }
+</table>
+
+
+<script>
+    // Modal:PopUp windows
+    var PaymentBtn = document.getElementsByClassName("PaymentBtn");
+    var PaymentModal = document.getElementById("PaymentModal");
+    var PymntBtnClck = false;
+    var PageKey = 'PaymentText';
+    var PaymentObject = {
+        Id: 0,
+        DateStamp: null,
+        Title: '',
+        UID: 0,
+        Amount: 0,
+        Currency : "USD",
+        Service: '',
+        Opr: 0,
+        TutorId: 0,
+        TutorName:'',
+        Method: '',
+        CancelationDate: null,
+        AutoCapture: false,
+        CaptureOn: null,
+        HasBlInfo: '@Model.hasHasBlInfo', //check if the user has saved Billing info
+        Photo: '',
+        Token:''
+    };
+    //Get Translated text from DB 
+    function getTranslatedText(keyword) {
+        $.ajax({
+            url: window.location.origin.concat("/lookup/GetLkpDetails/").concat(keyword + '/').concat(language),
+            type: 'GET',
+            data: {},
+            success: function (result) {
+                TranslatorList = result;
+                result.forEach(label => {
+                    let Array = document.querySelectorAll(`[data-label='${label.keyword}']`);
+                    if (Array.length > 0) {
+                        Array.forEach(item => {
+                            item.innerHTML = label.lookupDetailsDescription;
+                        });
+                    }
+                });
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+    getTranslatedText(PageKey);
+    var OpenPaymtWizard = function () {
+        PaymentModal.style.display = "flex";
+        var SessionId = this.closest('tr').getAttribute('data-session');
+        var SessionDateStamp = this.closest('tr').getAttribute('data-date');
+        var SessionTitle = this.closest('tr').getAttribute('data-title');
+        var SessionAmount = this.closest('tr').getAttribute('data-amount');
+        var SessionCurrency = this.closest('tr').getAttribute('data-currency');
+        var SessionTutorId = this.closest('tr').getAttribute('data-TutorId');
+        var SessiontutorName = this.closest('tr').getAttribute('data-tutorName');
+        var SessionService = this.closest('tr').getAttribute('data-service');
+        var CancelationDate = this.closest('tr').getAttribute('data-CancelationDate');
+        var AutoCapture = this.closest('tr').getAttribute('data-AutoCapture');
+        var CaptureOn = this.closest('tr').getAttribute('data-CaptureOn');
+        PaymentObject.Id = SessionId;
+        PaymentObject.DateStamp = SessionDateStamp;
+        PaymentObject.Title = SessionTitle;
+        PaymentObject.Amount = SessionAmount;
+        PaymentObject.Currency = SessionCurrency;
+        PaymentObject.Service = SessionService;
+        PaymentObject.TutorId = SessionTutorId;
+        PaymentObject.TutorName = SessiontutorName;
+        PaymentObject.CancelationDate = CancelationDate;
+        PaymentObject.AutoCapture = AutoCapture;
+        PaymentObject.CaptureOn = CaptureOn;
+
+        $.ajax({
+            url: window.location.origin.concat('/Payment/PayNow'),
+            type: 'post',
+            data: { json: JSON.stringify(PaymentObject) },
+            //data: { SessionId: PaymentObject.Id },
+            success: function (result) {
+                PaymentModal.innerHTML = result;
+                if (!PymntBtnClck) {
+                    PymntBtnClck = true;
+                    $.getScript("@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/payment.js");
+                    $.getScript("https://cdn.checkout.com/js/framesv2.min.js", function () {
+                        $.getScript("@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/checkout.js");
+                });
+                }
+            },
+            error: function () {
+                alert('error1');
+            }
+        });
+    }
+    for (var i = 0; i < PaymentBtn.length; i++) {
+        PaymentBtn[i].addEventListener('click', OpenPaymtWizard, false);
+    }
+</script>
+@*<script src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/payment.js"></script>*@

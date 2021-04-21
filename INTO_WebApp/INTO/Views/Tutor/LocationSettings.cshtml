@@ -1,0 +1,97 @@
+﻿@model TutorModel
+
+
+<div class="col-12">
+    <div class="container white lang-dependant">
+        <div class="row">
+            <div class="col flex mb-2">
+                <h4 class="display-5 mt-2">Location Settings</h4><br />
+                <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-32 location-save" data-role="save-tutor-location">
+                    <i class="icon-save"></i>
+                </a>
+            </div>
+        </div>
+        <p class="lang-dependant lead">Enter your mailing address or select a point on the map to set your tutoring location.</p>
+        <hr class="my-4">
+        <p class="lang-dependant">
+            Next, select your desired <strong>Privacy radius</strong>. INTO will randomly display a location within the <strong>Privacy radius</strong> so that your exact location is not revealed.
+        </p>
+        <a class="btn btn-primary btn-lg white-text" href="#" role="button">Learn more</a>
+        <br />
+        <div class="md-form mb-5 w-300">
+            <select id="ddlCountries" data-role="profile-country" tabindex="0">
+                <option value="0">Select your country</option>
+                @foreach (var country in LoginModel.AllCountries)
+                {
+                    <option value="@country.Id">@country.Name</option>
+                }
+            </select>
+            <div class="invalid-feedback">Your country please</div>
+        </div>
+        <div class="md-form">
+            <input type="text" id="txtAddress" class="form-control-sm w-100-p" data-role="input-tutor-address">
+            <label class="show-inline-block" for="txtAddress">Address</label>
+        </div>
+        <div class="md-form">
+            <input type="text" id="txtSecondAddress" class="form-control-sm w-100-p" data-role="input-tutor-second-address">
+            <label class="show-inline-block" for="txtSecondAddress">Second Address</label>
+        </div>
+        <div class="lang-dependant w-200">
+            <label class="mdb-main-label" for="PrivacyRadius">Privacy radius</label>
+            <a href="#privacyRadiusModal" class="blue-text input-help">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                </svg>
+            </a>
+            <select data-val="true" id="ddlPrivacyRadius" name="PrivacyRadius" data-role="input-tutor-privacy-radius">
+                <option selected="selected" value="0.125">1/8 mile</option>
+                <option value="0.25">1/4 mile</option>
+                <option value="0.5">1/2 mile</option>
+            </select>
+        </div>
+        <br />
+        <p class="lang-dependant">
+            Finally, set your <strong>Travel radius</strong> to specify the distance you would be willing to travel for tutoring opportunities.
+        </p>
+        <div class="md-form w-200">
+            <i class="input-prefix unit">
+                Km&nbsp;<a href="#travelRadiusModal" class="blue-text input-help">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                </a>
+            </i>
+            <input type="text" id="txtTravelRadius" class="form-control-sm has-unit" data-role="input-tutor-travel-radius">
+            <label class="show-inline-block" for="txtTravelRadius">Travel radius</label>
+        </div>
+    </div>
+</div>
+<div class="col-1"></div>
+<div class="col-10">
+    <div class="jumbotron-fluid">
+        <div id="map-container-google-2" class="z-depth-1-half map-container">
+            <input id="pac-input"
+                   class="form-control controls"
+                   type="text" />
+            <label for="pac-input">Search for a place</label>
+            <div id="map"></div>
+        </div>
+    </div>
+    <div class="jumbotron-fluid">
+        <!--Google map
+        <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 500px">
+            <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                    style="border:0" allowfullscreen></iframe>
+        </div>
+        Google Maps-->
+    </div>
+</div>
+<div class="col-1"></div>
+
+<div class="col-12">
+    <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 location-save" data-role="save-tutor-location">
+        <i class="icon-save"></i>
+    </a>
+</div>

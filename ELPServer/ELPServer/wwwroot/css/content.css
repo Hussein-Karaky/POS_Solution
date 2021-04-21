@@ -1,0 +1,116 @@
+﻿.section-sep {
+    width: 100%;
+    text-align: center;
+    margin: 35px 0;
+}
+
+.centered {
+    position: relative;
+    width: 318px;
+    height: 80px;
+    border-top: solid 3px #33AEFF;
+    border-bottom: solid 3px #33AEFF;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+@media (max-width: 990px) {
+    .col-lg-4 .rounded-circle {
+        margin-left: 34%;
+    }
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #33AEFF !important;
+    border-color: #007bff;
+}
+
+.sign-btn-group .btn {
+    border-color: transparent;
+    margin:0 2px 0 0;
+}
+
+.clear {
+    position: relative;
+    height: 55px;
+}
+
+li a:hover { /* use full */
+    /*text-shadow: 2px 2px 10px #ffffff;
+    filter: dropshadow(color=#ffffff, offx=2, offy=2);*/
+}
+
+nav li {
+    list-style-type: none;
+    /*padding: 10px;*/
+    /*background-color: transparent;*/
+    text-transform: uppercase;
+/*    text-align: center;*/
+}
+
+.marketing .detail-text {
+    height: 40%;
+    overflow-y: hidden;
+}
+
+.marketing .tutoring-type {
+    margin-top: 45px;
+}
+
+.btn-rounded {
+    border-radius: 10.1em !important;
+}
+#toTopBtn {
+    position: fixed;
+    bottom: 26px;
+    right: 39px;
+    z-index: 98;
+    padding: 21px;
+/*    background-color: hsla(5, 76%, 62%, .8);*/
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.6);
+}
+.js .cd-top--fade-out {
+    opacity: .5;
+}
+
+.js .cd-top--is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.js .cd-top {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s, visibility .3s, background-color .3s;
+}
+
+.cd-top {
+    position: fixed;
+    bottom: 20px;
+    bottom: var(--cd-back-to-top-margin);
+    right: 20px;
+    right: var(--cd-back-to-top-margin);
+    display: inline-block;
+    height: 40px;
+    height: var(--cd-back-to-top-size);
+    width: 40px;
+    width: var(--cd-back-to-top-size);
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, .05) !important;*/
+    background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1571057658/cd-top-arrow.svg) no-repeat center 50%;
+    background-color: hsla(5, 76%, 62%, .8);
+/*    background-color: hsla(var(--cd-color-3-h), var(--cd-color-3-s), var(--cd-color-3-l), 0.8);*/
+}
+.custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control {
+    background-image: linear-gradient(0deg, #33AEFF 2px,rgba(0,150,136,0) 0), linear-gradient(0deg,rgba(0,0,0,.26) 1px, transparent 0) !important;
+}
+.modal-dialog .modal-content {
+    -webkit-box-shadow: 0 5px 40px 15px rgba(0,0,0,0.28), 0 12px 20px 2px rgba(0,0,0,0.65);
+    box-shadow: 0 5px 40px 15px rgba(0,0,0,0.28), 0 12px 20px 2px rgba(0,0,0,0.65);
+}
+.btn-outline {
+    color: #039be5 !important;
+    background-color: transparent !important;
+    border: 2px solid #039be5 !important;
+}

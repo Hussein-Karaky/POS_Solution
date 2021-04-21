@@ -1,0 +1,226 @@
+﻿@model TutorModel
+
+@{
+    ViewData["Title"] = "How INTO Works";
+    ViewData["PageName"] = "HowINTOWorks";
+    ViewData["StepId"] = 3;
+    Layout = "~/Views/Tutor/_LayoutWizardSteps.cshtml";
+}
+@section StepsStyles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/MDBWizard/steppers.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/MDBWizard/steppers.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/wizard/wizard.css" />
+}
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/steps/jquery.steps.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/steps/wizard.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/howItWorks.js"></script>
+}
+
+<div class="col-12">
+    <div class="wizard-heading h-48 lang-dependant mr-4 ml-4 mt-4">Please read and interact with attention and patience</div>
+    <div class="wizard-v7-content how-it-works">
+        <div class="wizard-form">
+            <form class="form-register" action="#" method="post">
+                <div id="form-total">
+                    <!-- SECTION 1 -->
+                    <h2>
+                        <i class="step-icon"><span>1</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">Solemnity</span>
+                            <span class="step-inner-2">Success Points</span>
+                        </span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">Solemnity</h3>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    Simply put, INTO is a web platform that links people through education. For whom seeking distraction, sharing showoff pictures and videos, playing non educational games, or any other similar kinds of fun, INTO is surely the wrong place
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 1Q -->
+                    <h2>
+                        <i class="step-icon"><span>Q</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">About Solemnity</span>
+                            <span class="step-inner-2">Your View</span>
+                        </span>
+                    </h2>
+                    <section data-role="answer">
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">About Solemnity</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer0-0" name="answer0" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="true" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer0-0">I see that INTO is the right place for serious people wanting to evolve</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer0-1" name="answer0" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer0-1">I expect to share jokes over INTO’s chatting platform</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer0-2" name="answer0" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer0-2">I may find flash games like 8 Ball Pool or even Risk on INTO</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 2 -->
+                    <h2>
+                        <i class="step-icon"><span>2</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">Fame&nbsp;&amp;&nbsp;Success</span>
+                            <span class="step-inner-2">Become An Idol</span>
+                        </span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">Fame&nbsp;&amp;&nbsp;Success</h3>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    In plus, INTO opens for you a new virtual world for your business as a teacher. Widening your work scope across your country and the world with a radius that you control by yourself counting on your tutoring power formed out of your experience, the numerous lessons you give, and the enhanced students’ feedback you get with time
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 2Q -->
+                    <h2>
+                        <i class="step-icon"><span>Q</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">About Fame&nbsp;&amp;&nbsp;Success</span>
+                            <span class="step-inner-2">Your View</span>
+                        </span>
+                    </h2>
+                    <section data-role="answer">
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">About Fame&nbsp;&amp;&nbsp;Success</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer1-0" name="answer1" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer1-0">INTO allows me to teach only local students</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer1-1" name="answer1" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer1-1">I will be invisible as a teacher outside my country</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer1-2" name="answer1" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="true" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer1-2">I see INTO as an open way to worldwide teaching idol candidacy</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 3 -->
+                    <h2>
+                        <i class="step-icon"><span>3</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">Finance</span>
+                            <span class="step-inner-2">Making Money</span>
+                        </span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">Finance</h3>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    Starting your career or integrating it with INTO is as simple as providing the platform with real background, experience info’s, and finally the way(s) you wish to get paid, cash money, wire transfer, and even mobile money
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 3Q -->
+                    <h2>
+                        <i class="step-icon"><span>Q</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">About Finance</span>
+                            <span class="step-inner-2">Your View</span>
+                        </span>
+                    </h2>
+                    <section data-role="answer">
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">About Finance</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer2-0" name="answer2" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer2-0">I need to travel outside or wait for some relative to bring me cash from INTO</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer2-1" name="answer2" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="true" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer2-1">I won’t worry about any issues getting paid at INTO</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer2-2" name="answer2" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer2-2">INTO ships my money through the oceans taking up to a month of time</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 4 -->
+                    <h2>
+                        <i class="step-icon"><span>4</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">Dismissal</span>
+                            <span class="step-inner-2">Loyalty Policy</span>
+                        </span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">Dismissal</h3>
+                            </div>
+                            <div class="form-row">
+                                <div>
+                                    Disloyalty is the very key for dismissal. INTO as an organization, clearly tends to facilitate education and all kinds of science sharing across the world, hence and before all, INTO's management decided to shed the light on the professional ethics as a critical requirement. Accordingly, tutors at INTO must respect keeping connections with students only through its platform, and this will be rewarded along your whole career path there
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- SECTION 3Q -->
+                    <h2>
+                        <i class="step-icon"><span>Q</span></i>
+                        <span class="step-text inline-block">
+                            <span class="step-inner-1">About Loyalty</span>
+                            <span class="step-inner-2">Your View</span>
+                        </span>
+                    </h2>
+                    <section data-role="answer">
+                        <div class="inner">
+                            <div class="wizard-header">
+                                <h3 class="heading">About Loyalty</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer3-0" name="answer3" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer3-0">Loyalty at INTO is key for success, but as a Math teacher I should know nothing about it</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer3-1" name="answer3" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="false" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer3-1">INTO cares only about business and money regardless of loyalty and ethical issues</label>
+                                </div>
+                                <div class="md-form col-12 ml-auto">
+                                    <input id="Answer3-2" name="answer3" type="radio" class="option-input btn-outline square-24" data-role="input-answer" value="true" required>
+                                    <label class="cursor-pointer text-wrap left-auto" for="Answer3-2">For INTO, once teacher number one shows disloyalty, he gets simply dismissed</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

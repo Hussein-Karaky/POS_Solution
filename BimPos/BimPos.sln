@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BimPos.App", "BimPos.App\BimPos.App.csproj", "{0FE1740F-6A08-46FA-9EA3-265C95F086FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{1A59298A-9ED6-49CA-A76B-4E4A33E68540}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FE1740F-6A08-46FA-9EA3-265C95F086FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE1740F-6A08-46FA-9EA3-265C95F086FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE1740F-6A08-46FA-9EA3-265C95F086FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE1740F-6A08-46FA-9EA3-265C95F086FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A59298A-9ED6-49CA-A76B-4E4A33E68540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A59298A-9ED6-49CA-A76B-4E4A33E68540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A59298A-9ED6-49CA-A76B-4E4A33E68540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A59298A-9ED6-49CA-A76B-4E4A33E68540}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {052EB81A-570F-4246-9298-BFD08D8AE6D5}
+	EndGlobalSection
+EndGlobal

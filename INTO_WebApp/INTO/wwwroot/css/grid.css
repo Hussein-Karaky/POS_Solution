@@ -1,0 +1,63 @@
+﻿.DataGrid {
+}
+
+    .DataGrid th, .DataGrid td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+.table-info {
+    color: darkblue;
+}
+
+.data-col-title {
+    color: rgba(0,0,0,.7);
+}
+
+tr.data-row:hover {
+    background-color: #039be5 !important;
+    color: white !important;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.border-separate {
+    border-collapse: separate;
+}
+
+table.round-corner-4 tr:first-child th:first-child {
+    border-top-left-radius: 4px;
+}
+
+table.round-corner-4 tr:first-child th:last-child {
+    border-top-right-radius: 4px;
+}
+
+table.round-corner-4 tr:last-child td:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+table.round-corner-4 tr:last-child td:last-child {
+    border-bottom-right-radius: 4px;
+}
+
+table.round-corner-5 tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+}
+
+table.round-corner-5 tr:first-child th:last-child {
+    border-top-right-radius: 5px;
+}
+
+table.round-corner-5 tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+
+table.round-corner-5 tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}

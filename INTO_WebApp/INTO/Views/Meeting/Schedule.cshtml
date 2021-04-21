@@ -1,0 +1,41 @@
+﻿@model INTO.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/meeting/schedule.js"></script>
+}
+
+<h1>Schedule<a id="trialRoom" role="button" class="btn btn-default btn-rounded">Trial Room</a></h1>
+
+<div>
+    <h4>Schedule</h4>
+    <hr />
+    <ul class="nav nav-tabs md-tabs light-blue darken-1 shadow-1-5" id="tabsProfileDetails" role="tablist">
+        <li class="nav-item waves-effect waves-light">
+            <a class="nav-link text-light active" id="tab-by-me" data-toggle="tab" href="#by-me" role="tab" aria-controls="by-me"
+               aria-selected="true">By Me</a>
+        </li>
+        <li class="nav-item waves-effect waves-light">
+            <a class="nav-link text-light" id="tab-to-me" data-toggle="tab" href="#to-me" role="tab" aria-controls="to-me"
+               aria-selected="false">To Me</a>
+        </li>
+    </ul>
+    <div class="tab-content card pt-5" id="myTabContentMD">
+        <div class="tab-pane fade show active" id="by-me" role="tabpanel" aria-labelledby="tab-by-me">
+            <div id="scheduledByMe">
+
+            </div>
+        </div>
+        <div class="tab-pane fade fr-pull-left" id="to-me" role="tabpanel" aria-labelledby="tab-to-me">
+            <div id="scheduledToMe">
+
+            </div>
+        </div>
+    </div>
+</div>
+<a role="button" class="btn btn-floating btn-outline waves-effect waves-dark bg-white fixed" data-role="create-room">
+    <i class="icon-plus"></i>
+</a>

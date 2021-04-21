@@ -1,0 +1,23 @@
+﻿.topbuts, #prev_page_icon, #next_page_icon, #eraser, #chat_but {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+}
+
+.toolsmgn {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+}
+
+#zoomcontrols i {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+}
+
+video {
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.16), 0 2px 4px 0 rgba(0,0,0,0.2) !important;
+}
+
+i.fa:hover {
+    color: #2196f3 !important;
+}

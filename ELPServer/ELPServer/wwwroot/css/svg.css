@@ -1,0 +1,168 @@
+/* Includes max stroke at default viewBox sizes */
+
+svg {
+  margin:10px;
+}
+
+.settings,
+.phone,
+.cloud,
+.better-pin,
+.circle,
+.mail,
+.chevron,
+.heart,
+.mouse,
+.close,
+.check,
+.logout,
+.chat,
+.sliders,
+.library,
+.upload,
+.reload,
+.bookmark,
+.plus,
+.minus,
+.backward,
+.stop,
+.pause, 
+.play, 
+.forward,
+.hamburger,
+.calendar,
+.time,
+.location,
+.search,
+.map,
+.down-cloud,
+.home,
+.inbox,
+.user-account,
+.bell,
+.ellipsis-x,
+.ellipsis-y,
+.volume-mute,
+.reply {
+  width:auto;
+  height:100px;
+}
+
+.circle circle {
+  stroke-width:3px;
+/*  Max stroke 20px  */
+}
+
+.mail g {
+  stroke-width:3.6px;
+/*  Max stroke 12px  */
+}
+ 
+.chevron {
+  stroke-width:0.5px;
+/*  Max stroke 2px  */
+}
+
+.better-pin path {
+  stroke-width:0.8px;
+/*  Max stroke 3px  */
+}
+
+.settings path {
+  stroke-width:2px;
+/*  Max stroke 4px  */
+}
+
+.phone path {
+  stroke-width:1px;
+/*  Max stroke 5px  */
+}
+
+.cloud path {
+  stroke-width:1px;
+/*  Max stroke 5px  */
+}
+
+.heart path {
+  stroke-width:1px;
+}
+
+.mouse path {
+  stroke-width:0.7;
+}
+
+.close path,
+.minus path,
+.plus path,
+.backward path,
+.forward path,
+.stop path,
+.pause path, 
+.play path,
+.hamburger path {
+  stroke-width:0.8px;
+}
+
+.check polyline {
+  stroke-width:2px;
+}
+.logout line,
+.logout polyline {
+  stroke-width:1.3px;
+}
+
+.chat path {
+  stroke-width:1px;
+}
+
+.sliders g {
+  stroke-width:1px;
+}
+
+.library path {
+  stroke-width:1px;
+}
+
+.upload g {
+  stroke-width:1.5px;
+}
+
+.reload g {
+  stroke-width:2.5px;
+}
+
+.bookmark path {
+  stroke-width:1.4px;
+}
+
+.calendar path {
+  stroke-width:1.3px;
+}
+
+.time g,
+.location g,
+.search g,
+.map g,
+.down-cloud g,
+.home path {
+  stroke-width:1.4px;
+}
+
+.inbox path {
+  stroke-width:24px;
+}
+
+.user-account path,
+.bell path,
+.ellipsis-x path,
+.ellipsis-y path {
+  stroke-width: 2px;
+}
+
+.volume-mute path {
+  stroke-width:1.6px;
+}
+
+.reply path {
+  stroke-width:16px;
+}

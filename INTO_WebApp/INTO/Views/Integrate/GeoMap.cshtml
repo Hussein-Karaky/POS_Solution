@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Geo Location";
+}
+
+<input id="pac-input"
+       class="controls"
+       type="text"
+       placeholder="Search Box" />
+<div id="map"></div>
+@section Scripts{
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRTxMpi6L2dxwNUl5CxijeneRvqA6-VLg&callback=initMap&language=ar&region=EG&libraries=places"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/geo.js"></script>
+}

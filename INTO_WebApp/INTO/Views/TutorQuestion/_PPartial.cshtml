@@ -1,0 +1,48 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<BLL.Tutor.TutorQuestion.TutorQuestion>
+    <div id="QuestionAddedDiv">                    
+        @foreach (var item in Model.Data)
+         {
+            <div class="card mb-4 wow fadeIn hoverborder" question-id="@item.Id" tutor-id="@item.TutorId">
+                <div class="card-header font-weight-bold">
+                    <span>Topics</span>
+                    @for (int b = 0; b <= item.tags.Count - 1; b++)
+                    {
+                        <span class="badge badge-info pull-right" tag-id="@("tag-"+item.tags[b].Id)">@item.tags[b].Name</span>
+                    }
+                </div>
+                <!--Card content-->
+                <div class="card-body">
+                    <div class="media d-block d-md-flex mt-3">
+                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                            <h5 class="mt-0 font-weight-bold">
+                            </h5>
+                            @Html.Raw(item.Description)
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer font-weight-bold">
+                    <div class="row">
+                        <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-wifi"></span>Follows &nbsp; @item.FollowsNumber</h5></div>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="pull-left HandCursor"><h5 class="text-info"><span class="fa fa-check-circle"></span>Answer &nbsp; @item.AnswersNumber</h5></div>
+                    </div>
+                </div>
+            </div>
+         }                    
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-lg-5 offset-md-1 offset-lg-1 col-sm-12">
+            <cs-pager cs-pager-li-current-class="page-item active"
+                      cs-pager-li-other-class="page-item"
+                      cs-pager-ul-class="pagination pg-info"
+                      cs-pager-li-non-active-class="page-item disabled"
+                      cs-pager-link-current-class="page-link"
+                      cs-pager-link-other-class="page-link"
+                      cs-paging-pagenumber="Model.PageNumber"
+                      cs-paging-totalitems="Model.TotalItems"
+                      cs-paging-pagesize="Model.PageSize"
+                      cs-pagenumber-param="pagenumber"
+                      asp-controller="TutorQuestion"
+                      asp-action="AllQuestions">
+            </cs-pager>
+        </div>
+    </div>

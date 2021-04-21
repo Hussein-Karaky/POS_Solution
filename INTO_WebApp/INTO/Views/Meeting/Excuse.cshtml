@@ -1,0 +1,44 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Excuse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/time/countdown.css" />
+}
+
+@section TopScripts{
+    <script type="application/javascript">
+            var eventId=@ViewBag.EventId ;
+    </script>
+}
+
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/meeting/excuse.js"></script>
+}
+<h1>Meeting Excuse</h1>
+
+<form class="text-center border border-light p-5" action="Meeting/Postponed" method="post">
+    <!-- Card -->
+    <div class="card chart-card">
+
+        <!-- Card content -->
+        <div class="card-body pb-0">
+
+            <!-- Title -->
+            <h3 class="card-title font-weight-bold"><span data-role="room-title">Please type in your excuse.</span></h3>
+            <!-- Text -->
+            <div class="md-form">
+                <textarea id="excuse" name="excuse" class="md-textarea form-control" rows="10"></textarea>
+                <label for="txtExcuse"> Meeting Excuse</label>
+            </div>
+            <input type="hidden" id="eventId" name="eventId" value="@ViewBag.EventId" />
+            <input type="hidden" id="userId" name="userId" value="@ViewBag.UserId" />
+            <input type="hidden" id="lang" name="lang" value="@ViewBag.Lang" />
+            <input type="hidden" id="tzOs" name="tzOs" />
+        </div>
+        <button class="btn btn-info btn-block" type="submit">Send</button>
+    </div>
+    <!-- Card -->
+    </form>

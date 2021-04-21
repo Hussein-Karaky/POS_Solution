@@ -1,0 +1,104 @@
+﻿.card.testimonial-card{
+    min-height:330px;
+}
+.testimonial-card .card-up {
+    height: calc(18vw + 10px);
+    min-height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.testimonial-card .avatar {
+    width: 19vw;
+    height: calc(19vw);
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 232px;
+    max-height: 232px;
+    margin-top: calc(50vw - 62%);
+    padding: 4px 4px 0px 4px;
+    overflow: hidden;
+    border: 0px solid #fff;
+    border-radius: 50%;
+    margin-left: 6% !important;
+    z-index: 5;
+    /*    -webkit-box-shadow: 0 5px 16px 5px rgba(0,0,0,0.28), 0 2px 8px 2px rgba(0,0,0,0.65);
+    box-shadow: 0 5px 16px 5px rgba(0,0,0,0.28), 0 2px 8px 2px rgba(0,0,0,0.65);*/
+    transition: width .4s, height .4s, z-index .4s;
+}
+
+.testimonial-card .card-up.mini {
+    height: 120px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.testimonial-card .avatar.mini {
+    width: 120px;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 50%;
+}
+
+.testimonial-card .avatar img {
+    width: 100%;
+    height: 100%;
+    -webkit-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;
+}
+.avatar a {
+    width: 100%;
+    height: 98%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.card-mini {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 80px;
+}
+
+.card_mini_avatar {
+    position: relative;
+    display: flex;
+    margin-right: 12px;
+}
+
+.border {
+    stroke-width: 10;
+    stroke: rgba(255, 255, 255, 0.4);
+    fill: none;
+}
+
+.badge-mini {
+    position: absolute;
+    right: 46px;
+    bottom: 46px;
+    width: 12px;
+    height: 12px;
+    background: #5ad539;
+    border-radius: 50%;
+}
+.badge-online {
+    position: absolute;
+    right: -6px;
+    bottom: 2px;
+    width: 16px;
+    height: 16px;
+    border: white solid 2px;
+    background: #5bd638;
+    border-radius: 50%;
+}
+.square-80-p {
+    height: 80% !important;
+    width: 80% !important;
+}
+.square-120 {
+    height: 120px !important;
+    width: 120px !important;
+}

@@ -1,0 +1,298 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Home Page";
+    string showQuote = "";
+    int j = 0; int x = 0;
+}
+@section TopScripts{
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/home/aos/aos.js"></script>
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/home/aos/aos.css">
+}
+@section Menus{
+    @if (Model != null && Model.User != null && Model.User.Active.HasValue && Model.User.Active.Value && Model.User.Type == BLL.Shared.EntityType.School)
+    {
+        <li><a href="#" class="label" data-label="HireTutor">Hire a Tutor</a></li>
+    }
+    else
+    @if (Model != null && Model.User != null && Model.User.Active == true)
+    {
+        @*if (Model.User.Type == BLL.Shared.EntityType.Tutor)
+        {
+            <li><a href="#" class="label" data-label="Promote">Promote Yourself</a></li>
+            <li><a href="#" class="label" data-label="jobs">Tutoring Jobs</a></li>
+        }*@
+    }
+    else
+    {
+        <li><a asp-controller="tutor" asp-action="SearchForTutors" class="label" data-label="findTutor">Find a Tutor</a></li>
+        <li><a href="#" class="label" data-label="BecomeTutor">Become a Tutor</a></li>
+        <li><a href="#" class="label" data-label="Services">Our Services</a></li>
+        <li><a href="#" class="label" data-label="Pricing">Pricing</a></li>
+        <li><a href="#" class="label" data-label="About">About Us</a></li>
+    }
+}
+<!-- Intro -->
+<section class="Intro" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="6000">
+    <div class="rectangle raduisBL gradiant1"></div>
+    <div class="rectangle1"></div>
+    <div class="container">
+        <div class="grid">
+            <div class="bkg1">
+                <div class="intro-video">
+                    <iframe frameborder="0" type="text/html" src="https://www.dailymotion.com/embed/video/x2wy4op?autoplay=0" width="100%" height="100%" allowfullscreen="" allow="autoplay"></iframe>
+                </div>
+                <div>
+                    <form class="search" action="">
+                        <input class="title2" type="text" placeholder="Search a subject.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="Intro-text">
+                <div class="logo1"></div>
+                <h1 class="label title1" data-label="ReadyToTeach">READY TO TEACH</h1>
+                <p class="label Intro-details" data-label="ChooseTxt">
+                    Choose from over 30 subjects to keep your child learning from home. They can learn new topics, revise old ones, and be guided through by friendly subject experts.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+    <div class="container">
+        <div class="grid-2">
+            <div>
+                <div class="sectionTitle borderYellow text-center stats-title">
+                    <p class="title label" data-label="PayHow">Pay How Much</p>
+                    <p class="subtitle label" data-label="YouLearn"> You Learn</p>
+                </div>
+                <p class="label stats-details" data-label="HowMuchYouLearnT" data-aos="fade-up" data-aos-duration="2000">
+                    Choose from over 30 subjects to keep your child learning from home. They can learn new topics, revise old ones, and be guided through by friendly subject experts.
+                </p>
+            </div>
+            <div>
+                <div class="grid">
+                    <div class="stat-item">
+                        <div class="stat-review">
+                            <!--<div class="stat-title stat_count" data-counter=500>-->@*@Model.Stats[0]["Reviews"]*@<!--</div>-->
+                            <div class="stat-title stat_count" data-counter=500>3829</div>
+                            <div class="stat-label label" data-label="Review">Review</div>
+                        </div>
+                        <div class="icon-review"></div>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div class="stat-item">
+                        <div class="stat-tutor">
+                            <div class="stat-title stat_count" data-counter=500>2640</div>
+                            <div class="stat-label label" data-label="Tutor">Tutor</div>
+                        </div>
+                        <div class="icon-tutor"></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-school">
+                            <div class="stat-title stat_count" data-counter=5>26</div>
+                            <div class="stat-label label" data-label="school">school</div>
+                        </div>
+                        <div class="icon-school"></div>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div class="stat-item">
+                        <div class="stat-language">
+                            <div class="stat-title stat_count" data-counter=5>9</div>
+                            <div class="stat-label label" data-label="Language">Language</div>
+                        </div>
+                        <div class="icon-language"></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-nationality">
+                            <div class="stat-title stat_count" data-counter=5>23</div>
+                            <div class="stat-label label" data-label="Nationality">Nationality</div>
+                        </div>
+                        <div class="icon-nationality"></div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Handpicked -->
+<section class="Handpicked">
+    <div class="rectangle raduisTR raduisBL gradiant2"></div>
+    <div class="rectangle1"></div>
+    <div class="Handpicked-wraper">
+        <div class="Handpicked-container">
+            <div class="grid">
+                <div class="Handpicked-text" data-aos="fade-left" data-aos-duration="2000">
+                    <div class="sectionTitle Handpicked-title">
+                        <p class="title label" data-label="Handpicked">Handpicked</p>
+                        <p class="subtitle label" data-label="Tutors">Tutors</p>
+                    </div>
+                    <h1 class="label" data-label="Wherever">Wherever You live</h1>
+                    <p class="label" data-label="WhereverTxt">
+                        Only one in eight tutors who apply make it on to our platform, and you can choose the best match for your child. They’re all subject experts from top UK unis, and we choose only those who’ll do the best job.Only one in eight tutors who apply make it on to our platform,
+                    </p>
+                </div>
+                <div class="bkg2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="skewT"></div>
+    <div class="skewD" style="z-index: 2;"></div> -->
+</section>
+
+<!-- Steps -->
+<section class="steps">
+    <div class="container">
+        <div class="stepsTitle1"></div>
+        <div class="grid grid-3 text-center">
+            <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="500">
+                <div class="step1"></div>
+                <p class="label" data-label="step1Text">
+                    Lorem Ipsum is simply dummy
+                    text of the printing and
+                    typesetting industry. Lorem
+                    Ipsum has been the industry's
+                    standard dummy text ever
+                    since the 1500s
+                </p>
+            </div>
+            <div>
+                <div class="stepsTitle"></div>
+                <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="1000">
+                    <div class="step2"></div>
+                    <p class="label" data-label="step2Text">
+                        Lorem Ipsum is simply dummy
+                        text of the printing and
+                        typesetting industry. Lorem
+                        Ipsum has been the industry's
+                        standard dummy text ever
+                        since the 1500s
+                    </p>
+                    <div class="borderSmile">
+                        <a class="label" data-label="findTutor">Find A Tutor</a>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-down" data-aos-duration="2000" data-aos-delay="2000">
+                <div class="step3"></div>
+                <p class="label" data-label="step3Text">
+                    Lorem Ipsum is simply dummy
+                    text of the printing and
+                    typesetting industry. Lorem
+                    Ipsum has been the industry's
+                    standard dummy text ever
+                    since the 1500s
+                </p>
+            </div>
+        </div>
+        <div class="borderSmile1">
+            <a class="label" data-label="findTutor">Find A Tutor</a>
+        </div>
+    </div>
+</section>
+
+<!-- Trust -->
+<section class="trust">
+    <div class="rectangle raduisTR raduisBL gradiant3"></div>
+    <div class="trust-wraper">
+        <div class="trust-container">
+            <div class="grid">
+                <div class="bkg3"></div>
+                <div data-aos="fade-up" data-aos-duration="2000">
+                    <h1 class="label title3" data-label="WhyShould">Why You Should</h1>
+                    <div class="sectionTitle trust-title">
+                        <p class="title label text-white" data-label="trust" style="margin-top:30px;">Trust</p>
+                        <p class="subtitle">
+                            <span class="label text-black bigTitle" data-label="INTO">INTO</span>
+                            <span class="label text-white bigTitle" data-label="Tutors">Tutors</span>
+                        </p>
+                    </div>
+                    <div class="trust-text">
+                        <p class="label" data-label="WhyShouldTxt">
+                            Because our lessons get such good results, schools use them to support their teaching. We work with +500 across the middle east, targeting learning gaps and helping pupils of all abilities reach their goals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section class="review">
+    <div class="container">
+        <div class="sectionTitle review-title">
+            <p class="title label" data-label="what">what</p>
+            <p class="subtitle label" data-label="clientsSay">Clients Say</p>
+        </div>
+        @for (int i = 0; i < Model.Reviews.Count - 2; i += 2)
+        {
+            j = i + 1; x = i + 2;
+            if (i == 0) showQuote = "quote_show"; else showQuote = "quote_hidden";
+            <div class="grid grid-3 text-center quotes @showQuote">
+                <div class="quote">
+                    <div data-aos="fade-up" data-aos-duration="1500" data-aos-delay="0">
+                        <div class="quote_img" style="background: url(@String.Format("{0}://{1}/{2}/{3}", Context.Request.Scheme, Context.Request.Host,"/images/home/faces/",@Model.Reviews[i].Photo)) no-repeat;background-size: cover;"></div>
+                        <div class="quote_wrpr_l"></div>
+                        <i class="fa fa-quote-right fa-3x"></i>
+                    </div>
+                    <div data-aos="fade-down" data-aos-duration="1500" data-aos-delay="0">
+                        <h3>@Model.Reviews[i].FullName</h3>
+                        <p>@Model.Reviews[i].review</p>
+                    </div>
+                </div>
+                <div class="quote top">
+                    <div data-aos="fade-up" data-aos-duration="1500" data-aos-delay="0">
+                        <div class="quote_wrpr borderCenter">
+                            <img src="@String.Format("{0}://{1}/{2}/{3}", Context.Request.Scheme, Context.Request.Host,"/images/home/faces/",@Model.Reviews[j].Photo)" alt="">
+                        </div>
+                        <i class="fa fa-quote-right fa-3x"></i>
+                    </div>
+                    <div data-aos="fade-down" data-aos-duration="1500" data-aos-delay="0">
+                        <h3 style="margin-top: 20px;">@Model.Reviews[j].FullName</h3>
+                        <p>@Model.Reviews[j].review</p>
+                    </div>
+                </div>
+                <div class="quote">
+                    <div data-aos="fade-up" data-aos-duration="1500" data-aos-delay="0">
+                        <div class="quote_img1" style="background: url(@String.Format("{0}://{1}/{2}/{3}", Context.Request.Scheme, Context.Request.Host,"/images/home/faces/",@Model.Reviews[x].Photo)) no-repeat;background-size: cover;"></div>
+                        <div class="quote_wrpr_r"></div>
+                        <i class="fa fa-quote-right fa-3x faRight"></i>
+                    </div>
+                    <div data-aos="fade-down" data-aos-duration="1500" data-aos-delay="0">
+                        <h3>@Model.Reviews[x].FullName</h3>
+                        <p>@Model.Reviews[x].review</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="quote-caption">
+            <div class="quote-right">
+                <button class="w3-button demo" onclick="plusDivs(-1)"><i class="fa fa-caret-right fa-3x"></i></button>
+            </div>
+            <div class="quote-left">
+                <button class="w3-button demo" onclick="plusDivs(1)"><i class="fa fa-caret-left fa-3x"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*Nabih7*@
+<!-- On Scrolling Animation -->
+<script>
+
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    AOS.init({
+        once: true
+    });
+</script>
+@*END Nabih7*@

@@ -1,0 +1,91 @@
+﻿.btn-col {
+    right: 3% !important;
+}
+
+.btn-check {
+    right: 1% !important;
+}
+
+.btn-edit {
+    right: 6% !important;
+}
+
+.btn-plus {
+    right: 1.2% !important;
+}
+
+.btn-plus, .btn-check, .btn-edit, .btn-col {
+    top: 2px !important;
+    position: relative !important;
+    border-radius: 12px !important;
+    padding: 0px !important;
+    background-color: #fff !important;
+    border: none !important;
+    width: 26px !important;
+    height: 26px !important;
+    box-shadow: 0rem 0rem 0.3rem 0.1rem rgba(0,0,0,0.5) !important;
+}
+
+    .btn-plus svg, .btn-check svg {
+        height: 40px;
+        stroke: #007bff;
+    }
+
+    .btn-plus:active, .btn-check:active, .btn-edit:active, .btn-col:active {
+        box-shadow: 0rem 0rem 0.1rem 0.1rem rgba(0,0,0,0.5) !important;
+    }
+
+.RecycleBin {
+    display: none;
+    visibility: hidden;
+}
+/*.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}*/
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 1 !important;
+}
+
+.TimeLimit {
+    /*border: solid 1px #dddddd88 !important;
+border-radius: 8px;*/
+    position: relative;
+    padding: 0 4px;
+    width: 336px;
+    height: 72px;
+}
+
+    .TimeLimit.DropDownList {
+        margin: 0 2px;
+    }
+
+.ScheduleDay {
+    border: solid 1px #dddddd88 !important;
+    border-radius: 8px;
+}
+
+.ribbon-control-mini {
+    position: sticky;
+    height: 30px;
+    width: 100%;
+    background-color: #007bff;
+}

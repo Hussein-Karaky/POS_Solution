@@ -1,0 +1,72 @@
+﻿@model INTO.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Account Activated";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section TopScripts{ 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let email = '@Model.Email';
+            let pwd = '@Model.Password';
+            let user = new User(null, null, email, pwd, null, 1);
+            user.timezoneOffset = accountManager.time.timezoneOffset;
+            let model = new LoginModel(user);
+            accountManager.login(model);
+        });
+    </script>
+}
+<h1>Account Activated</h1>
+
+<div class="jumbotron">
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RememberMe)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RememberMe)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RedirectAction)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RedirectAction)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RedirectController)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RedirectController)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

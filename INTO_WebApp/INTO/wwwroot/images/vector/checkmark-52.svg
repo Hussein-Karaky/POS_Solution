@@ -1,0 +1,11 @@
+<svg style="width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #039be5;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;" xmlns="http://www.w3.org/2000/svg" viewBox="2 2 52 52">
+  <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+</svg>

@@ -1,0 +1,404 @@
+﻿@using BLL.Tutor
+@using BLL.Shared
+@using Newtonsoft.Json
+@model INTO.Models.SearchModel<Tutor>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IList<BLL.Shared.LookUpDetails> InstituteTypes = new List<BLL.Shared.LookUpDetails>();
+    InstituteTypes = INTO.Models.LoginModel.InstituteTypes.ToList();
+    IList<BLL.Shared.LookUpDetails> Subjects = new List<BLL.Shared.LookUpDetails>();
+    Subjects = INTO.Models.LoginModel.Subjects.ToList();
+    IList<BLL.Shared.LookUpDetails> TutorServices = new List<BLL.Shared.LookUpDetails>();
+    TutorServices = INTO.Models.LoginModel.TutorService.ToList();
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/mr.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/rating-stars.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/search-result.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/StudentCss/HelpCenter.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/cards.css" />
+}
+<style>
+    .result {
+        display: none;
+        padding: 10px;
+        border-width: 0 1px 1px 0;
+        border-style: solid;
+        border-color: #fff;
+        box-shadow: 0 1px 1px #ccc;
+        margin-bottom: 5px;
+        background-color: #f1f1f1;
+    }
+
+    #loadMore {
+        padding: 10px;
+        text-align: center;
+        background-color: #33739E;
+        color: #fff;
+        border-width: 0 1px 1px 0;
+        border-style: solid;
+        border-color: #fff;
+        box-shadow: 0 1px 1px #ccc;
+        transition: all 600ms ease-in-out;
+        -webkit-transition: all 600ms ease-in-out;
+        -moz-transition: all 600ms ease-in-out;
+        -o-transition: all 600ms ease-in-out;
+    }
+
+        #loadMore:hover {
+            background-color: #fff;
+            color: #33739E;
+        }
+</style>
+<div class="container-fluid" style="background-color: #F5F5F5;">
+    <form asp-action="Search" asp-controller="Tutor" data-role="search-tutor-input">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="section hero blue-gradient">
+                    <div class="hero-inner">
+                        <div class="row">
+                            <div class="col-4"></div><div class="col-4"></div><div class="col-4"><button type="button" class="btn btn-default btn-rounded">Free Search</button></div>
+                        </div>
+                        <h1 style="text-align:left !important;margin-bottom:.5em;" class="text-light">Search Filter</h1>
+                        <div class="column">
+                            <div class="form-group">
+                                <select id="ddlSubjects" name="ddlSubjects" class="subject-select" data-role="select-subject">
+                                    <option value="0">Select your Subject</option>
+                                    @foreach (var value in Subjects)
+                                    {
+                                        if (Model.SearchFilter.Subject.HasValue && value.LookupDetailsId == Model.SearchFilter.Subject.Value)
+                                        {
+                                            <option value="@value.LookupDetailsId" selected>@value.LookupDetailsDescription</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@value.LookupDetailsId">@value.LookupDetailsDescription</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="form-group">
+                                <select id="txtTutorService" name="txtTutorService" class="service-select" data-role="search-tutoring-service">
+                                    <option value="0">Select your Tutoring Service</option>
+                                    @foreach (var value in TutorServices)
+                                    {
+                                        if (Model.SearchFilter.TutoringService.HasValue && value.LookupDetailsId == Model.SearchFilter.TutoringService.Value)
+                                        {
+                                            <option value="@value.LookupDetailsId" selected>@value.LookupDetailsDescription</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@value.LookupDetailsId">@value.LookupDetailsDescription</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="form-group">
+                                <select id="txtGender" name="txtGender" class="gender-select" data-role="select-gender">
+                                    <option value="0">Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="form-group">
+                                <select id="txtAcademicLevel" name="txtAcademicLevel" class="level-select" data-role="select-academic-level">
+                                    <option value="0">Select Academic Level</option>
+                                    @foreach (var value in InstituteTypes)
+                                    {
+                                        if (Model.SearchFilter.AcademicLevel.HasValue && value.LookupDetailsId == Model.SearchFilter.AcademicLevel.Value)
+                                        {
+                                            <option value="@value.LookupDetailsId" selected>@value.LookupDetailsDescription</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@value.LookupDetailsId">@value.LookupDetailsDescription</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        @*<div>
+                                <button id="searchBarSubmit" class="btn btn-info white-text light-blue" data-role="search-tutor-submit">Search</button>
+                            </div>*@
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h2><b>Filters</b></h2>
+                <div style="margin-top:1em;">
+                    <h6><b>Online Hourly rate:</b></h6>
+                </div>
+                <div class="selector">
+                    <div class="price-slider">
+                        <div id="onlinePriceRange" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content slider-range-input" data-role="filter-range" data-target="searchFilter" data-offset-bottom="MinOnlineHourRate" data-offset-top="MaxOnlineHourRate">
+                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default btn btn-info my-0 text-white btn-floating btn-action ml-auto mr-4 mdb-color waves-effect waves-dark"></span>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default btn btn-info my-0 text-white btn-floating btn-action ml-auto mr-4 mdb-color waves-effect waves-dark"></span>
+                        </div>
+                        <span id="min-price" data-currency="€" class="slider-price" data-role="range-min">0</span>
+                        <span class="seperator">-</span>
+                        <span id="max-price" data-currency="€" data-max="100" class="slider-price" data-role="range-max">100 +</span>
+                    </div>
+                </div>
+                <div style="margin-top:1em;">
+                    <h6><b>In-Person Hourly rate:</b></h6>
+                </div>
+                <div class="selector">
+                    <div class="price-slider">
+                        <div id="inPersonPriceRange" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content slider-range-input" data-role="filter-range" data-target="searchFilter" data-offset-bottom="MinInPersonHourRate" data-offset-top="MaxInPersonHourRate">
+                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default btn btn-info my-0 text-white btn-floating btn-action ml-auto mr-4 mdb-color waves-effect waves-dark"></span>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default btn btn-info my-0 text-white btn-floating btn-action ml-auto mr-4 mdb-color waves-effect waves-dark"></span>
+                        </div>
+                        <span id="min-price2" data-currency="€" class="slider-price" data-role="range-min">0</span>
+                        <span class="seperator">-</span>
+                        <span id="max-price2" data-currency="€" data-max="100" class="slider-price" data-role="range-max">100 +</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Sort by:&nbsp;</label>
+                    </div>
+                    <div class="col">
+                        <select id="ddlSortingColumn" name="sortingColumn" class="sort-col-select" data-role="select-sort-col">
+                            <option value="Potential">Power</option>
+                            <option value="InPersonHourRate">In Person Rate</option>
+                            <option value="OnlineHourRate">Online Rate</option>
+                            <option value="TutoringHours">Tutoring Hours</option>
+                            <option value="Reviews">Reviews</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="ddlSortingDirection" name="sortingDirection" class="sort-dir-select w-40" data-role="select-sort-dir">
+                            <option value="0" class="icon-desc square-40">
+                            </option>
+                            <option value="1" class="icon-asc square-40">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top:1em;">
+                    @* to be eliminated *@
+                    <h6><b>availabilty</b></h6>
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkSunday" name="availability" data-id="0" data-role="filter-day" />
+                        Sunday
+                    </Label><br />
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkMonday" name="availability" data-id="1" data-role="filter-day" />
+                        Monday
+                    </Label><br />
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkTuesday" name="availability" data-id="2" data-role="filter-day" />
+                        Tuesday
+                    </Label><br />
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkWednesday" name="availability" data-id="3" data-role="filter-day" />
+                        Wednesday
+                    </Label><br />
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkThursday" name="availability" data-id="4" data-role="filter-day" />
+                        Thursday
+                    </Label><br />
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkFriday" name="availability" data-id="5" data-role="filter-day" />
+                        Friday
+                    </Label><br />
+                    <Label>
+                        <input class="messageCheckbox" type="checkbox" id="chkSaturday" name="availability" data-id="6" data-role="filter-day" />
+                        Saturday
+                    </Label><br />
+
+                </div>
+                <div style="margin-top:1em;">
+                    <h6><b>Tutor Age:</b></h6>
+                </div>
+                <div class="selector">
+                    <div class="price-slider">
+                        <div id="tutorAgeRange" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content slider-range-input" data-role="filter-range" data-target="searchFilter" data-offset-bottom="MinTutorAge" data-offset-top="MaxTutorAge">
+                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default btn btn-info my-0 text-white btn-floating btn-action ml-auto mr-4 mdb-color waves-effect waves-dark"></span>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default btn btn-info my-0 text-white btn-floating btn-action ml-auto mr-4 mdb-color waves-effect waves-dark"></span>
+                        </div>
+                        <span id="min-age" data-currency="Yrs" data-min="20" class="slider-price" data-role="range-min">20</span>
+                        <span class="seperator">-</span>
+                        <span id="max-age" data-currency="Yrs" data-max="80" class="slider-price" data-role="range-max">80 +</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-12 v-only">
+                        <div id="resultCont"></div>
+                        <a href="#" class="btn" id="loadMore" data-role="load-more">Load More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+
+                <!-- Sticky content -->
+                <div class="sticky" style="position: fixed; width: 130.859px; height: 1113px; z-index: 2; bottom: 0px; top: 90px;">
+
+                    <!-- DC Content -->
+                    <section id="dpl-gtm-scrollspy">
+
+                        <div id="gtmDC-scrollspy-unlogged" style="min-height:1px" data-gtm-vis-has-fired-2340190_1892="1" data-gtm-vis-has-fired-2340190_1818="1" data-gtm-vis-first-on-screen-2340190_1872="3714" data-gtm-vis-total-visible-time-2340190_1872="100" data-gtm-vis-has-fired-2340190_1872="1" data-gtm-vis-has-fired-2340190_1890="1" data-gtm-vis-has-fired-2340190_1812="1" data-gtm-vis-has-fired-2340190_1885="1" data-gtm-vis-has-fired-2340190_1820="1" data-gtm-vis-has-fired-2340190_1816="1" data-gtm-vis-has-fired-2340190_1881="1" data-gtm-vis-has-fired-2340190_1891="1" data-gtm-vis-recent-on-screen-2340190_1781="3794" data-gtm-vis-first-on-screen-2340190_1781="3794" data-gtm-vis-total-visible-time-2340190_1781="100" data-gtm-vis-has-fired-2340190_1781="1" data-gtm-vis-has-fired-2340190_1852="1" data-gtm-vis-has-fired-2340190_1948="1" data-gtm-vis-has-fired-2340190_1810="1" data-gtm-vis-has-fired-2340190_1947="1" data-gtm-vis-has-fired-2340190_1880="1" data-gtm-vis-has-fired-2340190_1879="1" data-gtm-vis-has-fired-2340190_1893="1" data-gtm-vis-has-fired-2340190_1856="1" data-gtm-vis-has-fired-2340190_1946="1" data-gtm-vis-has-fired-2340190_1942="1"><div id="s1-download-mdb-free" class="alert alert-success" role="alert" data-color="success"> Get <strong>500+</strong> Material elements for <strong>FREE</strong>. Beautiful components for the <strong>latest Bootstrap 5</strong>. <a href="https://mdbootstrap.com/docs/standard/getting-started/installation/" class="btn btn-success btn-sm mt-2 mb-0 btn-block">DOWNLOAD NOW</a> </div></div>
+
+
+
+
+
+                    </section>
+                    <!-- /DC Content -->
+                    <!--Scrollspy-->
+                    <div id="scrollspy">
+
+                        <!-- Links -->
+                        <ul class="nav nav-pills default-pills smooth-scroll" data-allow-hashes="">
+                            <li class="nav-item"><a class="nav-link" href="#introduction">Introduction</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#accessibility">Accessibility</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#example">Example</a>
+                                <ul class="nav pl-3">
+                                    <li class="nav-item"><a class="nav-link" href="#split-button">Split button</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#material-dropdowns">Material dropdowns</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#dropdown-search">Dropdowns with search field</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#sizing">Sizing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#dropup">Dropup variation</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#dropright">Dropright variation</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#dropleft">Dropleft variation</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#menu-items">Menu items</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#menu-alignment">Menu alignment</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#menu-headers">Menu headers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#menu-dividers">Menu dividers</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#menu-forms">Menu forms</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#active-item">Active item</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#disabled-item">Disabled item</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#multi-level-dropdown">Multi-level-dropdown</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#dropdown-options">Dropdown options</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#usage">Usage</a>
+                                <ul class="nav pl-3">
+                                    <li class="nav-item"><a class="nav-link" href="#data-attributes">Via data attributes</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#via-javascript">Via JavaScript</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#options">Options</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#methods">Methods</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- Links -->
+
+                    </div>
+                    <!--Scrollspy-->
+
+                </div><div class="sticky-placeholder" style="width: 130.859px; height: 1270px;"></div><div class="sticky-placeholder" style="width: 130.859px; height: 1287px;"></div>
+                <!-- Sticky content -->
+
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/MultiStepWithAnimatedBar/search.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/sched.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/jquery-ui.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/mr.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/starRating.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/searchResult.js"></script>
+    <script type="text/javascript">
+            var searchResult = @Html.Raw(JsonConvert.SerializeObject(Model));
+    </script>
+    @if (TempData["SearchFilterFunction"] != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function(){
+                @Html.Raw(TempData["SearchFilterFunction"]);
+            });
+        </script>
+    }
+
+}
+<style>
+    .tutorCard {
+        box-shadow: 0 0 black;
+        background-color: white;
+        height: 186px;
+    }
+
+    .select .value {
+        padding: 4px 10px !important;
+    }
+
+    .rating-static {
+        width: 60px;
+        height: 16px;
+        display: block;
+        background: url('http://www.itsalif.info/blogfiles/rating/star-rating.png') 0 0 no-repeat;
+    }
+
+    .rating-30 {
+        background-position: -24px 0;
+    }
+
+    .rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+
+        .rating > input {
+            display: none
+        }
+
+        .rating > label {
+            position: relative;
+            font-size: 15px;
+            color: #FFD600;
+            cursor: pointer
+        }
+
+            .rating > label::before {
+                content: "\2605";
+                position: absolute;
+                opacity: 0
+            }
+
+            .rating > label:hover:before,
+            .rating > label:hover ~ label:before {
+                opacity: 1 !important
+            }
+
+        .rating > input:checked ~ label:before {
+            opacity: 1
+        }
+
+        .rating:hover > input:checked ~ label:before {
+            opacity: 0.4
+        }
+
+    .viewProfileBtn {
+        width: 44%;
+        height: 21%;
+        font-family: Arial, Helvetica, sans-serif;
+        padding-bottom: 0 !important;
+        padding-left: 0;
+        padding-top: 6px !important;
+        padding-right: 0;
+        border-radius: 2px;
+        border-color: silver !important;
+        font-size: 10px;
+        box-shadow: 0 0 black !important;
+    }
+</style>

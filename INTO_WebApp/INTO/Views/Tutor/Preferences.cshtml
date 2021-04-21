@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNetCore.Http
+@using BLL.Shared;
+
+@model TutorModel
+@{
+    ViewBag.Title = "Preferences";
+    ViewData["PageName"] = "Preferences";
+    ViewData["StepId"] = 1;
+    Layout = "~/Views/Tutor/_LayoutWizardSteps.cshtml";
+    string Yes = @Model.Globals["yes"];
+    string No = @Model.Globals["no"];
+}
+
+@if (Model.Resources.Count > 0)
+{
+    <div class="container">
+        <div class="row">
+            <div>
+                <h2 class="bold">@Model.Resources["Title"]</h2><br />
+                <h3>@Model.Resources["SubTitle"]</h3>
+                <br /><br />
+                <div>
+                    <div class="mb-4 p-2 round-corner-all-5 light-blue lighten-5">
+                        <h5 class="bold">@Model.Resources["Question1"]</h5>
+                        <div>
+                            <input id="Answer3-0" name="isTeacher" type="radio" class="option-input btn-outline square-24" data-text="Yes" data-role="input-taught-before" value="true">
+                            <label for="Answer3-0">@Yes</label>
+                        </div>
+                        <div>
+                            <input id="Answer3-1" name="isTeacher" type="radio" class="option-input btn-outline square-24" data-text="No" data-role="input-taught-before" value="false">
+                            <label for="Answer3-1">@No</label>
+                        </div>
+                    </div>
+                    <div class="mb-4 p-2 round-corner-all-5">
+                        <h5 class="bold">@Model.Resources["Question2"]</h5>
+                        <div class="md-form">
+                            <input type="text" id="txtSchoolName" class="form-control-sm match-parent" data-role="input-school-name">
+                            <label class="show-inline-block" for="txtSchoolName">@Model.Resources["RecentSchoolName"]</label>
+                        </div>
+                    </div>
+                    <div class="mb-4 p-2 round-corner-all-5 light-blue lighten-5">
+                        <h5 class="bold">@Model.Resources["Question3"]</h5>
+                        <div>
+                            <input id="Answer8-0" name="hasCert" type="radio" class="option-input btn-outline square-24" data-text="Yes" data-role="input-has-certification" value="true">
+                            <label for="Answer8-0">@Yes</label>
+                        </div>
+                        <div>
+                            <input id="Answer8-1" name="hasCert" type="radio" class="option-input btn-outline square-24" data-text="No" data-role="input-has-certification" value="false">
+                            <label for="Answer8-1">@No</label>
+                        </div>
+                    </div>
+                    <div class="mb-4 p-2 round-corner-all-5">
+                        <h5 class="bold">@Model.Resources["Question4"]</h5>
+                        <div class="md-form">
+                            <input type="number" min="0" max="80" maxlength="2" id="txtTutorExp" class="form-control-sm" data-role="input-tutoring-exp">
+                            <label class="show-inline-block" for="txtTutorExp">@Model.Resources["Q4PlaceHolder"]</label>
+                        </div>
+                        <div class="mb-4 p-2 round-corner-all-5 light-blue lighten-5">
+                            <h5 class="bold">@Model.Resources["Question5"]</h5>
+                            @foreach (LookUpDetails d in Model.TutoringTypes)
+                            {
+                                <div>
+                                    <input id='@Html.Raw("chkTutTypes" + d.LookupDetailsId)' data-id="@d.LookupDetailsId" name="chkTutTypes" type="checkbox" class="option-input btn-outline square-24" data-text="@d.LookupDetailsDescription" data-role="tutoring-types">
+                                    <label for='@Html.Raw("chkTutTypes" + d.LookupDetailsId)'>@d.LookupDetailsDescription</label>
+                                </div>
+                            }
+                        </div>
+                        <div class="mb-4 p-2 round-corner-all-5">
+                            <h5 class="bold">@Model.Resources["Question6"]</h5>
+                            @foreach (LookUpDetails d in Model.LessonTypes)
+                            {
+                                <div>
+                                    <input id='@Html.Raw("chkLsnTypes" + d.LookupDetailsId)' data-id="@d.LookupDetailsId" name="chkLsnTypes" type="checkbox" class="option-input btn-outline square-24" data-text="@d.LookupDetailsDescription" data-role="lesson-types">
+                                    <label for='@Html.Raw("chkLsnTypes" + d.LookupDetailsId)'>@d.LookupDetailsDescription</label>
+                                </div>
+                            }
+                        </div>
+                        <div class="mb-4 p-2 round-corner-all-5 light-blue lighten-5">
+                            <h5 class="bold">@Model.Resources["Question7"]</h5>
+                            @foreach (LookUpDetails d in Model.RewardingPoints)
+                            {
+                                <div>
+                                    <input id='@Html.Raw("chkRewdPts" + d.LookupDetailsId)' data-id="@d.LookupDetailsId" name="chkRewdPts" type="checkbox" class="option-input btn-outline square-24" data-text="@d.LookupDetailsDescription" data-role="rewarding-points">
+                                    <label for='@Html.Raw("chkRewdPts" + d.LookupDetailsId)'>@d.LookupDetailsDescription</label>
+                                </div>
+                            }
+                        </div>
+                        <div class="mb-4 p-2 round-corner-all-5">
+                            <h5 class="bold">@Model.Resources["Question8"]</h5>
+                            <div>
+                                <input id="Answer11-0" name="hasCar" type="radio" class="option-input btn-outline square-24" data-text="Yes" data-role="input-has-car" value="true">
+                                <label for="Answer11-0">@Yes</label>
+                            </div>
+                            <div>
+                                <input id="Answer11-1" name="hasCar" type="radio" class="option-input btn-outline square-24" data-text="No" data-role="input-has-car" value="false">
+                                <label for="Answer11-1">@No</label>
+                            </div>
+                        </div>
+                        <div class="mb-4 p-2 round-corner-all-5 light-blue lighten-5">
+                            <h5 class="bold">@Model.Resources["Question9"]</h5>
+                            <div>
+                                <input id="Answer12-0" name="onlineInterest" type="radio" class="option-input btn-outline square-24" data-text="Yes" value="true">
+                                <label for="Answer12-0">@Yes</label>
+                            </div>
+                            <div>
+                                <input id="Answer12-1" name="onlineInterest" type="radio" class="option-input btn-outline square-24" data-text="No" value="false">
+                                <label for="Answer12-1">@No</label>
+                            </div>
+                        </div>
+                        <div class="mb-4 p-2 round-corner-all-5">
+                            <h5 class="bold">@Model.Resources["Question10"]</h5>
+                            <div class="md-form">
+                                <input type="number" min="0" max="84" maxlength="2"  id="txtHrsOutside" class="form-control-sm" data-role="input-tutoring-outside">
+                                <label class="show-inline-block" for="txtHrsOutside">@Model.Resources["Q10PlaceHolder"]</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary waves-effect waves-light pt-1 pr-2 pl-4 white-text lang-dependant-inv" data-role="btn-next">
+                @Model.Globals["Next"]
+                <i class="icon-right ml-1 square-40 inline-block" style="margin-bottom: -15px;"></i>
+            </button>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <!-- Fonts and icons -->
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/preferences.js"></script>
+}

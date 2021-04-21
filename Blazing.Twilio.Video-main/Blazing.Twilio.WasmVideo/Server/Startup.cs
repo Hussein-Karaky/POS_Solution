@@ -1,0 +1,79 @@
+using Blazing.Twilio.WasmVideo.Server.Hubs;
+using Blazing.Twilio.WasmVideo.Server.Options;
+using Blazing.Twilio.WasmVideo.Server.Services;
+using Blazing.Twilio.WasmVideo.Shared;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
+using System.Linq;
+using static System.Environment;
+
+namespace Blazing.Twilio.WasmVideo.Server
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration) => Configuration = configuration;
+
+        public IConfiguration Configuration { get; }
+
+        const string TWILIO_ACCOUNT_SID = "ACaba23a7d277cde563020cbd18849eaa5";
+        const string TWILIO_API_KEY = "SKff2a974155388e476a082e3a6ab82ac6";
+        const string TWILIO_API_SECRET = "QlBeNd3QvLJ4Z8HDM8zl004Ew5F7sTMT";
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSignalR(options => options.EnableDetailedErrors = true)
+                    .AddMessagePackProtocol();
+            services.Configure<TwilioSettings>(settings =>
+            {
+                settings.AccountSid = TWILIO_ACCOUNT_SID;// GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
+                settings.ApiSecret = TWILIO_API_SECRET;// GetEnvironmentVariable("TWILIO_API_SECRET");
+                settings.ApiKey = TWILIO_API_KEY;// GetEnvironmentVariable("TWILIO_API_KEY");
+            });
+            services.AddSingleton<TwilioService>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddResponseCompression(opts =>
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" }));
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseResponseCompression();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseWebAssemblyDebugging();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseBlazorFrameworkFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                HttpsCompression = HttpsCompressionMode.Compress,
+                OnPrepareResponse = context =>
+                    context.Context.Response.Headers[HeaderNames.CacheControl] =
+                        $"public,max-age={86_400}"
+            });
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+                endpoints.MapHub<NotificationHub>(HubEndpoints.NotificationHub);
+                endpoints.MapFallbackToFile("index.html");
+            });
+        }
+    }
+}

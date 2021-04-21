@@ -1,0 +1,280 @@
+﻿@model ELPServer.Models.TutorViewModel
+
+@{
+    ViewData["Title"] = "Tutor Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+    <link href="~/css/cards.css" rel="stylesheet" />
+}
+
+@section Menus{
+    <li class="nav-item">
+        <a class="nav-link" href="#">@Model.Profile.LegalFirstName @Model.Profile.LegalLastName.ToCharArray()[0].</a>
+    </li>
+}
+
+<!-- Card -->
+<div class="card testimonial-card">
+
+    <!-- Background color -->
+    <div class="card-up indigo lighten-1"></div>
+
+    <!-- Avatar -->
+    <div class="avatar mx-auto white">
+        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="rounded-circle"
+             alt="woman avatar">
+    </div>
+
+    <!-- Content -->
+    <div class="card-body">
+        <!-- Name -->
+        <h4 class="card-title" id="@Model.Profile.Id">Anna Doe</h4>
+        <hr>
+        <!-- Quotation -->
+        <p>
+            <i class="fas fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, adipisci
+        </p>
+    </div>
+
+</div>
+<!-- Card -->
+
+<ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab" aria-controls="home-md"
+           aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab-md" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md"
+           aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab-md" data-toggle="tab" href="#contact-md" role="tab" aria-controls="contact-md"
+           aria-selected="false">Contact</a>
+    </li>
+</ul>
+<div class="tab-content card pt-5" id="myTabContentMD">
+    <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">
+        <p>
+            Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
+            retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+            Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry
+            richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american
+            apparel, butcher voluptate nisi qui.
+        </p>
+    </div>
+    <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">
+        <p>
+            Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+            farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip
+            jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna
+            delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan
+            fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
+            richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus
+            tattooed echo park.
+        </p>
+    </div>
+    <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
+        <p>
+            Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo
+            retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,
+            iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
+            Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles
+            pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of
+            them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+        </p>
+    </div>
+</div>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<div class="container">
+
+    <div class="row container">
+
+        <div class="nav flex-column nav-pills col-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-profile-tab-empty" data-toggle="pill" href="#v-pills-profile-empty" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-ViewPublicProfile" role="tab" aria-controls="v-pills-home" aria-selected="true">View Public Profile</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile visibility</a>
+            <a class="nav-link" id="v-pills-Photos-tab" data-toggle="pill" href="#v-pills-Photos" role="tab" aria-controls="v-pills-Photos" aria-selected="false">Photos</a>
+            <a class="nav-link" id="v-pills-freeresponsetitle-tab" data-toggle="pill" href="#v-pills-freeresponsetitle" role="tab" aria-controls="v-pills-freeresponsetitle" aria-selected="false">Free response and title</a>
+            <a class="nav-link" id="v-pills-Education-tab" data-toggle="pill" href="#v-pills-Education" role="tab" aria-controls="v-pills-Education" aria-selected="false">Education</a>
+            <a class="nav-link" id="v-pills-RatesAndPolicies-tab" data-toggle="pill" href="#v-pills-RatesAndPolicies" role="tab" aria-controls="v-pills-RatesAndPolicies" aria-selected="false">Rates and Policies</a>
+
+            <a class="nav-link" id="v-pills-BackgroundCheck-tab" data-toggle="pill" href="#v-pills-BackgroundCheck" role="tab" aria-controls="v-pills-BackgroundCheck" aria-selected="false">Background check</a>
+            <a class="nav-link" id="v-pills-Availability-tab" data-toggle="pill" href="#v-pills-Availability" role="tab" aria-controls="v-pills-Availability" aria-selected="false">Availability</a>
+            <a class="nav-link" id="v-pills-Subjects-tab" data-toggle="pill" href="#v-pills-Subjects" role="tab" aria-controls="v-pills-Subjects" aria-selected="false">Subjects</a>
+            <a class="nav-link" id="v-pills-ExampleOfExpertiseNew-tab" data-toggle="pill" href="#v-pills-ExampleOfExpertiseNew" role="tab" aria-controls="v-pills-ExampleOfExpertiseNew" aria-selected="false">Examples of Expertise-New!</a>
+            <a class="nav-link" id="v-pills-StudentFeedback-tab" data-toggle="pill" href="#v-pills-StudentFeedback" role="tab" aria-controls="v-pills-StudentFeedback" aria-selected="false">Student feedback</a>
+            <a class="nav-link" id="v-pills-LocationSettings-tab" data-toggle="pill" href="#v-pills-LocationSettings" role="tab" aria-controls="v-pills-LocationSettings" aria-selected="false">Location settings</a>
+            @*<a class="nav-link" id="v-pills-CustomURL-tab" data-toggle="pill" href="#v-pills-CustomURL" role="tab" aria-controls="v-pills-CustomURL" aria-selected="false">Custom URL</a>*@
+        </div>
+        <div class="tab-content col-9" id="v-pills-tabContent">
+            <div class="tab-pane fade" id="v-pills-profile-empty" role="tabpanel" aria-labelledby="v-pills-profile-tab"></div>
+            <div class="tab-pane fade" id="v-pills-ViewPublicProfile" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <section class="clearfix" data-sticky-container="">
+                    <div class="column">
+                        <div class="profile-header">
+                            <div class="row">
+                                <div class="column small-4 medium-3 right medium-left">
+                                    <div class="profile-hero-container round-photo">
+                                        <img src="https://www.wyzant.com/images/tutor/silhouette.png" alt="Hassan I.'s Photo">
+                                    </div>
+                                </div>
+                                <div class="column small-8 medium-9 left">
+                                    <h1 class="main-text">
+                                        @*<h4>Tutor Name : @Model.LegalFN</h4>*@
+                                        <span>Hassan I.</span>
+                                        <p class="spc-tiny medium-hide secondary-text light-header">Math Tutor for all grades</p>
+                                        <p class="spc-zero hide medium-show secondary-text light-header">Math Tutor for all grades</p>
+                                    </h1>
+                                    <h4 class="text-bold medium-hide spc-sm-n">
+                                        <div class="rate">
+                                            $50<span>/hour</span>
+                                        </div>
+                                    </h4>
+                                    <div class="medium-spc-sm-n">
+                                    </div>
+                                    <ul class="reset spc-sm">
+                                        <li class="flex flex-baseline">
+
+                                        </li>
+                                        <span class="flex flex-baseline">
+                                            <i class="profile-header-icon wc-map-marker wc-green"></i>
+                                            <h3 class="seo-as-body text-bold spc-zero">Lower East Side New York, NY 10002</h3>
+                                        </span>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <h2 class="seo-as-h3">About Hassan</h2>
+                        <hr class="spc-sm">
+                        <div class="row">
+                            <h3 class="column medium-3 spc-sm-s medium-spc-zero-s seo-as-body">Bio</h3>
+                            <div class="column medium-9 spc-s">
+                                <div class="truncated-content">
+                                    <p class="spc-zero-n spc-sm-s">
+                                        sdgggggggggggggggggggggggggggggggggggtrssssssssssjuuuuuuuu
+                                    </p>
+                                </div>
+                                <div class="full-content hide">
+                                    <p class="spc-zero-n spc-sm-s">
+                                        sdgggggggggggggggggggggggggggggggggggtrssssssssssjuuuuuuuu
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="spc-sm">
+                        <div class="row">
+                            <h3 class="column medium-3 spc-sm-s medium-spc-zero-s seo-as-body">Education</h3>
+                            <div class="column medium-9">
+                                <section class="spc-med-s">
+                                    CNAM<br>
+                                    Computer science
+                                </section>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column"><hr class="spc-sm"></div>
+                            <h3 class="column medium-3 spc-sm-s medium-spc-zero-s seo-as-body">Policies</h3>
+                            <div class="column medium-9 spc-s">
+                                <ul class="reset list-icons">
+                                    <li>
+                                        <i class="wc-two-people wc-lightgrey"></i>
+                                        Tutor’s lessons: <strong>In-person</strong>
+                                    </li>
+                                    <li><i class="wc-usd wc-lightgrey"></i>Hourly Rate: <strong>$50</strong></li>
+                                    <li><i class="wc-car wc-lightgrey"></i> Travel policy: <strong>Within 20 miles of New York, NY 10002</strong></li>
+                                    <li><i class="wc-calendar-times-o wc-lightgrey"></i> Lesson cancellation: <strong>10 hours notice required</strong></li>
+                                    <li>
+                                        <p class="spc-zero">
+                                            <i class="wc-background-none wc-lightgrey"></i>
+                                            <a class="wyzantModal" href="/match/tutor/88261633/backgroundcheck" rel="noindex, nofollow">No background check</a>
+                                        </p>
+                                    </li>
+                                    <li class="spc-sm-n"><i class="wc-ribbon wc-lightgrey"></i> Your first lesson is backed by our <a class="wyzantModal" href="/faq/?faqId=6">Good Fit Guarantee</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="spc-s">
+                            <hr class="spc-sm">
+                            <div id="tutor-schedule" class="row">
+                                <h3 class="column medium-3 spc-sm-s medium-spc-zero-s seo-as-body">Schedule</h3>
+                                <div class="column medium-9 spc-s">
+                                    <p class="spc-zero">Hassan hasn’t set a schedule.</p>
+                                </div>
+                            </div>
+
+
+                            <hr class="spc-sm">
+                            <div class="row">
+                                <h3 class="column medium-3 spc-sm-s medium-spc-zero-s seo-as-body">Subjects</h3>
+                                <div class="column medium-9 spc-sm-s">
+                                    <div class="row">
+                                        <div class="column large-6">
+                                        </div>
+                                        <div class="column large-6">
+                                        </div>
+                                        <div id="subject-qualification-overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="text" name="LegalFN" class="form-control my-input"
+                                   asp-for="@Model.Profile.LegalFirstName"
+                                   placeholder="First Name">
+                            <input type="text" name="LegalFN" class="form-control my-input"
+                                   asp-for="@Model.Profile.LegalLastName"
+                                   placeholder="Last Name">
+                            @*<h4>Employee ID : @Model.Address</h4>*@
+
+
+
+                        </div>
+
+
+                    </div>
+                </section>
+
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria--labelledby="v-pills-viewpublicprofile-tab">
+                    <h1 class="hide medium-show">Profile visibility</h1>
+                    Your profile is still awaiting approval. Thanks for your patience.
+                    <hr class="spc-med">
+                </div>
+                <div>
+
+                </div>
+
+
+                <div class="tab-pane fade" id="v-pills-Photos" role="tabpanel" aria-labelledby="v-pills-Photos-tab">...</div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+            </div>
+        </div>
+    </div>
+</div>

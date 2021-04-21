@@ -1,0 +1,109 @@
+﻿@model StudentModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"><h4>Welcome @*@Model.User.FirstName*@</h4></div>
+    </div>
+    @*messages card*@
+<div class="row">
+    <div class="col-md-8">
+        <div class="row" style="margin-bottom:2em;">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Unread Messages
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <a href="#" style="float:right;">See all messages</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a id="navbar-static-user" alt="Me" class="btn-sm waves-effect waves-light btn-outline-info nav-account has-bg-user-picture" data-toggle="modal" data-target="#mdlUserMenu" style=" border-radius:66px; width:100px; height:100px;"></a>
+                            </div>
+                            <div class="col-md-10">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-info white-text light-blue darken-1">Go somewhere</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*tutor card*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Tutors
+                            </div>
+                            <div class="col-md-4">
+                                Recently Viewed
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a id="navbar-static-user" alt="Me" class="btn-sm waves-effect waves-light btn-outline-info nav-account has-bg-user-picture" data-toggle="modal" data-target="#mdlUserMenu" style="border-radius:66px; width:100px; height:100px;"></a>
+                            </div>
+                            <div class="col-md-10">
+                                <h5 class="card-title">Tutor Name</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-info white-text light-blue darken-1">View Profile</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="height:505px;">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <a id="navbar-static-user" alt="Me" class="btn-sm waves-effect waves-light btn-outline-info nav-account has-bg-user-picture" data-toggle="modal" data-target="#mdlUserMenu" style=" border-radius:66px; width:100px; height:100px;"></a>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="btn btn-info white-text light-blue darken-1" style="margin-top:2em;width:100%">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="~/Student/ContactUs" class="btn btn-info white-text light-blue darken-1" style="margin-top:2em;width:100%">Contact Us</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

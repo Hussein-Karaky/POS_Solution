@@ -1,0 +1,36 @@
+﻿#map {
+    height: 400px; /* The height is 400 pixels */
+    width: 100%; /* The width is the width of the web page */
+    background-color: grey;
+}
+
+#map > div:nth-child(2), #map > div:nth-child(3) {
+    display: none;
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    /*width: 400px;*/
+    top: 10px;
+    height: 36px;
+    width: 84%;
+    max-width: 352px;
+    border-radius: 5px;
+    opacity: 0.6;
+}
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+        opacity: 1;
+    }
+
+.map-container iframe{
+    width: 100%;
+    height: 100%;
+}

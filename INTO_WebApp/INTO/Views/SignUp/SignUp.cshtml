@@ -1,0 +1,158 @@
+﻿@using INTO.Controllers.Shared;
+@model INTO.Models.SignUpModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sType = "Student";
+    byte intType = (byte)Model.Type; /*jinan add*/
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ddlCountries = new Select('#ddlCountries', {
+                // auto show the live filter
+                filtered: 'auto',
+                // auto show the live filter when the options >= 8
+                filter_threshold: 8,
+                // custom placeholder
+                filter_placeholder: 'Select your country'
+            });
+            var date = new Date();
+            var month = date.getUTCMonth() + 1; //months from 1-12
+            var day = date.getUTCDate();
+            var year = date.getUTCFullYear();
+            let tzOs = document.getElementById("tzOs");
+            tzOs.defaultValue = date.getTimezoneOffset();
+            formatteDate = year + "/" + month + "/" + day;
+            //$(".date-client").html(formatteDate);
+        });
+    </script>
+}
+
+<div class="row" style="margin-top:1em;">
+    <div class="col-md-3">
+        <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40" href="~/SignUp">
+            <i class="icon-back"></i>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-cascade wider">
+            <!-- Card image -->
+            <div class="view view-cascade gradient-card-header blue-gradient" style="padding: 0 0 0 0;height: 42px;">
+                @* jinan add *@
+                @switch (Model.Type)
+                {
+                    case BLL.Shared.EntityType.Tutor:
+                        sType = "Tutor";
+                        break;
+                    case BLL.Shared.EntityType.Student:
+                        sType = "Student";
+                        break;
+                    case BLL.Shared.EntityType.Parent:
+                        sType = "Parent";
+                        break;
+                    case BLL.Shared.EntityType.School:
+                        sType = "School";
+                        break;
+                }
+                <!-- Title -->
+                <h2 class="card-header-title mb-3">Sign up as @sType</h2>
+                <!-- Text -->
+            </div>
+
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+
+                <form asp-action="DoSignUp" asp-controller="SignUp" data-role="signUp-input">
+                    <div class="form-row">
+                        <div class="col">
+                            <!-- First name -->
+                            <div class="md-form">
+                                <input type="text" id="txtFirstName" asp-for="FirstName" class="form-control-sm" data-role="signUp-firstName" required>
+                                <label data-error="wrong" for="txtFirstName" class="">First name</label>
+                                <div class="invalid-feedback">Your first name please</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Last name -->
+                            <div class="md-form">
+                                <input type="text" asp-for="LastName" id="txtLastName" class="form-control-sm" data-role="signUp-lastName" required>
+                                <label data-error="wrong" for="txtLastName" class="">Last name</label>
+                                <div class="invalid-feedback">Your last name please</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-form mb-2">
+                        <input type="email" asp-for="Email" id="txtEmail" class="form-control-sm match-parent" data-role="signUp-email" required>
+                        <label data-error="wrong" data-success="right" for="txtEmail">Email</label>
+                        <div class="invalid-feedback">Your email please</div>
+
+                    </div>
+                    <div class="md-form mb-5">
+                        <input type="text" asp-for="Phone" id="txtPhone" class="form-control-sm match-parent" data-role="signUp-phone">
+                        <label data-error="wrong" data-success="right" for="txtPhone">Mobile</label>
+                        <div class="invalid-feedback">Your mobile number please</div>
+                    </div>
+
+                    <div class="md-form mb-2">
+                        <input type="password" asp-for="Password" class="form-control-sm match-parent" id="txtPassword" data-role="signUp-pwd" required>
+                        <label data-error="wrong" data-success="right" for="txtPassword">Password</label>
+                        <div class="invalid-feedback">Enter a valid password please</div>
+                    </div>
+                    <div class="md-form mb-2">
+                        <select id="ddlCountries" asp-for="CountryId" data-role="signUp-country" tabindex="0" required>
+                            <option value="0">Select your country</option>
+                            @foreach (var country in LoginModel.AllCountries)
+                            {
+                                <option value="@country.Id">@country.Name</option>
+                            }
+                        </select>
+                        <div class="invalid-feedback">Your country please</div>
+                    </div>
+                    <div class="md-form mb-2">
+                        <input type="checkbox" name="check" id="chkSignUpAgree" class="form-check-input sm" data-role="agree-check">
+                        <label for="chkSignUpAgree"> Agree our terms</label>
+                    </div>
+                    <div class="text-center form-sm mt-2">
+                        <input asp-for="IntType" type="hidden" value="@intType" />
+                        <input id="tzOs" asp-for="User.TimezoneOffset" type="hidden" />
+                        <button type="submit" id="signUpButton" class="btn btn-info white-text light-blue darken-1" data-role="signUp-submit" disabled>Sign up</button>
+                    </div>
+                </form>
+
+                <!-- Link -->
+                <a href="#!" class="blue-text d-flex flex-row-reverse p-2" data-toggle="modal" data-target="#mdlTermsAndConditions">
+                    <h6 class="waves-effect waves-light">Terms &amp; Conditions</h6>
+                </a>
+
+            </div>
+            <!-- Card content -->
+
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mdlTermsAndConditions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Terms &amp; Conditions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="scrollbar h-300 v-only round-corner-all-2 shadow-in">
+                    @Html.Raw(@Model.TermsAndConditions)
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline btn-rounded waves-effect waves-light" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

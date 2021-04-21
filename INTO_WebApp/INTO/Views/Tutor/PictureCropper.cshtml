@@ -1,0 +1,75 @@
+﻿<div id="pictureCropper">
+    <div class="classic-tabs">
+        <ul class="nav tabs-cyan" id="myClassicTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link  waves-light active show" data-toggle="tab" data-auth-modal-tab="tab-crop" aria-controls="profile-crop" href="#tab-crop" role="tab" aria-selected="true">
+                    <svg fill="white" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 15h2V7c0-1.1-.9-2-2-2H9v2h8v8zM7 17V1H5v4H1v2h4v10c0 1.1.9 2 2 2h10v4h2v-4h4v-2H7z" />
+                    </svg>
+                    Crop
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" data-toggle="tab" data-auth-modal-tab="tab-capture" aria-controls="profile-capture" href="#tab-capture" role="tab" aria-selected="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="3.2" fill="white"></circle><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="white"></path></svg>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content border-right border-bottom border-left rounded-bottom" id="myClassicTabContent">
+            <!--Panel 7-->
+            <div class="tab-pane fade active show" data-auth-modal-tab="tab-crop" id="tab-crop" role="tabpanel" aria-labelledby="profile-tab-crop">
+
+                <!--Body-->
+                <div class="modal-body mb-1 cropper-container" data-role="login-input">
+                    <input id="fileInput" type="file" accept="image/*" class="hidden-input">
+                    <div class="cropper-wrapper-container">
+                        <div id="cropper-cont" class="cropper-container waves-effect ml-auto">
+
+                        </div>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer no-wrap">
+                    <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 vanilla-result">
+                        <i class="icon-preview"></i>
+                    </a>
+                    <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 square-40 vanilla-save">
+                        <i class="icon-save"></i>
+                    </a>
+                    <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 vanilla-rotate" data-deg="-90">
+                        <i class="icon-rotate-left"></i>
+                    </a>
+                    <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 vanilla-rotate" data-deg="90">
+                        <i class="icon-rotate-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!--/.Panel 7-->
+            <!--Panel 8-->
+            <div class="tab-pane fade" data-auth-modal-tab="tab-capture" id="tab-capture" role="tabpanel" aria-labelledby="profile-tab-capture">
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="contentarea">
+                        <div class="camera">
+                            <video id="video" style="width: 100%; height: 100%;">Video stream not available.</video>
+                        </div>
+                        <audio src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/audio/camera-shutter-click-08.mp3" type="audio/mpeg">
+                        </audio>
+                        <div id="shutter"></div>
+                        <div style="height: 0px;">
+                            <button id="btnCamCapt" class="btn btn-outline btn-floating waves-effect waves-light"></button>
+                        </div>
+                        @*<canvas id="canvas"></canvas>*@
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                </div>
+            </div>
+            <!--/.Panel 8-->
+        </div>
+        </div>
+    </div>

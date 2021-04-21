@@ -1,0 +1,386 @@
+﻿@model TutorModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/MDBWizard/steppers.min.css" />
+    <link href="~/css/sweetalert2/dark.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2/material-ui.css" rel="stylesheet" />
+    <style>
+        .scrolling-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .wrong {
+            color: red;
+        }
+
+        .vl {
+            border-left: 2px solid #5bc0de;
+            height: 250px;
+        }
+
+        .timing {
+            width: 80px;
+            height: 33px;
+        }
+
+        .card {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .QuestionShow {
+            height: 350px;
+            width: 650px;
+        }
+
+        .timingDiv {
+            height: 300px;
+            width: 300px;
+        }
+
+        .hiddendiv {
+            display: none;
+        }
+    </style>
+}
+@section TopScripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/MDBWizard/steppers.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/moment-with-locales.js"></script>
+    <script>
+        var baseUrl = window.location.origin;
+        var testAnswersIds = [];
+        var QuestionIds = [];
+        var UID = accountManager.currentUser.userId;
+        var TimeFrame;
+        var QuestionNumber;
+        var TotalToPass;
+        $(document).ready(function () {
+            $('.stepper').mdbStepper();
+            @Html.Raw(Model.serializedTest)
+            $('#btnStartTest').click(function () {
+                startTest();
+                $('#DivTest').show();
+                $(this).attr("disabled", true);
+            });
+            $('#btnEndTest').click(function () {
+
+                Swal.fire({
+                    title: 'Are you sure you want to send your answers?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: `Don't Save`,
+                    showConfirmButton: true,
+                    confirmButtonText: `Save Anyway`,
+                }).then((result) => {
+                    if (result.value === true) {
+                        //user pressed save anyway
+                        endTest();
+                    } else {
+                        //user pressed don't save anyway
+                        swal.close();
+                    }
+                });
+            });
+        });
+        function startTest() {
+            $.ajax({
+                url: baseUrl + '/Test/StartTest',
+                type: 'post',
+                dataType: 'json',
+                data: { QATempId: @TempData["QATemplateId"] ,UID: UID },
+                success: function () {
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+            let timingTable = $('#timingTable tbody');
+            timingTable.empty();
+            let dt = new Date();
+            let startTime = dt.getHours() + ":" + dt.getMinutes();
+            let endTime = moment.utc(startTime, 'hh:mm').add(TimeFrame, 'minutes').format('hh:mm');
+            let testTime = TimeFrame;
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+            var timer2 = TimeFrame + ":01";
+            var interval = setInterval(function () {
+                var timer = timer2.split(':');
+                //by parsing integer, I avoid all extra string processing
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+                --seconds;
+                minutes = (seconds < 0) ? --minutes : minutes;
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                //minutes = (minutes < 10) ?  minutes : minutes;
+                $('#countdown').html(minutes + ':' + seconds);
+                //$('.countdown').html(minutes + ':' + seconds);
+                if (minutes < 0) clearInterval(interval);
+                //check if both minutes and seconds are 0
+                if (seconds == 0 && minutes == 1) {
+                    timingTable.append('<tr><td colspan="2" id="countdown"><div class="bg-danger countdown" role="alert"><b class=\"text-white\">Be careful the test time is about to end </b></div></td></tr>');
+                }
+                if (seconds == 0 && minutes == 0) { endTest(); }
+                if ((seconds <= 0) && (minutes <= 0)) clearInterval(interval);
+                timer2 = minutes + ':' + seconds;
+            }, 1000);
+
+            timingTable.append('<tr><td class="text-white"><h5 class="card btn-info text-center timing">Start Time</h5></td><td class="text-white"><h5 class="card btn-info text-center timing">' + startTime + '</h5></td></tr><tr><td class="text-white"><h5 class="card btn-info text-center timing">End Time</h5></td><td class="text-white"><h5 class="card btn-info text-center timing">' + endTime + '</h5></td></tr><tr><td class="text-white"><h5 class="card btn-info text-center timing">Test Time</h5></td><td class="text-white"><h5 class="card btn-info text-center timing">' + testTime + '</h5></td></tr><tr><td class="text-white"><h5 class="card btn-info text-center timing">Remaining Time</h5></td><td class="text-white"><h5 id="countdown" class="card btn-info text-center timing" ></h5></td></tr>');
+            $('#divSubmit').show();
+            $('#hrline').show();
+            $('#timeDiv').show();
+        }
+
+        function endTest() {
+            let userAnswer = [];
+            $(QuestionIds).each(function (index, sm) {
+                var squestion = $('div[question-id=\"' + sm.QuestionId + '\"]');
+                if (squestion.attr('showType') === 'OptionList') {
+                    var checkedRadio = null;
+                    checkedRadio = $('div[question-id=\"' + sm.QuestionId + '\"] input[type=radio][name=Question' + sm.QuestionId + ']:checked').val();
+                    if (checkedRadio == undefined) {
+                        let newItem = { ID: 0, QID: sm.QuestionId, value: '', List: '0', Notes: '' }
+                        userAnswer.push(newItem);
+                    }
+                    else {
+                        let newItem = { ID: 0, QID: sm.QuestionId, value: '', List: checkedRadio, Notes: '' }
+                        userAnswer.push(newItem);
+                    }
+                }
+                else if (squestion.attr('showType') === 'check') {
+                    var userCheckboxAnswers = [];
+                    $.each($('div[question-id=\"' + sm.QuestionId + '\"] input[type=checkbox][Question-id=\"' + sm.QuestionId + '\"]'), function () {
+                        if ($(this).is(":checked")) {
+                            userCheckboxAnswers.push($(this).attr('answer-id'))
+                        }
+                    });
+                    if (userCheckboxAnswers == undefined) {
+                        let newItem = { ID: 0, QID: sm.QuestionId, value: '', List: '0', Notes: '' }
+                        userAnswer.push(newItem);
+                    }
+                    else {
+                        let newItem = { ID: 0, QID: sm.QuestionId, value: '', List: userCheckboxAnswers.join(", "), Notes: '' }
+                        userAnswer.push(newItem);
+                    }
+                }
+                else if (squestion.attr('showType') === 'DDL') {
+                    let newItem = { ID: 0, QID: sm.QuestionId, value: '', List: $('div[question-id=\"' + sm.QuestionId + '\"] select option:selected').attr('answer-id'), Notes: '' }
+                    userAnswer.push(newItem);
+                }
+                else if (squestion.attr('showType') === 'text') {
+                    let text = squestion.find("textarea");
+                    let value = text.val().trim();
+                    let newItem = { ID: 0, QID: sm.QuestionId, value: value, List: '0', Notes: '' }
+                    userAnswer.push(newItem);
+
+                }
+
+            });
+            $.ajax({
+                url: baseUrl + '/Test/EndTest',
+                type: 'post',
+                dataType: 'json',
+                data: { Sub: JSON.stringify(userAnswer), QATempId: @TempData["QATemplateId"], UID: UID },
+                success: function (data) {
+                    $('#DivTest').hide();
+                    $('#divSubmit').hide();
+                    $('#hrline').hide();
+                    $('#timeDiv').hide();
+                    let x = $('#ResultTable tbody');
+                    showUserResults(x, data);
+                    $('#DivResult').show();
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+
+        function showUserResults(tblname, userResult)
+        {
+            $('#btnStartTest').hide();
+            let testTotal = 0;
+            let total = 0;
+            let counter = 1;
+            let passed = 'Failure';
+            tblname.empty();
+            $(userResult).each(function (index, sm) {
+                total = total + sm.points;
+                testTotal = testTotal + sm.questionPoints;
+                let iconClass = 'fa fa-check-circle correct';
+                if (sm.result == 0) { iconClass ='fa fa-times-circle wrong'}
+                tblname.append('<tr class=\"text-center\"><td>' + counter + '</td><td><i class=\"' + iconClass + '\"></i></td><td>' + sm.points + ' ' + '/' + sm.questionPoints + '</td></tr>');
+                ++counter;
+            });
+            if (total >= TotalToPass) { passed='Passed'}
+            tblname.append('<tr class=\"text-center\"><td>'+ passed +'</td><td><b>Total</b></td><td>' + total + "/" + testTotal + '</td></tr>');
+        }
+
+        function setObjTest(obj) {
+            QATemplateId = obj.Id;
+            TimeFrame = obj.TimeFrame;
+            QuestionNumber = obj.question.length;
+            TotalToPass = obj.TotalToPass;
+            $(obj.question).each(function (index, sm) {
+                let newItem = { QuestionId: sm.Id }
+                QuestionIds.push(newItem);
+            });
+            $(obj.question).each(function (index, sm) {
+                if (jQuery.isEmptyObject(sm.answer[0])) { }
+                else {
+                    $(sm.answer).each(function (index, sa) {
+                        let newItem = { answerId: sa.Id, questionId: sa.QuestionId, correct: sa.Correct }
+                        testAnswersIds.push(newItem);
+                    })
+                }
+            });
+        }
+
+        function someFunction21() {
+            setTimeout(function () {
+                $('#horizontal-stepper').nextStep();
+            }, 2000);
+        }
+    </script>
+}
+<h1 class="countdown"></h1>
+<button id="btnStartTest" class="btn btn-info text-white"><b>Start</b></button>
+
+<div class="row">
+    <div class="col-md-7 hiddendiv QuestionShow ml-auto" id="DivTest">
+         <ul class="stepper horizontal" id="horizontal-stepper">
+             @for (int i = 0; i <= Model.test.question.Count - 1; i++)
+             {
+                 String StepClass = "";
+                 if (i == 0) { StepClass = "step active"; }
+                 else { StepClass = "step"; }
+                 <li class="@StepClass">
+                     <div class="step-title waves-effect waves-dark "></div>
+                         <div class="row md-form col-12 ml-auto step-new-content ">
+                                 <strong>@Html.Raw(Model.test.question[i].Description)</strong>
+                                 @if (Model.test.question[i].FieldTypeId == 5)
+                                 {
+                                     switch (Model.test.question[i].DisplayId)
+                                     {
+                                         case 1:
+                                             // Use the text block below to separate html elements from code
+                                             <div showType="DDL" question-id="@Model.test.question[i].Id">
+                                                 <select class="form-control btn-rounded answerDDL">
+                                                     @for (int x = 0; x <= Model.test.question[i].answer.Count - 1; x++)
+                                                     {
+                                                         <option Question-id="@Model.test.question[i].Id" answer-id="@Model.test.question[i].answer[x].Id">@Html.Raw(@Model.test.question[i].answer[x].AnswerDescription)</option>
+                                                     }
+                                                 </select>
+                                             </div>
+                                             break;  // Always break each case
+                                         case 3:
+                                             <div showType="OptionList" question-id="@Model.test.question[i].Id">
+                                                 <ul style="list-style-type: none;">
+                                                     <li>
+                                                         @for (int x = 0; x <= Model.test.question[i].answer.Count - 1; x++)
+                                                         {
+                                                             <div class="row">
+                                                                 <div class="col-1" style="margin-top:14.5px;">
+                                                                     <input name="@("Question"+Model.test.question[i].Id)"
+                                                                            question-id="@Model.test.question[i].Id"
+                                                                            answer-id="@Model.test.question[i].answer[x].Id"
+                                                                            type="radio"
+                                                                            value="@Model.test.question[i].answer[x].Id"
+                                                                            class="validate form-control"
+                                                                            required>
+                                                                 </div>
+
+                                                                 <div class="col-8">
+                                                                     <label for="@("Question"+Model.test.question[i].Id)">
+                                                                     @Model.test.question[i].answer[x].AnswerDescription
+                                                                     </label>
+                                                                 </div>
+                                                             </div>
+                                                         }
+                                                     </li>
+                                                 </ul>
+                                             </div>
+                                             break;
+                                         default:
+                                             <div showType="check" question-id="@Model.test.question[i].Id">
+                                                 <ul style="list-style-type: none;">
+                                                     <li>
+                                                         @for (int x = 0; x <= Model.test.question[i].answer.Count - 1; x++)
+                                                         {
+                                                             <div class="row">
+                                                                 <div class="col-1" style="margin-top:14.5px;"><input name="@("Question"+Model.test.question[i].Id)" Question-id="@Model.test.question[i].Id" Answer-id="@Model.test.question[i].answer[x].Id" type="checkbox" value="1" class="validate form-control" required></div>
+                                                                 <div class="col-8"><label for="@("Question"+Model.test.question[i].Id)">@Model.test.question[i].answer[x].AnswerDescription</label></div>
+                                                             </div>
+                                                         }
+                                                     </li>
+                                                 </ul>
+                                             </div>
+                                             break;
+                                     }
+                                 }
+                                 else
+                                 {
+                                     <div showType="text" question-id="@Model.test.question[i].Id">
+                                         <div class="row">
+                                             <div class="col-6">
+                                                 <textarea class="form-control" rows="5" id=@Model.test.question[i].Id placeholder="Please write your answer here" required></textarea>
+                                             </div>
+                                             <div class="col-6">
+                                                 <img src="~/images/Screen_Shot_2014-02-27_at_6.43.30_PM.png" style="width: 150px; height: 150px;" />
+                                             </div>
+                                         </div>
+                                     </div>
+                                 }
+                         <div class="md-form col-12 ml-auto">
+                             <div class="step-actions offset-8">
+                                 <button class="btn btn-info text-white next-step" data-feedback="someFunction21">CONTINUE</button>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+             }
+         </ul>
+    </div>
+    <div class="col-md-3 hiddendiv" id="timeDiv">
+        <div class="col-12">
+            <div class="timingDiv">
+                <div class="float-right" style="margin-top: inherit;">
+                    <table id="timingTable" border="0">
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="DivResult" class="md-form col-12 ml-auto hiddendiv">
+        <div class="row"><h1><strong><i>Your Test Results are as follow:</i></strong></h1></div>
+        <table id="ResultTable" class="table table-responsive-sm table-bordered table-striped table-hover">
+            <thead>
+                <tr class="bg-info">
+                    <th class="text-center text-white">Question</th>
+                    <th class="text-center text-white">Result</th>
+                    <th class="text-center text-white">Points</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div id="divSubmit" class="hiddendiv offset-7"><button id="btnEndTest" class="btn btn-info text-white"><b>Submit</b></button></div>
+</div>
+

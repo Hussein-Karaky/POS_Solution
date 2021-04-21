@@ -1,0 +1,79 @@
+﻿@model PaymentModel
+@{
+    ViewData["Title"] = "Operations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/payment/tabulator/tabulator_semantic-ui.min.css" />
+
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/payment/operations.css" />
+
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/payment/calendar/tavo-calendar.css" />
+    <script src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/calendar/tavo-calendar.js"></script>
+
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/tabulator/tabulator_core.js"></script>
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/tabulator/modules/filter.js"></script>
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/tabulator/modules/sort.min.js"></script>
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/tabulator/modules/page.min.js"></script>
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/tabulator/modules/ajax.min.js"></script>
+}
+
+<div class="modal fade" id="myModal" role="dialog" data-opr="@Model.SessionId">
+    <div class="modal-dialog">
+    </div>
+</div>
+<div class="opr-wrpr">
+    <div class="opr-header">
+        <p class="subtitle label" data-label="OperationList">Operations List</p>
+        <div class="calendar-action">
+            <button id="ShowCalendar">Date Filter</button>
+            <div class="date-filter">
+                <div id="todayDiv" class="single">2021-02-10</div>
+                <div class="multi" style="display: none;">
+                    <div class="date-from">2021-02-14</div>
+                    <div class="pymtarrow-right"><i class="fa fa-angle-right"></i></div>
+                    <div class="date-to">2021-02-14</div>
+                </div>
+            </div>
+            <button id="ClearDateFilter"><i class="fa fa-sync"></i></button>
+        </div>
+    </div>
+    <div id="my-calendar" class="hide"></div>
+    <div class="opr-main">
+        <div class="opr-filter">
+            <div>
+                <select id="filter-field">
+                    <option></option>
+                    <option value="description">Session Title</option>
+                    <option value="TutorName">Tutor Name </option>
+                    <option value="paymentMethod">Method</option>
+                    <option value="amount">Amount</option>
+                    <option value="currency">Currency</option>
+                </select>
+
+                <select id="filter-type">
+                    <option></option>
+                    <option value="=">Equal</option>
+                    <option value="<">Less Than</option>
+                    <option value="<=">Less Than Equal</option>
+                    <option value=">">Greater Than</option>
+                    <option value=">=">Greater Than Equal</option>
+                    <option value="!=">Not Equal</option>
+                    <option value="like">like</option>
+                </select>
+
+                <input id="filter-value" type="text" placeholder="value to filter">
+
+                <button id="filterBtn" class="Opr-btn">Add Filter</button>
+                <button id="filter-clear" class="Opr-btn">Clear</button>
+            </div>            
+        </div>
+
+        <ul id="filterTags">
+        </ul>
+
+        <div id="Opr-table"></div>
+    </div>
+</div>
+
+<script src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/payment/operations.js"></script>

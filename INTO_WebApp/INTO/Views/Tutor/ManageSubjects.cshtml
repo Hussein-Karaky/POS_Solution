@@ -1,0 +1,74 @@
+﻿@model TutorModel
+
+<div class="container">
+    <div class="row p-3 mb-4">
+        <div class="col-md-3 select-outline text-center bold">
+            <strong>Language</strong>
+            <select id="ddlLanguages">
+                @foreach (var languages in Model.Languages)
+                {
+                    <option value="@languages.Id">@languages.Description</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3 select-outline text-center bold">
+            <strong>Institute Type</strong>
+            <select id="ddlInstituteType">
+                @foreach (var Institute in Model.InstituteTypes)
+                {
+                    <option value="@Institute.LookupDetailsId">@Institute.LookupDetailsDescription</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3 select-outline text-center bold">
+            <strong>Curriculum</strong>
+            <select id="ddlCurriculums">
+                @foreach (var Cuririculum in Model.Curriculums)
+                {
+                    <option value="@Cuririculum.LookupDetailsId">@Cuririculum.LookupDetailsDescription</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3 select-outline text-center bold">
+            <strong>Cycle</strong>
+            <select id="ddlCycle">
+                @foreach (var Cycle in Model.Cycles)
+                {
+                    <option value="@Cycle.LookupDetailsId">@Cycle.LookupDetailsDescription</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row" id="CheckedSubjectsMaterialsId">
+    </div>
+    <div class="row" style="display:none;" id="DivCurriculum">
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 select-outline  p-3">
+            <div id="accordion" class="panel-group">
+            </div>
+        </div>
+        <div class="col-md-1" id="CheckedSubjectsMaterialsId">
+
+        </div>
+        <div class="col-md-5 select-outline round-corner-all-4 p-3 border-left" id="CheckedMaterials">
+            <table id="tblCheckedMaterials" class="table table-responsive-sm table-bordered table-striped table-hover">
+                <tbody>
+                    <tr></tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-3" id="HiddenSAve" style="display:none;">
+            <a id="btnSave" role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 pref-save" data-role="save-tutor-pref">
+                <i class="icon-save"></i>
+            </a>
+        </div>
+    </div>
+</div>

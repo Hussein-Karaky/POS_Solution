@@ -1,0 +1,12 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Virtual Class";
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/vclass/vclass.css" />
+}
+@section Scripts{
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/meeting/vroom.js"></script>
+}
+@*<iframe id="vclassFrame" src="https://www.groupworld.net/room/1/biology1?filename=ncjs&inst_id=807039" allow="camera *;microphone *" onload="onVClassFrameLoad(this)" style="min-height: 600px;" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>*@
+<iframe id="vclassFrame" src="@ViewBag.Url" allow="camera *;microphone *" onload="onVClassFrameLoad(this)" style="min-height: 600px;" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>

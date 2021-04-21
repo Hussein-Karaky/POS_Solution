@@ -1,0 +1,234 @@
+﻿@model PaymentModel
+@{
+    ViewData["Title"] = "Pay Now";
+    int CardLast4dig = 0;
+    if (Model.billingInfo != null)
+    {
+        CardLast4dig = Model.billingInfo.CardLast4dig;
+    }
+    Layout = null;
+}
+    <div style="visibility:hidden;width:0">
+        <p class="label" data-label="PayNow"></p>
+        <p class="label" data-label="ChooseYMethod"></p>
+        <p class="label" data-label="CancelationPeriod"></p>
+        <p class="label" data-label="LastOpr"></p>
+        <p class="label" data-label="OprLists"></p>
+        <p class="label" data-label="RefundPayment"></p>
+        <p class="label" data-label="VoidPayment"></p>
+        <p class="label" data-label="ViewAll"></p>
+        <p class="label" data-label="Previous"></p>
+    </div>
+    <div class="pymt-wrapper card-shadow">
+
+        <div class="pymt-header">
+            <div class="pymt-logo"></div>
+            <p class="label" data-label="PaymentSection"></p>
+            <span class="PymtClose">&times;</span>
+        </div>
+
+        <div class="pymt-section">
+            <div class="pymt-progressBar-wrapper">
+                <ul class="pymt-progressBar">
+                    <li class="label active" data-label="ChooseMethod"></li>
+                    <li class="label" data-label="EnterDetails"></li>
+                    <li class="label" data-label="Review"></li>
+                    <li class="label" data-label="Complete"></li>
+                </ul>
+            </div>
+            <div class="pymt-section-wrapper">
+                <div class="pymt-method">
+                    <div id="pymt-tabs-subtitle" class="subtitle label" data-label="PaymentMethod"></div>
+                    <div id="pymt-tabs" class="pymt-tab card-shadow">
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtError', false)" style="display: none;" id="pymtErrorTap"></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtLoader', false)" style="display: none;" id="pymtLoaderTap"></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtdefaultTap', false)" style="display: none;" id="defaultOpen"></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtReview', false)" style="display: none;" id="pymtReviewTab"></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtComplete', false)" style="display: none;" id="pymtCompleteTab"></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtCash', true)" id="pymtCashTab"><i class="fa fa-2x fa-wallet"></i>  <span class="label" data-label="Cash"></span></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtCard', true)" id="pymtCardTab"><i class="fa fa-2x fa-credit-card"></i>  <span class="label" data-label="Card"></span> </button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtMoneyTransfer', true)" id="pymtMtransferTab"><i class="fa fa-2x fa-money-check"></i>  <span class="label" data-label="MoneyTransfer"></span></button>
+                        <button class="pymt-tablinks" onclick="openMethod(event, 'pymtPaypal', true)" id="pymtPaypalTab"><i class="fa fa-2x fa-cc-paypal"></i>  <span class="label" data-label="Paypal"></span></button>
+                    </div>
+                    <div class="pymt-Method-details-wrapper">
+                        <div class="pymt-Method-details">
+                            <div id="pymt-details-title" class="subtitle label" data-label="Details"></div>
+                            <!-- 1 Default Tab : choosing method -->
+                            <div class="pymt-tabcontent" id="pymtdefaultTap">
+                                <i class="fa fa-8x fa-shield-alt pymt-secure"></i>
+                                <div class="subtitle center label" data-label="SecureText"></div>
+                                <div class="subtitle center label" data-label="WeEnsureRecovery"></div>
+                            </div>
+                            <!-- 2 : Cash -->
+                            <div class="pymt-tabcontent" id="pymtCash">
+                                <div class="subtitle center label" data-label="F2FDetails"></div>
+                                <button class="pymt-button" onclick="renderReviewTab('Cash')"><span class="label" data-label="Next"></span> <i style="display: initial;" class="fa fa-arrow-circle-right"></i></button>
+                            </div>
+                            <!-- 3 : Card -->
+                            <div class="pymt-tabcontent" id="pymtCard">
+                                <div class="card-details">
+                                    <p class="summary-title label" data-label="SavingCardDet"></p>
+                                    <input type="text" value="**** **** **** @CardLast4dig " disabled />
+                                    <button class="pymt-button" onclick="renderReviewTab('CardDetails')"><span class="label" data-label="Next"></span> <i style="display: initial;" class="fa fa-arrow-circle-right"></i></button>
+                                </div>
+                                <div class="card-form">
+                                    <p class="summary-title label" data-label="usingCardDet"></p>
+                                    <form id="payment-form" method="POST" action="https://merchant.com/charge-card">
+                                        <label for="card-number">Card number</label>
+                                        <div class="input-container card-number">
+                                            <div class="icon-container">
+                                                <img id="icon-card-number"
+                                                     src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/payment/card-icons/card.svg"
+                                                     alt="PAN" />
+                                            </div>
+                                            <div class="card-number-frame"></div>
+                                            <div class="icon-container payment-method">
+                                                <img id="logo-payment-method" />
+                                            </div>
+                                            <div class="icon-container">
+                                                <img id="icon-card-number-error" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/payment/card-icons/error.svg" />
+                                            </div>
+                                        </div>
+
+                                        <div class="date-and-code">
+                                            <div>
+                                                <label for="expiry-date">Expiry date</label>
+                                                <div class="input-container expiry-date">
+                                                    <div class="icon-container">
+                                                        <img id="icon-expiry-date"
+                                                             src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/payment/card-icons/exp-date.svg"
+                                                             alt="Expiry date" />
+                                                    </div>
+                                                    <div class="expiry-date-frame"></div>
+                                                    <div class="icon-container">
+                                                        <img id="icon-expiry-date-error"
+                                                             src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/payment/card-icons/error.svg" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label for="cvv">Security code</label>
+                                                <div class="input-container cvv">
+                                                    <div class="icon-container">
+                                                        <img id="icon-cvv" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/payment/card-icons/cvv.svg" alt="CVV" />
+                                                    </div>
+                                                    <div class="cvv-frame"></div>
+                                                    <div class="icon-container">
+                                                        <img id="icon-cvv-error" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/payment/card-icons/error.svg" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="pay-button" disabled="">
+                                            PAY
+                                        </button>
+
+                                        <div>
+                                            <span class="error-message error-message__card-number"></span>
+                                            <span class="error-message error-message__expiry-date"></span>
+                                            <span class="error-message error-message__cvv"></span>
+                                        </div>
+
+                                        <p id="SuccessAuthMsg" class="success-payment-message"></p>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- 4 : Money transfer -->
+                            <div class="pymt-tabcontent" id="pymtMoneyTransfer">
+                                <p class="subtitle label" data-label="SendTrMoney"></p>
+                                <ul class="pymt-details">
+                                    <li class="label" data-label="FirstName"></li>
+                                    <li class="label" data-label="FirstNameV"></li>
+                                    <li class="label" data-label="LasttName"></li>
+                                    <li class="label" data-label="LasttNameV"></li>
+                                    <li class="label" data-label="City"></li>
+                                    <li class="label" data-label="CityV"></li>
+                                    <li class="label" data-label="Country"></li>
+                                    <li class="label" data-label="CountryV"></li>
+                                </ul>
+                                @*<p class="subtitle label" data-label="Uploadreceipt"></p>*@
+
+                                <form id="UplodReceipt" method="post" enctype="multipart/form-data" asp-action="FileUpload" asp-controller="Files" data-role="tutor-info-input">
+                                    <div class="form-group">
+                                        <div id="uploadedResumes"></div>
+                                        <div id="resumeUploader">
+                                            <input type="file" name="files" data-role="file-upload" data-rel="receipt-upload" />
+                                            <input type="hidden" name="userId" value='@Model.User.UserId' data-role="user-id" />
+                                            <input type="hidden" name="sourceType" value="100412" data-role="source-type" />
+                                            <button style="visibility:hidden" data-role="receipt-upload" class="pymt-button" onclick="renderReviewTab('MTransfer')"><span class="label" data-label="Next"></span> <i style="display: initial;" class="fa fa-arrow-circle-right"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <!-- 5 : paypal -->
+                            <div class="pymt-tabcontent" id="pymtPaypal">
+                                <img src="~/images/payment/paypal.png" alt="">
+                            </div>
+                            <!-- 5 : Loader -->
+                            <div class="pymt-tabcontent" id="pymtLoader">
+                                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                            </div>
+                            <!-- 6 : review -->
+                            <div class="pymt-tabcontent" id="pymtReview">
+                                <ul class="summary-details">
+                                    <li class="label pymt-title" data-label="PaymentMethod"></li>
+                                    <li class="pymt-desc" id="var_method"></li>
+                                    <li class="label pymt-title" data-label="Amount"></li>
+                                    <li class="pymt-desc" id="var_amount"></li>
+                                    <li class="label pymt-title" data-label="DueDate"></li>
+                                    <li class="pymt-desc" id="var_CancelDate">@Model.session.DateStamp</li>
+                                    <li><button class="pymt-button" onclick="complete()"><span class="label" data-label="Confirm"></span></button></li>
+                                </ul>
+                            </div>
+                            <!-- 7 : complete -->
+                            <div class="pymt-tabcontent" id="pymtComplete">
+                                <i class="fa fa-4x fa-check-circle"></i>
+                                <p class="label" data-label="CompletePayment"> </p>
+                                <p class="subtitle label" data-label="WeEnsureRecovery" style="text-align: center;"> </p>
+                                <strong class="label" data-label="EnjoyLearning"></strong>
+                                <button id="printInvoice" onclick="printMyInvoice()" class="pymt-button"><span class="label" data-label="Print">Print</span></button>
+                            </div>
+                            <!-- Error Message -->
+                            <div class="pymt-tabcontent" id="pymtError">
+                                <i class="fa fa-4x fa-exclamation-triangle"></i>
+                                <p id="ErrorMsg" class="label" data-label="PaymentErrorMsg"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pymt-summary">
+                    <p class="subtitle label" data-label="PaymentSumry"></p>
+                    <p class="summary-title"><span class="label" data-label="Welcome"></span> <strong>@Model.User.FirstName</strong><br /> <span class="label" data-label="PaymtSumryDet"></span></p>
+                    <ul class="summary-details">
+                        <li class="line"></li>
+                        <li class="label pymt-title " data-label="SessionTitle"></li>
+                        <li class="pymt-desc">@Model.session.Title</li>
+                        <li class="label pymt-title" data-label="SessionDate"></li>
+                        <li class="pymt-desc">@Model.session.DateStamp</li>
+                        <li class="label pymt-title" data-label="SessionTutor"></li>
+                        <li class="pymt-desc">@Model.session.TutorName</li>
+
+                        <li class="line"></li>
+                        <li class="label pymt-important" data-label="Amount"></li>
+                        <li class="pymt-important">@Model.session.Amount $</li>
+                        <li class="line"></li>
+
+
+                        <li class="label" data-label="MyWallet" style="margin-top:20px"></li>
+                        <li style="margin-top:20px"> @Model.wallet $</li>
+                        <li class="label" data-label="LastPayments"></li>
+                        <li><a asp-controller="Payment" asp-action="Operations" id="" class="label" data-label="View"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-footer">
+            <a target="_blank" href="#" class="label" data-label="Policy"></a> |
+            <a target="_blank" href="#" class="label" data-label="Terms"></a>
+        </div>
+    </div>

@@ -1,0 +1,183 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+@media (min-width: 992px) {
+    .animate {
+        animation-duration: 0.3s;
+        -webkit-animation-duration: 0.3s;
+        animation-fill-mode: both;
+        -webkit-animation-fill-mode: both;
+    }
+}
+@media(max-width:900px) {
+    .navbar .navbar-brand {
+        float: none;
+        display: inline-block;
+    }
+
+    .navbar .navbar-nav > .nav-item {
+        float: none;
+        margin-left: .1rem;
+    }
+
+    .navbar .navbar-nav {
+        float: none !important;
+    }
+
+    .nav-item {
+        width: 100%;
+        text-align: left;
+    }
+
+    .navbar-toggler {
+        display: block !important;
+    }
+
+    .navbar-toggleable-sm.collapse {
+        display: none !important
+    }
+
+    .navbar-toggleable-sm.collapse.in {
+        display: block !important
+    }
+}
+@keyframes slideIn {
+    0% {
+        transform: translateY(-1rem);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+
+    0% {
+        transform: translateY(-1rem);
+        opacity: 0.5;
+    }
+}
+
+@-webkit-keyframes slideIn {
+    0% {
+        -webkit-transform: transform;
+        -webkit-opacity: 0.5;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        -webkit-opacity: 1;
+    }
+
+    0% {
+        -webkit-transform: translateY(-1rem);
+        -webkit-opacity: 0.5;
+    }
+}
+.home-banner-0 {
+    visibility:hidden;
+}
+.slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+}
+
+/*.navbar-nav .open .dropdown-menu {
+    background-color: #1f8bf5 !important;
+}
+*/
+a.child{
+    padding-left:5px;
+    font-size:10pt;
+}
+
+a.child.rtl {
+    padding-right: 5px;
+    font-size: 10pt;
+}
+/* Other styles for the page not related to the animated dropdown */
+svg.xsmall {
+    width: 10px;
+    height: 20px;
+    font-size: 1pt;
+}
+svg path.xsmall {
+    transform: scale(0.16);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+    background-color: #0062cc55 !important;
+    border-color: #005cbf55 !important;
+}
+
+.btn-primary:hover {
+    background-color: #0069d955 !important;
+    border-color: #0062cc55 !important;
+}
+
+.form-group.DropDownList{
+    display: inline-block !important;
+    width: 120px !important;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+/*.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 100%;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}

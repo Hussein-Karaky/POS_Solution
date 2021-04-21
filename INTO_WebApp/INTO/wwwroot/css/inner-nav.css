@@ -1,0 +1,266 @@
+﻿* {
+    box-sizing: border-box;
+}
+/* dummy content */
+.content {
+    float: left;
+    font: 1em 'Open Sans', sans-serif;
+    margin: 0.75em 0 0 0;
+    transition: margin 0.3s ease-in-out;
+}
+
+    .content > p {
+        margin: 0.25em 0 0.75em 0;
+    }
+/* Advanced Checkbox Hack */
+body {
+    -webkit-animation: bugfix infinite 1s;
+}
+
+@-webkit-keyframes bugfix {
+    from {
+        padding: 0;
+    }
+
+    to {
+        padding: 0;
+    }
+}
+
+input[role="navigation"][type=checkbox] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+label[for="menu"] {
+    position: absolute;
+    left: 0;
+    display: none;
+    width: 2em;
+    height: 2.25em;
+    padding: 0.35em;
+    font-size: 1.1em;
+    color: #fff;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    margin: 0;
+    z-index: 1032;
+    top: 45px;
+}
+/* big screens */
+nav[role="off-canvas"] {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    transition-duration: 0.3s, 0.5s;
+    transition-timing-function: ease-in-out;
+    transition-property: left, opacity, box-shadow;
+}
+
+    nav[role="off-canvas"] a {
+        color: #fff;
+        text-decoration: none;
+        /*font: 1.4em 'Open Sans', sans-serif;*/
+        transition: color 0.3s ease-in-out;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    nav[role="off-canvas"] ul {
+        padding: 0;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+        nav[role="off-canvas"] ul > li {
+            float: left;
+            margin: 0.2em;
+            text-transform: uppercase;
+            display: inline-flex;
+            background: #fff;
+            border-radius: 2px;
+            cursor: pointer;
+            text-align: center;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+            transition-property: box-shadow, color, opacity, padding-left, background;
+            cursor: pointer;
+            width: 13%;
+            min-width: 118px;
+            /* overflow-wrap: anywhere; */
+            font-family: 'Roboto';
+            font-size: 12px;
+        }
+
+            nav[role="off-canvas"] ul > li:hover {
+                background: #eee;
+                color: #fff;
+                opacity: 1;
+                box-shadow: 0 0 0 0.5em rgba(255, 255, 255, .95);
+            }
+
+                nav[role="off-canvas"] ul > li:hover > a {
+                    /*color: #fff;*/
+                }
+
+/*            nav[role="off-canvas"] ul > li:nth-child(2) {
+                background: rgba(247, 183, 8, .65);
+            }
+
+            nav[role="off-canvas"] ul > li:nth-child(3) {
+                background: rgba(32, 247, 8, .65);
+            }
+
+            nav[role="off-canvas"] ul > li:nth-child(4) {
+                background: rgba(8, 231, 247, .65);
+            }
+
+            nav[role="off-canvas"] ul > li:nth-child(5) {
+                background: rgba(8, 72, 247, .65);
+            }
+*/
+@media screen and (min-width: 45em) {
+    nav[role="off-canvas"] ul > li{
+
+    }
+
+    nav[role="off-canvas"] a {
+        min-height: 114px;
+        /*min-width: 15vw;*/
+        transition: all .6s;
+        height: auto;
+        min-height: 111px;
+        width: 100% !important;
+        min-width: 100px;
+    }
+
+    .pill-container {
+        min-height: 135px;
+    }
+}
+
+/* small screens */
+@media screen and (max-width: 44em) {
+    html, body {
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .content {
+        margin: 2.5em 0.5em 0 0.5em;
+    }
+
+    nav[role="off-canvas"] {
+        position: absolute;
+        top: 3em;
+        left: -20em;
+        width: 20em;
+        opacity: 0;
+        background: #fff;
+        z-index: 1025;
+    }
+
+        nav[role="off-canvas"] ul > li {
+            height: 78px;
+            width: 100%;
+            text-align: left;
+            margin: 0;
+        }
+
+            nav[role="off-canvas"] ul > li:hover {
+                box-shadow: inset 0 0 0 0.15em rgba(255, 255, 255, .45);
+            }
+
+    label[for="menu"] {
+        display: block;
+        z-index: 1032;
+        top: 45px;
+        color: #33b5e5;
+    }
+
+        label[for="menu"]:after {
+            position: absolute;
+            right: 0.25em;
+            top: 0;
+            content: url('data:image/svg+xml;utf8,<svg width="23px" height="24px" viewBox="0 0 16 16" class="bi bi-arrow-bar-right" fill="grey" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/> </svg>');
+            font-size: 1.8em;
+        }
+    input[role="navigation"]:checked ~ label[for="menu"]:after {
+        content: url('data:image/svg+xml;utf8,<svg width="23px" height="24px" viewBox="0 0 16 16" class="bi bi-arrow-bar-left" fill="grey" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/> </svg>');
+    }
+        label[for="menu"]:hover, input[role="navigation"]:checked ~ label[for="menu"] {
+            color: #33b5e5;
+        }
+
+    input[role="navigation"]:checked ~ nav[role="off-canvas"] {
+        opacity: 1;
+        left: 0;
+        box-shadow: 0 1px 5px 0 rgba(0,0,0,0.16) !important;
+        border: 1px solid rgba(0, 0, 0, .3);
+    }
+
+        input[role="navigation"]:checked ~ nav[role="off-canvas"] ul > li {
+            padding: 0.55em 0.55em 0.55em 1.5em;
+        }
+
+            input[role="navigation"]:checked ~ nav[role="off-canvas"] ul > li:hover {
+                padding-left: 3.5em;
+            }
+
+            input[role="navigation"]:checked ~ nav[role="off-canvas"] ul > li:after {
+                position: absolute;
+                right: 0.25em;
+                content: "\203A";
+                font: bold 1.4em sans-serif;
+                color: inherit;
+            }
+
+    input[role="navigation"]:checked ~ .content {
+        margin-left: 20.5em;
+        margin-right: -20.5em;
+    }
+
+    nav[role="off-canvas"] a {
+        height: 65px;
+        width: 100%;
+        padding-top: 22px !important;
+    }
+
+        nav[role="off-canvas"] a svg, nav[role="off-canvas"] a span.text {
+            display: inline !important;
+        }
+
+    .badge-pill .badge {
+        border-radius: 50%;
+        width: 20px !important;
+        height: 20px !important;
+        position: absolute;
+        margin-bottom: 16%;
+        right: 20px;
+        background-color: transparent;
+        transition: all .4s;
+    }
+
+    .md-pills .nav-link {
+        text-align: left !important;
+    }
+
+@media screen and (min-width: 816px) {
+    nav[role="off-canvas"] a span.text {
+        min-height: 45px;
+        white-space: pre-wrap;
+        overflow: hidden;
+        font-size: 80%;
+        padding: 0;
+        margin-top: 10px !important;
+    }
+    nav[role="off-canvas"] a {
+        min-height: 108px;
+        /* min-width: 15vw; */
+        transition: all .6s;
+        height: auto;
+        width: 100%;
+    }
+}

@@ -1,0 +1,1249 @@
+﻿@model LoginModel
+@*Nabih1 : set direction based on Model Language*@
+@{
+    string direction = "_ltr.css";
+    string lang = "";
+    if (Model.Language == 2) direction = "_rtl.css";
+}
+@*End Nabih1*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - INTO</title>
+    @*Nabih2 : Styles*@
+    <link rel="stylesheet" href="@String.Format("{0}://{1}/{2}{3}", Context.Request.Scheme, Context.Request.Host,"/css/home/utilities",direction)">
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/home/loader.css">
+    <link rel="stylesheet" href="@String.Format("{0}://{1}/{2}{3}", Context.Request.Scheme, Context.Request.Host,"/css/home/style",direction)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    @*END Nabih2*@
+    @*<link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/fontawesome-free-5.14.0-web/css/all.min.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/mdb/css/mdb.min.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/bootstrap-material-design.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/site.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/flags.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/cursor.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/flip.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/banner.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/nav.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/content.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/themes/school/borders.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/themes/school/colors.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/themes/school/shadows.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/forms.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/grid.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/dashboard.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/checkmark.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/glass.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/loading.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/geo.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/footer.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/social.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/apps.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/sched.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/mdb/css/style.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/3d/3d.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/select.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/mdb-missing.css" />
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/rating-stars.css" />
+    @*<link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/sweetalert2/material-ui.css" />*@
+    @*ZH start*@
+    <link href="~/css/hover.css" rel="stylesheet" />
+    <link href="~/lib/scroll-table/customStyle.css" rel="stylesheet" />
+    @*ZH End*@
+    @if (ViewData["Title"] != null && !ViewData["Title"].ToString().Equals("How INTO Works"))
+    {
+        <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/sweetalert2/components.min.css" />
+    }
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/time/bootstrap-material-datetimepicker.min.css" />
+    @*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
+    @RenderSection("Styles", required: false)
+
+    <script src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/site.js" asp-append-version="true"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/jquery-3.5.1.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/mdb/js/mdb.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/mdb-missing.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/select.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/system.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/models/DataModel.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/auth/user.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/auth/access.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/data.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/face-api.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/appsView.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/AjaxCaller.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/shadow.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/anim.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/loading.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/auto.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/mdb/js/popper.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/bootstrap-material-design.js"></script>
+    @*<script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/sweetalert2.min.js"></script>*@
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/sweetalert2/sweet_alert.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/sweetalert2/extra_sweetalert.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/notif.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/time/moment.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/time/bootstrap-material-datetimepicker.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/time/ja.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/time/init.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/anime.min.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/dropdown.js"></script>
+    <script type="application/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/starRating.js"></script>
+    <script type="text/javascript" src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/js/home/site.js"></script>
+    @*ZH start*@
+    <script src="~/lib/scroll-table/DataContainerObject.js"></script>
+    <script src="~/js/notificationBell.js"></script>
+    @*ZH End*@
+    <script type="text/javascript">
+        @* Nabih3 set language *@
+            setLang(@Model.Language);
+        @* END Nabih3 *@
+        var loginStateUpdated = @Html.Raw(Model != null && (Model.User != null && Model.User.IsValid() || Model.SecurityDiscarded) ? "true" : "false");
+        var now = new Date();
+
+        var waiting = true;
+        function AccountManager() {
+            this.currentUser = null;
+            this.profilePicture = "data:image/png;base64,";//"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+            this.time = {
+                date: now,
+                timezoneOffset: now.getTimezoneOffset(),
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            };
+            this.sched = null;
+        };
+        Object.defineProperty(AccountManager.prototype, 'constructor', {
+            enumerable: false,
+            configurable: false,
+            writable: false,
+            value: AccountManager
+        });
+        AccountManager.prototype.load = function () {
+            this.currentUser = JSON.parse(window.localStorage.getItem("user"));
+            //console.log("AccountManager.prototype.load");
+        };
+        AccountManager.prototype.persist = function () {
+            window.localStorage.setItem("user", JSON.stringify(this.currentUser));
+            window.localStorage.setItem("profilePicture", JSON.stringify(this.profilePicture));
+        };
+        AccountManager.prototype.clear = function () {
+            window.localStorage.removeItem("user");
+        };
+        AccountManager.prototype.checkLogInState = function () {
+
+        };
+        AccountManager.prototype.fetchRatings = function () {
+            let main = this;
+            let caller = new AjaxCaller(function (response, text) {
+                main.currentUser.ratings = response.data;
+            }, function (request, status, error) {
+                error("Ratings not submitted", 5000);
+            });
+            let req = ratingsReq();
+            caller.postWithPromise(req);
+        };
+        AccountManager.prototype.fetchPicture = function (handler) {
+            let main = this;
+            const picPromise = new Promise((resolve, reject) => {
+                let picError = function (request, status, error) {
+                    reject(request.responseText);
+                };
+                let picSuccess = function (data, text) {
+                    resolve(data);
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("picture","account")',//window.location.origin.concat("/account/picture"),
+                    data: { picture: null, userId: main.currentUser.userId },
+                    success: picSuccess,
+                    error: picError
+                });
+            }).then((data) => {
+                if (handler !== null && handler !== undefined && (handler instanceof Function || Object.getPrototypeOf(handler) === Function.prototype)) {
+                    handler();
+                } else {
+                    main.profilePicture = data;
+                    main.persist();
+                    main.assignPicture();
+                }
+            }).catch((message) => {
+                console.log(message);
+            });
+        }
+        AccountManager.prototype.savePicture = function (picture, modal) {
+            let img = document.createElement("img");
+            img.src = picture;
+            let minipic = imageToDataUri(img, 64, 64);
+            debugger;
+            let main = this;
+            let picError = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/account/picture"),
+                data: { picture: picture, miniPicture: minipic, userId: main.currentUser.userId },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        if (modal !== null && modal !== undefined && modal.length > 0) {
+                            $("#" + modal).modal("hide");
+                        }
+                        main.profilePicture = data;
+                        main.persist();
+                        main.assignPicture();
+                    }
+                },
+                error: picError
+            });
+        }
+        AccountManager.prototype.updateLang = function () {
+            let main = this;
+            let langError = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/account/lang"),
+                data: { userId: main.currentUser.userId, lang: main.currentUser.language.id },
+                success: function (data, text) {
+                    main.persist();
+                    greet("Language updated", 2000);
+                },
+                error: langError
+            });
+        }
+        AccountManager.prototype.saveAmbition = function (ambition, modal) {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/student/ambitionSvc"),
+                data: { ambition: ambition, id: main.currentUser.id },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        if (modal !== null && modal !== undefined && modal.length > 0) {
+                            $("#" + modal).modal("hide");
+                        }
+                        main.currentUser.ambition = data;
+                        main.persist();
+                        main.assignAmbition();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.assignAmbition = function () {
+            let main = this;
+            document.querySelectorAll("[data-role=input-std-ambition]").forEach(el => {
+                el.val(main.currentUser.ambition).trigger("change");
+            });
+            $("[data-role=input-std-ambition]").val(main.currentUser.ambition).trigger("change");
+        };
+        AccountManager.prototype.fetchAmbition = function () {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/tutor/ambitionSvc"),
+                data: { ambition: null, id: main.currentUser.id },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        main.currentUser.ambition = data;
+                        main.persist();
+                        main.assignAmbition();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.saveTitle = function (title, modal) {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/tutor/titleSvc"),
+                data: { title: title, id: main.currentUser.id },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        if (modal !== null && modal !== undefined && modal.length > 0) {
+                            $("#" + modal).modal("hide");
+                        }
+                        main.currentUser.title = data;
+                        main.persist();
+                        main.assignTitle();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.fetchTitle = function (title, modal) {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/tutor/titleSvc"),
+                data: { title: null, id: main.currentUser.id },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        if (modal !== null && modal !== undefined && modal.length > 0) {
+                            $("#" + modal).modal("hide");
+                        }
+                        main.currentUser.title = data;
+                        main.persist();
+                        main.assignTitle();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.saveBasicInfo = function (dob, gen) {
+            let main = this;
+            let error = function (request, status, error) {
+                err("Info could not be updated!");
+                console.error(request.responseText);
+            };
+            let gender = (parseInt(gen) === 100174);
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/account/SaveBasicInfo"),
+                data: { dob: dob, gender: gender, id: main.currentUser.userId },
+                success: function (data, text) {
+                    if (data !== null && data > 0) {
+                        main.currentUser.gender = gender;
+                        main.currentUser.dob = dob;
+                    }
+                    greet("Info successfully updated!");
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.saveFreeResponse = function (freeResponse, modal) {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/tutor/freeResponseSvc"),
+                data: { freeResponse: freeResponse, id: main.currentUser.id },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        if (modal !== null && modal !== undefined && modal.length > 0) {
+                            $("#" + modal).modal("hide");
+                        }
+                        main.currentUser.freeResponse = data;
+                        main.persist();
+                        main.assignFreeResponse();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.assignFreeResponse = function () {
+            let main = this;
+            document.querySelectorAll("[data-role=input-tutor-freeResponse]").forEach(el => {
+                el.val(main.currentUser.freeResponse).trigger("change");
+            });
+            $("[data-role=input-tutor-freeResponse]").val(main.currentUser.freeResponse).trigger("change");
+        };
+        AccountManager.prototype.fetchFreeResponse = function () {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/tutor/freeResponseSvc"),
+                data: { freeResponse: null, id: main.currentUser.id },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        main.currentUser.freeResponse = data;
+                        main.persist();
+                        main.assignFreeResponse();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.fetchAvailability = function () {
+            let main = this;
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/tutor/availSvc"),
+                data: { avail: null, id: main.currentUser.userId, entityType: main.currentUser.entityType },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        main.currentUser.availability = data;
+                        main.persist();
+                        main.assignAvailability();
+                    }
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.saveAvailability = function () {
+            let error = function (request, status, error) {
+                console.error(request.responseText);
+            };
+            this.sched.save(function (data, text) {
+                if (data !== null && data !== undefined) {
+                    main.currentUser.availability = data;
+                    main.persist();
+                    main.assignAvailability();
+                }
+            }, error);
+        };
+        AccountManager.prototype.saveLocation = function () {
+            let main = this;
+            let error = function (request, status, error) {
+                err("Location settings could not be updated!");
+                //console.error(request.responseText);
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/account/location"),
+                data: {
+                        countryId: main.currentUser.locationSettings.country.id,
+                        city: main.currentUser.locationSettings.city,
+                        address: main.currentUser.locationSettings.address,
+                        address2: main.currentUser.locationSettings.secondAddress,
+                        privacyRadius: main.currentUser.locationSettings.privacyRadius,
+                        travelRadius: main.currentUser.locationSettings.travelRadius,
+                        latitude: main.currentUser.locationSettings.location.latitude,
+                        longitude: main.currentUser.locationSettings.location.longitude,
+                        userId: main.currentUser.userId
+                    },
+                success: function (data, text) {
+                    if (data !== null && data !== undefined) {
+                        main.currentUser.locationSettings = data;
+                        main.persist();
+                        main.assignLocation();
+                    }
+                    greet("Location settings successfully updated!");
+                },
+                error: error
+            });
+        };
+        AccountManager.prototype.setBgCheckSubmitted = function (submitted) {
+            if (this.currentUser !== null) {
+                this.currentUser.bgCheckSubmitted = submitted;
+                this.persist();
+            }
+        };
+        AccountManager.prototype.setCVSubmitted = function (submitted) {
+            if (this.currentUser !== null) {
+                this.currentUser.cvSubmitted = submitted;
+                this.persist();
+            }
+        };
+        AccountManager.prototype.assignLocation = function () {
+            $("[data-role='input-tutor-privacy-radius']").val(this.currentUser.locationSettings.privacyRadius).trigger("change");
+            $("[data-role='input-tutor-travel-radius']").val(this.currentUser.locationSettings.travelRadius).trigger("change");
+            $("[data-value='".concat(accountManager.currentUser.locationSettings.country.id).concat("']")).click();
+        };
+        AccountManager.prototype.assignPicture = function () {
+            let main = this;
+            $(".contains-user-picture").fadeOut();
+            $(".contains-user-picture").attr("src", main.profilePicture);
+            $(".contains-user-picture").fadeIn();
+            $(".has-bg-user-picture").fadeOut();
+            $(".has-bg-user-picture").css("background-image", "url(".concat(main.profilePicture).concat(")"));
+            $(".has-bg-user-picture").fadeIn();
+        };
+        AccountManager.prototype.assignAvailability = function () {
+            let avElement = document.getElementById("availability");
+            if (avElement !== null && avElement !== undefined) {
+                if (typeof Availability === 'function') {
+                    this.sched = new Availability();
+                    avElement.innerHTML = "";
+                    this.sched.create("availability").parse(this.currentUser.availability);
+                    let days = this.sched.children;
+                    for (i = 0; i < days.length; i++) {
+                        days[i].onChildAdded();
+                    }
+                }
+            }
+        };
+        AccountManager.prototype.assignTitle = function () {
+            let main = this;
+            $("[data-role='input-tutor-title']").val(main.currentUser.title).trigger("change");
+        };
+        AccountManager.prototype.assureLogin = function () {
+            let main = this;
+            loginSuccess = function (data, text) {
+                main.currentUser = data.user;
+                console.log("AccountManager.prototype.assureLogin");
+                main.fetchPicture();
+                main.fetchRatings();
+                main.persist();
+                window.location.href = window.location.origin.concat("/" + data.redirectController + "/" + data.redirectAction);
+            };
+            loginError = function (request, status, error) {
+                console.error(request.responseText);
+                main.assureLogout();
+            };
+            $.ajax({
+                type: "POST",
+                url: window.location.origin.concat("/login/loginSvc"),
+                data: { json: JSON.stringify(main.currentUser) },
+                success: loginSuccess,
+                error: loginError
+            });
+        };
+        AccountManager.prototype.assureLogout = function () {
+            window.localStorage.removeItem("user");
+            //document.cookie = "";
+            this.setupLogin();
+        };
+        AccountManager.prototype.loginSuccess = function (data, text) {
+            console.log("AccountManager.prototype.loginSuccess");
+            main.currentUser = data.user;
+            main.fetchPicture();
+            main.persist();
+            main.setupLogout();
+            window.location.href = window.location.origin.concat(data.redirectController !== null ? ("/" + data.redirectController + (data.redirectAction !== null ? "/" + data.redirectAction : "")) : "");//window.location.origin.concat("/tutor/questionnaire");
+        };
+        AccountManager.prototype.loginError = function (request, status, error) {
+            console.error(request.responseText);
+        };
+        AccountManager.prototype.setupLogout = function () {
+            let main = this;
+            logoutSuccess = function (data, text) {
+                if (data.success !== undefined && !data.success) {
+                    err("Could not log you out!, please try again.")
+                } else {
+                    main.clear();
+                    window.location.href = window.location.origin.concat('/', data.redirectController, '/', data.redirectAction);
+                }
+            };
+            logoutError = function (request, status, error) {
+                console.error("logout failed");
+            };
+            $("[data-role='logout-submit']").click(function () {
+                main.clear();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("logoutSvc", "login")',
+                    data: null,
+                    success: logoutSuccess,
+                    error: logoutError
+                });
+            });
+        };
+        AccountManager.prototype.setupLogin = function (jsonModel) {
+            let main = this;
+            let model = null;
+            if (jsonModel !== null && jsonModel !== undefined) {
+                model = JSON.parse(jsonModel);
+                let iptRA = document.querySelector("[data-role=redirect-action]");
+                if (iptRA !== null) {
+                    iptRA.value = model.RedirectAction;
+                }
+                let iptRC = document.querySelector("[data-role=redirect-controller]");
+                if (iptRC !== null) {
+                    iptRC.value = model.RedirectController;
+                }
+                $("#mdlLogin").modal("show");
+            }
+            let txtPwd = document.querySelector("[data-role=login-pwd]");
+            txtPwd.addEventListener("keydown", function (e) {
+                if (e.keyCode === 13) {
+                    $("[data-role=login-submit]").click();
+                }
+            });
+            $("[data-role='login-submit']").click(function () {
+                accountManager.wait();
+                let parent = $(this).closest("[data-role='login-input']");
+                let email = parent.find("[data-role='login-email']").val();
+                let pwd = parent.find("[data-role='login-pwd']").val();
+                let user = new User(null, null, email, pwd, null, 0);
+                user.timezoneOffset = new Date().getTimezoneOffset();
+                let model = new LoginModel(user);
+                let iptRA = document.querySelector("[data-role=redirect-action]");
+                if (iptRA !== null) {
+                    model.RedirectAction = iptRA.value;
+                }
+                let iptRC = document.querySelector("[data-role=redirect-controller]");
+                if (iptRC !== null) {
+                    model.RedirectController = iptRC.value;
+                }
+                main.login(model);
+            });
+        };
+        AccountManager.prototype.login = function (loginModel) {
+            let main = this;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("loginSvc", "login")',
+                data: { json: JSON.stringify(loginModel) },
+                success: function (data, text) {
+                    main.currentUser = data.user;
+                    console.log("loginSuccess");
+                    main.fetchPicture();
+                    main.persist();
+                    main.setupLogout();
+                    window.location.href = window.location.origin.concat(data.redirectController !== null ? ("/" + data.redirectController + (data.redirectAction !== null ? "/" + data.redirectAction : "")) : "");//window.location.origin.concat("/tutor/questionnaire");
+                },
+                error: function (request, status, error) {
+                    accountManager.start();
+                    if (request.status === 401) {
+                        warnInactiveUser();
+                    } else {
+                        warn("Login failed! Please check your credentials.", 3000);;
+                    }
+                    console.error(request.responseText);
+                }
+            });
+        };
+        AccountManager.prototype.setupSignUp = function (jsonModel) {
+            signUpSuccess = function (data, text) {
+                window.location.href = window.location.origin.concat(data.redirectController !== null ? ("/" + data.redirectController + (data.redirectAction !== null ? "/" + data.redirectAction : "")) : "");//window.location.origin.concat("/tutor/questionnaire");
+            };
+            signUpError = function (request, status, error) {
+                console.error(request.responseText);
+            };
+
+            // blur condition for email input under testing
+            $("[data-role='signUp-email']").blur(function () {
+                let parent = $(this).closest("[data-role='signUp-input']");
+                let email = parent.find("[data-role='signUp-email']").val();
+                if (email !== null && email !== undefined && email.length > 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("CheckIfEmailExist", "SignUp")',
+                        data: { email: email },
+                        success: function (response) {
+                            console.log('response', response);
+                            if (response) {
+                                $("[data-role='signUp-email']").focus($("[data-role='signUp-email']").css("border-bottom", "2px solid red"));
+                                err("Email already used!");
+
+                            } else {
+                                $("[data-role='signUp-email']").focus($("[data-role='signUp-email']").css("border-bottom", "2px solid green"));
+                            }
+                        },
+                        error: signUpError
+                    });
+                }
+            });
+       };
+
+        //jinan student profile
+        AccountManager.prototype.setupStudentProfile = function (jsonModel) {
+                $("[data-role='student-display-save']").click(function () {
+                let parent = $(this).closest("[data-role='student-profile']");
+                    var formData = {
+                    'UId': parent.find("[data-role='student-profile-Id']").val(),
+                    'dOB': parent.find("[data-role='student-profile-date']").val(),
+                    'schoolName': parent.find("[data-role='student-profile-school-name']").val(),
+                    'schoolYear': parent.find("[data-role='student-profile-school-year']").val(),
+                    'countryId': parent.find("[data-role='student-profile-country']").val(),
+                    'address': parent.find("[data-role='student-profile-address']").val(),
+                    'address2': parent.find("[data-role='student-profile-address2']").val(),
+                    'city': parent.find("[data-role='student-profile-address2']").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("EditProfile", "Student")',
+                    data: formData,
+                    dataType: 'json',
+                    encode: true,
+                    success: function (response) {
+                        console.log('success');
+                    },
+                    error: function (response) {
+                        console.log('error');
+                    }
+                });
+                });
+            //edit profile password
+            $("[data-role='edit-password']").click(function () {
+                let parent = $(this).closest("[data-role='confirm-new-password']");
+                var formData = {
+                    'UId': parent.find("[data-role='edit-password-user-Id']").val(),
+                    'ConfirmNewPasswrod': parent.find("[data-role='confirm-new-password']").val()
+                };
+                  console.log(formData, 'formData');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("EditNewPassword", "Student")',
+                    data: formData,
+                    dataType: 'json',
+                    encode: true,
+                    success: function (response) {
+                        var x = document.getElementById("alert-success-edit-password");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                        location.reload();
+                    },
+                    error: function (response) {
+                        console.log('error');
+                    }
+                });
+            });
+
+            //invite friend
+            $("[data-role='invite-friend-via-email']").click(function () {
+                let parent = $(this).closest("[data-role='invite-friend']");
+                var formData = {
+                    'FriendEmail': parent.find("[data-role='invite-via-email']").val()
+                };
+                  console.log(formData, 'formData');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("InviteUserFriend", "Student")',
+                    data: formData,
+                    dataType: 'json',
+                    encode: true,
+                    success: function (response) {
+                        console.log('response', response);
+                        console.log('success');
+                    },
+                    error: function (response) {
+                        console.log('error');
+                    }
+                });
+            });
+        }
+
+        AccountManager.prototype.wait = function () {
+            if (!waiting) {
+                let nav = document.querySelector("[data-role=main-nav]");
+                let main = document.querySelector("[data-role=main-body]");
+                let footer = document.querySelector("[data-role=main-footer]");
+                let splash = document.querySelector(".home_splash");
+                nav.style.top = "-50px";
+                main.style.opacity = "0";
+                main.style.display = "none";
+                footer.style.opacity = "0";
+                splash.style.visibility = "visible";
+                splash.style.display = "block";
+                waiting = true;
+            }
+        };
+
+        AccountManager.prototype.start = function () {
+            let splash = document.querySelector(".home_splash");
+            let nav = document.querySelector("[data-role=main-nav]");
+            let main = document.querySelector("[data-role=main-body]");
+            let footer = document.querySelector("[data-role=main-footer]");
+            splash.style.visibility = "hidden";
+            splash.style.display = "none";
+            nav.style.top = "0px";
+            main.style.display = "block";
+            main.style.opacity = "1";
+            footer.style.opacity = "1";
+            waiting = false;
+        };
+
+        let loaded = window.localStorage.getItem("app.state");
+        const accountManager = new AccountManager();
+        accountManager.load();
+        //debugger;
+        if (loginStateUpdated === false && accountManager.currentUser !== null && accountManager.currentUser !== undefined) {
+            let user = new User(null, null, accountManager.currentUser.email, accountManager.currentUser.password, null, accountManager.currentUser.entityType);
+            user.timezoneOffset = new Date().getTimezoneOffset();
+            let model = new LoginModel(user);
+            accountManager.login(model);
+        }
+    </script>
+    @RenderSection("TopScripts", required: false)
+    <!-- Chatra {literal} -->
+    <script>
+        (function (d, w, c) {
+            w.ChatraID = 'sTdxFSzanuHMqPuBT';
+            var s = d.createElement('script');
+            w[c] = w[c] || function () {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+            s.async = true;
+            s.src = 'https://call.chatra.io/chatra.js';
+            if (d.head) d.head.appendChild(s);
+        })(document, window, 'Chatra');
+        Chatra('setIntegrationData', {
+            /* main properties */
+            name: (accountManager !== null && accountManager.currentUser !== null) ? accountManager.currentUser.firstName + ' ' + accountManager.currentUser.lastName : null,
+            email: (accountManager !== null && accountManager.currentUser !== null) ? accountManager.currentUser.email : null,
+            phone: (accountManager !== null && accountManager.currentUser !== null) ? accountManager.currentUser.phone : null,
+            notes: (accountManager !== null && accountManager.currentUser !== null) ? accountManager.currentUser.title : null,
+
+            /* any number of custom properties */
+            //'What does he do': 'Goes to Oz with his friends'
+        });
+    </script>
+    <!-- /Chatra {/literal} -->
+</head>
+<body>
+    @RenderSection("PaymentModal", required: false)
+    @*Nabih4: Loading section*@
+    @*<div id="preloader">
+            <div class="LoadingLogo">
+                <div class="logoLeft"></div>
+                <div class="logoCenter"><div class="logoSmile"></div></div>
+                <div class="logoRight"></div>
+            </div>
+        </div>*@
+    @*END Nabih4*@
+    <header class="mb-5" data-content="home">
+        <!--Navbar-->
+        @*Nabih5*@
+        <!-- SideBar -->
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            @if (Model == null || Model.User == null || !Model.User.IsValid() || Model.User.Active == false)
+            {
+
+                <a id="navbar-static-signin" alt="Sign In" data-label="LogIn" class="label" data-auth-modal-tab="sign-in" data-toggle="modal" data-target="#mdlLogin">Log In</a>
+                <a id="navbar-static-signup" alt="Sign Up" data-label="SignUp" class="label" asp-controller="SignUp" asp-action="Index">SIGN UP</a>
+            }
+            else
+            {
+                <a id="navbar-static-user" alt="Me" class="profile has-bg-user-picture" data-toggle="modal" data-target="#mdlUserMenu"></a>
+                <a>@Model.User.FirstName</a>
+                <a id="navbar-static-msg" alt="Messages" class="" asp-controller="Account" asp-action="Messages">
+                    Messages
+                </a>
+                <a id="navbar-static-apps" alt="My Apps" class="" data-toggle="modal" data-target="#mdlApps">
+                    My Apps
+                </a>
+            }
+
+            <a asp-controller="tutor" asp-action="SearchForTutors" class="label" data-label="findTutor">Find a Tutor</a>
+            <a href="#" class="label" data-label="BecomeTutor">Become a Tutor</a>
+            <a href="#" class="label" data-label="Services">Our Services</a>
+            <a href="#" class="label" data-label="Pricing">Pricing</a>
+            <a href="#" class="label" data-label="About">About Us</a>
+        </div>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="mainSiteNav">
+            @*ZH start*@
+            @if (Model != null && Model.User != null && Model.User.IsValid() && Model.User.Active == true)
+            {
+                if (Model.User.Type == BLL.Shared.EntityType.Student) //jinan
+                {
+                    <div style="margin-right:4em;">
+                        <a href="~/Student/StudentHome" id="StudentHome" alt="Home" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in" style="width: 140px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none" /><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+                        </a>
+                        <a href="~/Tutor/Search" id="FindATutor" alt="Find A Tutor" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in" style="width: 140px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><g><rect fill="none" height="24" width="24" /></g><g><g><circle cx="10" cy="8" r="4" /><path d="M10.35,14.01C7.62,13.91,2,15.27,2,18v2h9.54C9.07,17.24,10.31,14.11,10.35,14.01z" /><path d="M19.43,18.02C19.79,17.43,20,16.74,20,16c0-2.21-1.79-4-4-4s-4,1.79-4,4c0,2.21,1.79,4,4,4c0.74,0,1.43-0.22,2.02-0.57 L20.59,22L22,20.59L19.43,18.02z M16,18c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C18,17.1,17.1,18,16,18z" /></g></g></svg>
+                        </a>
+                        @*<a href="~/Student/StudentMessages" id="StudentMessages" alt="Messages" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in" style="width: 140px;">Messages</a>*@
+                        <a href="~/Student/Booking" id="StudentBookings" alt="Bookings" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in" style="width: 140px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                            </svg>
+                        </a>
+                    </div>
+                }
+
+                <div id="mainNotifBell" class="notifDropdown">
+                    <span id="notifBell" class="notif cursor-pointer hover-bg-blue" data-role="push-notif">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                        </svg>
+                    </span>
+                    <div id="divNotifBell" class="notifDropdown-content"></div>
+                </div>
+            }
+            @*ZH End*@
+
+        </div>
+        <!-- Collapsible content -->
+        <div class="topMenu animated" data-role="main-nav">
+            <div class="container flex">
+
+                <span class="toogleMenu" onclick="openNav()" data-toggle="collapse" data-target="#mainSiteNav"
+                      aria-controls="mainSiteNav" aria-expanded="false" aria-label="Toggle navigation">&#9776;</span>
+                <a asp-controller="Home" asp-action="Index"><div class="logo"></div></a>
+
+                <nav class="menu-left">
+                    <ul>
+                        @if (Model.User.Type == BLL.Shared.EntityType.Tutor)
+                        {
+                            <a href="#" class="label" data-label="Promote">Promote Yourself</a>
+                            <a href="#" class="label" data-label="jobs">Tutoring Jobs</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="tutor" asp-action="SearchForTutors" class="label" data-label="findTutor">Find a Tutor</a>
+                        }
+                        @RenderSection("Menus", required: false)
+                    </ul>
+                </nav>
+
+                <div class="Menudropdown">
+                    <div class="Menudropdown-content">
+                        @foreach (var item in Model.Languages)
+                        {
+                            if (item.Id != Model.Language)
+                            {
+                                <a asp-controller="Home" asp-action="Index" asp-route-id="@item.Id" class="label" data-label="@item.Code">@item.Code</a>
+                            }
+                            else lang = item.Code;
+                        }
+                    </div>
+                    <button class="dropbtn">
+                        <span class="lang label" data-label="@lang">@lang<b class="caret"></b></span>
+                    </button>
+                </div>
+
+                <div class="menu-right">
+                    <form class="form-inline sign-btn-group">
+                        @if (Model == null || Model.User == null || !Model.User.IsValid() || Model.User.Active == false)
+                        {
+                            <a id="navbar-static-signin" alt="Sign In" data-label="LogIn" class="label btn grey lighten-2 lighten-5 text-dark btn-sm match-parent no-shadow nav-account pl-0 pr-0" data-auth-modal-tab="sign-in" data-toggle="modal" data-target="#mdlLogin" style="width: 80px;">Log In</a>
+                            <a id="navbar-static-signup" alt="Sign Up" data-label="SignUp" class="label btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in" asp-controller="SignUp" asp-action="Index">SIGN UP</a>
+                        }
+                        else
+                        {
+                            @*ZH start*@
+                            if (Model.User.Type == BLL.Shared.EntityType.Student) //jinan
+                            {
+                                <div style="margin-right:4em;">
+                                    <a href="~/Student/StudentHome" id="StudentHome" alt="Home" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in square-40 p-0 pt-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none" /><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+                                    </a>
+                                    <a href="~/Tutor/Search" id="FindATutor" alt="Find A Tutor" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in square-40 p-0 pt-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><g><rect fill="none" height="24" width="24" /></g><g><g><circle cx="10" cy="8" r="4" /><path d="M10.35,14.01C7.62,13.91,2,15.27,2,18v2h9.54C9.07,17.24,10.31,14.11,10.35,14.01z" /><path d="M19.43,18.02C19.79,17.43,20,16.74,20,16c0-2.21-1.79-4-4-4s-4,1.79-4,4c0,2.21,1.79,4,4,4c0.74,0,1.43-0.22,2.02-0.57 L20.59,22L22,20.59L19.43,18.02z M16,18c-1.1,0-2-0.9-2-2c0-1.1,0.9-2,2-2s2,0.9,2,2C18,17.1,17.1,18,16,18z" /></g></g></svg>
+                                    </a>
+                                    @*<a href="~/Student/StudentMessages" id="StudentMessages" alt="Messages" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in" style="width: 140px;">Messages</a>*@
+                                    <a href="~/Student/Booking" id="StudentBookings" alt="Bookings" class="btn text-dark yellow btn-sm waves-effect waves-light auth-modal-toggle nav-account shadow-in square-40 p-0 pt-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                            <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            }
+
+                            <div id="mainNotifBell" class="notifDropdown">
+                                <span id="notifBell" class="notif cursor-pointer hover-bg-blue" data-role="push-notif">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                                    </svg>
+                                </span>
+                                <div id="divNotifBell" class="notifDropdown-content"></div>
+                            </div>
+
+                            @*ZH End*@
+
+                            <a id="navbar-static-msg" alt="Messages" class="btn-sm waves-effect text-white waves-light nav-account w-40" asp-controller="Account" asp-action="Messages">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z" /></svg>
+                            </a>
+                            <span>@Model.User.FirstName</span> //jinan
+                            <a id="navbar-static-user" alt="Me" class="btn-sm waves-effect waves-light btn-outline-info nav-account has-bg-user-picture square-40 btn-rounded" data-toggle="modal" data-target="#mdlUserMenu"></a>
+                            <a id="navbar-static-apps" alt="My Apps" class="btn-sm waves-effect waves-light nav-account w-40 " data-toggle="modal" data-target="#mdlApps">
+                                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" fill="currentColor" class="style-scope yt-icon" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                                    <g class="style-scope yt-icon">
+                                        <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" class="style-scope yt-icon"></path>
+                                    </g>
+                                </svg>
+                            </a>
+                        }
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="Gradiantborder"></div>
+        </div>
+
+        @*END Nabih5*@        <!--/.Navbar-->
+    </header>
+    <!--Modal: Login / Register Form-->
+    @await Html.PartialAsync("../Shared/LoginView", Model)
+    <!--Modal: Login / Register Form-->
+
+    <div class="container-fluid pl-0 pr-0 mt-4" data-content="home">
+        <main role="main" class="pb-3 animated" data-role="main-body">
+            @RenderBody()
+            <canvas style="display: block; z-index: 1; position: absolute; bottom: -64px;" id="canvas_min" width=64 height=64></canvas>
+        </main>
+        <!--Modal: Help-->
+        @if (Model != null && Model.User != null && Model.User.IsValid())
+        {
+            <div class="modal fade right" id="mdlUserMenu" tabindex="-1" role="dialog" data-backdrop="false" aria-modal="true">
+                <div class="modal-dialog modal-full-height modal-right modal-notify modal-info modal-user" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header white blue-text darken-1 no-shadow">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="blue-text">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <!--Body-->
+                        <div class="modal-body">
+                            <img src="" alt="avatar" class="avatar contains-user-picture rounded-circle">
+                            @*jinan*@
+                            <h5 class="mt-1 mb-2">@Model.User.FirstName @Model.User.LastName</h5>
+                            <span class="mt-1 mb-2">@Model.User.Email</span>
+                            <span id="langCont"></span>
+
+                            @*@if (Model.Type == BLL.Shared.EntityType.Student)*@
+                            @if (Model.Type == BLL.Shared.EntityType.Student)
+                            {
+                                <div class="md-form ml-0 mr-0 mb-0">
+                                    <a id="btnStudentProfile" alt="Edit Profile" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" href="~/Student/DashboardDisplay?uId=@Model.User.UserId&langId=1">Edit Profile</a><br />
+                                </div>
+                                <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                                    <a id="btnEditPassword" alt="Edit Password" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" href="~/Student/EditPassword?usrId=@Model.User.UserId&langId=1">Edit Password</a><br />
+                                </div>
+                                <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                                    <a id="btnInviteFriend" alt="Invite Friend" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Student" asp-action="InviteFriends">Invite Friends</a><br />
+                                </div>
+                                <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                                    <a id="btnTestOurPlatform" alt="Test Our Platform" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Account" asp-action="TestOurPlatform">Test Our Platform</a><br />
+                                </div>
+                                <hr />
+                                <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                                    <a id="btnHelpCenter" alt="Help Center" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Student" asp-action="HelpCenter">Help Center</a><br />
+                                </div>
+                                <div class="text-center mt-4">
+                                    <a id="btnLogout" class="btn btn-cyan mt-1 waves-effect waves-light white-text" asp-controller="Login" asp-action="Logout">Logout</a>
+                                </div>
+                            }
+                            else @if (Model.Type == BLL.Shared.EntityType.Parent)
+                       {
+                        <div class="md-form ml-0 mr-0 mb-0">
+                            <a id="btnStudentProfile" alt="Edit Profile" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" href="~/Student/DashboardDisplay?uId=@Model.User.UserId&langId=1">Edit Profile</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnEditPassword" alt="Edit Password" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" href="~/Student/EditPassword?usrId=@Model.User.UserId&langId=1">Edit Password</a><br />
+                        </div>
+                        // not working yet
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnMyStudent" alt="My Student" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" href="~/Student/EditPassword?usrId=@Model.User.UserId&langId=1">My Student</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnInviteFriend" alt="Invite Friend" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Student" asp-action="InviteFriends">Invite Friends</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnSchedule" alt="My Schedule" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Meeting" asp-action="Schedule">My Schedule</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnTestOurPlatform" alt="Test Our Platform" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Account" asp-action="TestOurPlatform">Test Our Platform</a><br />
+                        </div>
+                        <hr />
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnHelpCenter" alt="Help Center" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Student" asp-action="HelpCenter">Help Center</a><br />
+                        </div>
+                        <div class="text-center mt-4">
+                            <a id="btnLogout" class="btn btn-cyan mt-1 waves-effect waves-light white-text" asp-controller="Login" asp-action="Logout">Logout</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="md-form ml-0 mr-0 mb-0">
+                            <a id="btnProfile" alt="Manage Profile" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Tutor" asp-action="Details">Manage your Profile</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnPreferences" alt="Manage Preferences" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" onclick="accountManager.wait()" asp-controller="Tutor" asp-action="Preferences">Manage your Preferences</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnSchedule" alt="My Schedule" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Meeting" asp-action="Schedule">My Schedule</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnTestOurPlatform" alt="Test Our Platform" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="Account" asp-action="TestOurPlatform">Test Our Platform</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnQuestions" alt="Blog Questions" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="TutorQuestion" asp-action="AllQuestions">Questions</a><br />
+                        </div>
+                        <div class="md-form ml-0 mr-0 mt-0 mb-0">
+                            <a id="btnMyQuestions" alt="My Blog Questions" class="btn light-blue lighten-5 blue-text btn-sm match-parent waves-effect waves-dark no-shadow" asp-controller="TutorQuestion" asp-action="TutorQuestion">Your Questions</a><br />
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button id="btnLogout" class="btn btn-cyan mt-1 waves-effect waves-light white-text" data-role="logout-submit">Logout</button>
+                            @*<a id="btnLogout" class="btn btn-cyan mt-1 waves-effect waves-light white-text" asp-controller="Login" asp-action="Logout">Logout</a>*@
+                        </div>
+                    }
+                            @if (Model != null && Model.User != null && Model.User.IsValid())
+                            {
+                            }
+
+                        </div>
+
+                        <!--Footer-->
+                        <div class="modal-footer justify-content-center">
+                            @*<a class="btn btn-info waves-effect waves-light light-blue darken-1">
+                                    Great! Thanks
+                                    <i class="far fa-thumbs-up"></i>
+                                </a>
+                                <a class="btn btn-outline waves-effect" data-dismiss="modal">
+                                    Didn't help
+                                    <i class="far fa-frown"></i>
+                                </a>*@
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+        }
+        <div class="modal fade right" id="mdlApps" tabindex="-1" role="dialog" data-backdrop="false" aria-modal="true">
+            <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header white blue-text darken-1 no-shadow">
+                        <p class="heading lead" style="visibility:hidden;">Help &amp; Support</p>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="blue-text">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div id="apps-container" class="modal-body">
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: Help-->
+        <div class="text-center light-blue darken-1" style="display:none;">
+            <a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'});" class="btn btn-default btn-rounded my-3">
+                Back to top
+            </a>
+        </div>
+    </div>
+    <div id="signals" class="invisible">
+        <span class="signal s1"></span>
+        <span class="signal s2"></span>
+        <span class="signal s3"></span>
+        <span class="signal s4"></span>
+    </div>
+
+    <a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'});" id="toTopBtn" class="btn btn-info btn-rounded btn-sm waves-effect waves-light cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out light-blue darken-1" data-abc="true"></a>
+    <!-- Footer -->
+    @if (!"Class".Equals(ViewData["Title"]))
+    {
+        <div class="container-fluid justify-content-center p-0" data-content="home" data-role="footer">
+            <footer class="special-color white-text" data-role="main-footer">
+                @*Nabih6*@
+                <section class="footerSection bg-dark py-1" data-role="main-footer">
+                    <div class="container">
+                        <div class="socialLinks">
+                            <a href="#"><i data-aos="fade-left" data-aos-duration="2000" data-aos-delay="00" class="fab fa-linkedin fa-2x"></i></a>
+                            <a href="#"><i data-aos="fade-left" data-aos-duration="1000" data-aos-delay="00" class="fab fa-facebook fa-2x"></i></a>
+                            <a href="#"><i data-aos="fade-right" data-aos-duration="1000" data-aos-delay="00" class="fab fa-instagram fa-2x"></i></a>
+                            <a href="#"><i data-aos="fade-right" data-aos-duration="2000" data-aos-delay="00" class="fab fa-twitter fa-2x"></i></a>
+                        </div>
+                    </div>
+                    <div class="container grid grid-5 py-2">
+                        <div class="logo7"></div>
+                        <nav>
+                            <h4 class="label" data-label="findTutor">Find a Tutor</h4>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="BySubject">By Subject</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="ByLocation">By Location</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="ByBudget">By Budget</a></li>
+                            </ul>
+                        </nav>
+                        <nav>
+                            <h4 class="label" data-label="BecomeTutor">Become a Tutor</h4>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="WhatToTeach">What To Teach</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="YourLanguage">Your Language</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="Location">Location</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="Experience">Experience</a></li>
+                            </ul>
+                        </nav>
+                        <nav>
+                            <h4 class="label" data-label="Pricing">Pricing</h4>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="WhatYouEarn">What You Earn</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="WhatYouPay">What You Pay</a></li>
+                            </ul>
+                        </nav>
+                        <nav>
+                            <h4 class="label" data-label="HowIntoWork">How Into Works</h4>
+                            <ul>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="Ready">Ready</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="Steady">Steady</a></li>
+                                <li><i class="fa fa-angle-right"></i><a href="#" class="label" data-label="Go">Go</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="container">
+                        <p class="label" data-label="copyright">© INTO Turoing Ltd - 2020</p>
+                        <p>
+                            <a href="#" class="label" data-label="terms">Terms & Conditions</a> |
+                            <a href="#" class="label" data-label="Policy">Privacy Policy</a> |
+                            <a href="#" class="label" data-label="DevelopedBy">Developed by INTO Team</a>
+                    </div>
+                </section>
+
+                @*END Nabih6*@
+            </footer>
+        </div>
+    }
+    <!-- Footer -->
+    @*<script src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/lib/jquery/dist/jquery.min.js"></script>*@
+    @*<script src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+    @*<script defer
+                src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+        </script>*@
+    @if (TempData["JavaScriptFunction"] != null)
+    {
+        <script type="text/javascript">
+            @Html.Raw(TempData["JavaScriptFunction"]);
+            @*Model.ToDo = @string.Empty;*@
+        </script>
+    }
+    @RenderSection("Scripts", required: false)
+    <div class="home_splash">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="grav-anim">
+                    <button class="square-48 icon">
+                        <svg aria-hidden="true" focusable="false" width="100" height="100" data-prefix="fas" data-icon="graduation-cap" class="svg-inline--fa fa-graduation-cap fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#e0e0e0"><path fill="#e0e0e0" d="M622.34 153.2L343.4 67.5c-15.2-4.67-31.6-4.67-46.79 0L17.66 153.2c-23.54 7.23-23.54 38.36 0 45.59l48.63 14.94c-10.67 13.19-17.23 29.28-17.88 46.9C38.78 266.15 32 276.11 32 288c0 10.78 5.68 19.85 13.86 25.65L20.33 428.53C18.11 438.52 25.71 448 35.94 448h56.11c10.24 0 17.84-9.48 15.62-19.47L82.14 313.65C90.32 307.85 96 298.78 96 288c0-11.57-6.47-21.25-15.66-26.87.76-15.02 8.44-28.3 20.69-36.72L296.6 284.5c9.06 2.78 26.44 6.25 46.79 0l278.95-85.7c23.55-7.24 23.55-38.36 0-45.6zM352.79 315.09c-28.53 8.76-52.84 3.92-65.59 0l-145.02-44.55L128 384c0 35.35 85.96 64 192 64s192-28.65 192-64l-14.18-113.47-145.03 44.56z"></path></svg>
+                    </button>
+                </div>
+                <h1 class="ml5 text-light">
+                    <span class="text-wrapper">
+                        <span class="logo-line line1 bg-light"></span>
+                        <span class="letters letters-left">INTO TUTORING</span>
+                        <span class="logo-line line2 bg-light"></span>
+                    </span>
+                </h1>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+</html>

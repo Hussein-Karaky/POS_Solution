@@ -1,0 +1,176 @@
+﻿body {
+    color: #000 !important;
+    overflow-x: hidden;
+    height: 100%;
+/*    background-image: linear-gradient(to right, #1DE9B6, #FFEE58);*/
+ /*   background-repeat: no-repeat*/
+}
+.progress {
+    height: 13px;
+    width: 350px;
+    margin: 10px 20px;
+   /* background-color: #FFF176*/
+}
+
+.progress-bar {
+/*    background-color: #FBC02D*/
+}
+
+.count {
+    width: 350px
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+.card-body {
+    display: none;
+    padding-left: 55px;
+    padding-right: 55px
+}
+
+    .card-body.show {
+        display: block
+    }
+
+.yellow-text {
+    color: #FBC02D !important;
+}
+.tutor-margin-left {
+    margin-left:2em;
+}
+.card-block {
+/*    width: 235px;
+    border: 1px solid lightgrey;
+    padding: 0px;
+    border-radius: 5px !important;
+    background-color: #FAFAFA;
+    margin-bottom: 30px*/
+}
+.margin-bottom{
+    margin-bottom: 1em;
+}
+.find-tutor-input-label {
+    width: 92%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 8%;
+    padding-bottom:1em;
+}
+.radio {
+    border: 1px solid silver;
+    display: inline-block;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #000;
+    font-weight: 500;
+    width: 100%;
+}
+
+    .radio.selected {
+        border: 1px solid #F9A825;
+        color: #F9A825 !important;
+        border-radius: 5px;
+        text-decoration-color: #F9A825 !important;
+        width: 100%;
+    }
+
+.btn-blue {
+    margin-top: 40px;
+    background-color: #1A237E;
+    color: #fff;
+    width: 28%
+}
+
+    .btn-blue:hover {
+        background-color: #000
+    }
+
+.btn-secondary {
+    margin-top: 40px;
+    width: 28%
+}
+
+.fa-long-arrow-right {
+    float: right;
+    margin-top: 4px
+}
+
+.fa-long-arrow-left {
+    float: left;
+    margin-top: 4px
+}
+
+select,
+textarea {
+    padding: 8px 15px 8px 15px;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    background-color: #ECEFF1;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    letter-spacing: 1px
+}
+
+    select:focus,
+    textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #FBC02D !important;
+        outline-width: 0
+    }
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+
+.input-custom input[type=radio] + label {
+    border: 1px solid #c4c1c1;
+    padding: 12px !important;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    background: #FFF;
+    display: inline-flex;
+}
+
+    .input-custom input[type=radio] + label:before, .input-custom input[type=checkbox] + label:before {
+        content: '';
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1px solid #c4c1c1;
+        box-shadow: inset 0 0 0 2px #FFF;
+        margin: 2px 8px 0 0;
+        flex-shrink: 0;
+    }
+
+.choice-user-availability td input[type="checkbox"].option-input {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.choice-user-availability td:first-child span {
+    width: 90px;
+    display: block;
+    text-align: left;
+}
+
+.choice-user-availability th:first-child span {
+    visibility: hidden;
+}

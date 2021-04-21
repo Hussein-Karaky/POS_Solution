@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/MenuSupport.cshtml";
+}
+
+<div class="container"> 
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/images/emailForm.png" style="width:100%;margin-top:6em;" />
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-7">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Name -->
+                                <div class="md-form">
+                                    <input type="text" class="form-control-sm" style="width:90%">
+                                    <label data-error="wrong" class="">Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Email -->
+                                <div class="md-form">
+                                    <input type="text" class="form-control-sm" style="width:90%">
+                                    <label data-error="wrong" class="">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Subject -->
+                                <div class="md-form">
+                                    <input type="text" class="form-control-sm" style="width:90%;">
+                                    <label data-error="wrong" class="">Subject</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Message -->
+                                <div class="md-form">
+                                    <textarea type="text" class="form-control-sm" style="width:90%;padding: 4em;"></textarea>
+                                    <label data-error="wrong" class="">Message</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="md-form">
+                                    <button type="button" class="btn btn-info white-text light-blue darken-1">Send Email</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>

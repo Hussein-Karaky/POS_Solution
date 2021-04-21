@@ -1,0 +1,78 @@
+﻿@model PaymentModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link rel="stylesheet" href="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/css/payment/invoice.css" />
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice</title>
+</head>
+
+<body>
+
+    <div id="invoice">
+        <div class="invoice overflow-auto">
+            <div style="min-width: 600px">
+                <header>
+                    <div class="logo">
+                        <a target="_blank" href="#">
+                            <img src="@String.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)/images/into_icon_256.png" data-holder-rendered="true" />
+                        </a>
+                    </div>
+                    <div class="company">
+                        <h1>Geda Company</h1>
+                        <h2>INTO Learning System</h2>
+                    </div>
+                    <div class="date rigth">
+                        <h3>Invoice @Model.operation.SerialNb</h3>
+                        <h4>@Model.operation.DateStamp</h4>
+                    </div>
+                </header>
+                <div class="fromto">
+                    <div class="from">
+                        <h3>@Model.User.FirstName @Model.User.LastName</h3>
+                        <h4>@Model.User.Email</h4>
+                        @*<h4>Lebanon, Beirut</h4>*@
+                    </div>
+                    <div class="arrow-wrapper">
+                        <div class="arrow"><i class="fa fa-2x fa-angle-right"></i></div>
+                    </div>
+                    <div class="to rigth">
+                        <h3>Geda Company</h3>
+                        <h4>INTO System</h4>
+                        <h4>@*UAE, Dubai*@</h4>
+                    </div>
+                </div>
+                <main>
+                    <div class="session">
+                        <div class="title">Description</div>
+                        <div class="desc">@Model.operation.Description</div>
+                        <div class="title">Date</div>
+                        <div class="desc">@Model.operation.DateStamp</div>
+                        <div class="title">Tutor Name</div>
+                        <div class="desc">@Model.operation.TutorName</div>
+                        <div class="title">Method</div>
+                        <div class="desc">@Model.operation.PaymentMethod</div>
+                        <div class="title last">Amount</div>
+                        <div class="desc last">@Model.operation.Amount @Model.operation.Currency</div>
+                    </div>
+                    <div class="notices">
+                        <div>NOTICE:</div><br>
+                        <div class="notice">You can return your money before @Model.operation.CancelationDate</div>
+                    </div>
+                </main>
+                <footer>
+                    Invoice was created on a computer and is valid without the signature and seal.
+                </footer>
+            </div>
+            <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>

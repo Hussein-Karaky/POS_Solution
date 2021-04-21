@@ -1,0 +1,27 @@
+﻿@model TutorModel
+
+<div class="container lang-dependant">
+    <div class="row">
+        <div class="col-8">
+            <h2 class="display-5">Business Settings</h2><br />
+        </div>
+        <div class="col-4">
+            <a role="button" class="btn btn-floating btn-outline waves-effect waves-dark square-40 payment-info-save" data-role="save-tutor-payment-infos">
+                <i class="icon-save"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="white">
+            <p>
+                Please fill in your payment infos carefully and let them be appropriate to your tutoring power and experience.
+            </p>
+            <p>
+                <div class="md-form">
+                    <input type="number" id="txtCancellation" class="form-control-sm" data-role="cancel-pay" min="0" max="7" maxlength="1">
+                    <label class="show-inline-block" for="txtInPersonHourRate">Min days for a student to cancel payment</label>
+                </div>
+            </p>
+        </div>
+    </div>
+</div>

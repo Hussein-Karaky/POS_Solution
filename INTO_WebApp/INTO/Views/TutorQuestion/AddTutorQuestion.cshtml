@@ -1,0 +1,94 @@
+﻿@model INTO.Models.TutorModel
+@{
+    ViewData["Title"] = "AddTutorQuestion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <link href="~/css/preLoader.css" rel="stylesheet" />
+
+
+    <link href="~/lib/summernote/bs-summer-btns.css" rel="stylesheet" />
+    <link href="~/lib/summernote/summernote.min.css" rel="stylesheet" />
+    <link href="~/css/tutorQuestion.css" rel="stylesheet" />
+    <link href="~/FlexDataList/jquery.flexdatalist.min.css" rel="stylesheet" />
+}
+<div class="loader-wrapper">
+    <div id="loader"></div>
+</div>
+<div class="row mb-2">
+    <div class="PicDiv col-12 flex-vertical-center flex-horizontal-center"><h1 class="text-white text-center" id="pageTitle"></h1></div>
+</div>
+<div class="row">
+    <div class="col-md-7 col-lg-7 offset-1 col-sm-12">
+        <div class="card card mb-5 wow fadeIn">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="ml-5 divtitle">
+                        <h1 class="card-title text-bold" id="cardTitle"></h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group ml-5 mr-5 full-width">
+                        <label for="txtTitle" class="text-bold"></label>
+                        <input type="text" class="form-control full-width" id="txtTitle" placeholder="">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group ml-5 mr-5 full-width">
+                        <label for="summernote" class="text-bold"></label>
+                        <textarea id="summernote" placeholder="" class="full-width"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group ml-5 mr-5 full-width">
+                        <label for="topics" class="text-bold"></label>
+                        <input type='text'
+                               placeholder=''
+                               class='flexdatalist'
+                               data-min-length='0'
+                               multiple='multiple'
+                               list='tags'
+                               name='topics'
+                               id="topics"
+                               minlength="3">
+                        <datalist id="tags" class="">
+                            @*@for (int i = 0; i <= Model.dataListTags.Count - 1; i++)
+                                {
+                                    <option value="@Model.dataListTags[i].Id">@Model.dataListTags[i].Name</option>
+                                }*@
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group ml-5 mr-5 full-width text-center">
+                        <button type="button" class="btn btn-info text-white text-center" id="btnAddQuestion"></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group ml-5 mr-5 full-width">
+                        <p id="notice">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/summernote/summernote.js"></script>
+    <script src="~/FlexDataList/jquery.flexdatalist.js"></script>
+    <script src="~/js/TutorQuestion/SharedTutorQuestion.js"></script>
+    <script src="~/js/TutorQuestion/AddTutorQuestion.js"></script>
+    <script>
+        $(document).ready(function () {
+            getGlobalTexts(window.location.origin + '/TutorQuestion/Getlookups', 42, function () {
+                AddTutorQuestion('tags', 'topics');
+            });
+        });
+    </script>
+}

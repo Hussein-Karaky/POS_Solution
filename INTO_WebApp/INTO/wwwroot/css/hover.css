@@ -1,0 +1,72 @@
+.hover-text-blue:hover {
+    color: #4e73df;
+    cursor: pointer;
+}
+
+.hover-text-red:hover {
+    color: #df4e5f;
+    cursor: pointer;
+}
+
+.hover-text-aqua:hover {
+    color: #4edfb1;
+    cursor: pointer;
+}
+
+.notif.hover-bg-blue:hover {
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.notif.hover-bg-blue {
+    border-radius: 5px;
+    padding: 4px;
+    transition: .2s ease-in-out;
+    font-size: 23px;
+}
+
+
+.hover-bg-blue:hover {
+    background-color: #039be5;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    color: white;
+}
+
+.hover-bg-red:hover {
+    background-color: #df4e5f;
+    cursor: pointer;
+    color: white;
+}
+
+.hover-bg-aqua:hover {
+    background-color: #4edfb1;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+.notifDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.notifDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /*padding: 12px 16px;*/
+    z-index: 1;
+    width: 100% ;
+}
+
+@media(min-width:768px) {
+    .notifDropdown-content {
+        left: -20vw;
+        width: unset;
+    }
+}

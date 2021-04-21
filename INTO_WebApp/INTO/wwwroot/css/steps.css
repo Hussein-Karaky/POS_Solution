@@ -1,0 +1,153 @@
+﻿.CurrBadge {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 11pt;
+    cursor: pointer;
+}
+
+.navbar {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.badge-pill svg, nav-link svg {
+    fill: #2196f3;
+}
+
+.badge-pill.active svg, nav-link.active svg {
+    fill: #fff;
+}
+
+@media (min-width: 768px) {
+    .badge-pill .badge {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        margin-top: -2%;
+        margin-left: 3%;
+        background-color: transparent;
+        visibility: hidden;
+        transition: all .4s;
+    }
+
+        .badge-pill .badge svg {
+            width: 28px;
+            height: 28px;
+            stroke: #ffffff;
+            transition: all .4s;
+        }
+}
+
+@media (max-width: 768px) {
+    .pill-container a {
+        padding-top: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        transition: all .6s;
+    }
+
+    .badge-pill .badge {
+        position: relative;
+        background-color: transparent;
+        border-radius: 2px;
+        border-bottom-left-radius: 26px;
+        width: 100% !important;
+        height: 40px !important;
+        margin: 0;
+        visibility: hidden;
+        transition: all .4s;
+    }
+
+        .badge-pill .badge svg {
+            width: 28px;
+            height: 28px;
+            stroke: #ffffff;
+            transition: all .4s;
+        }
+}
+
+.success .badge {
+    visibility: visible;
+    display: inline-block;
+    background-color: #fff;
+    background: #fff url(../images/vector/check_circle-24px.svg) center center no-repeat !important;
+    opacity: 1;
+}
+
+.failure .badge {
+    visibility: visible;
+    display: inline-block;
+    background-color: #fff;
+    background: #fff url(../images/vector/fail-circle-24px.svg) center center no-repeat !important;
+    opacity: 1;
+}
+
+.missing .badge {
+    visibility: visible;
+    display: inline-block;
+    background-color: #fff;
+    background: #fff url(../images/vector/exclamat_circle-24px.svg) center center no-repeat !important;
+    opacity: 1;
+}
+
+.pill-container {
+    width: 100%;
+}
+
+    .pill-container span.fit {
+        display: inline-block;
+        height: 100%;
+    }
+
+    .pill-container a.active {
+    }
+
+    .pill-container i {
+        width: 8vw;
+        height: 32px;
+        min-width: 70px;
+        background-size: 30%;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+
+.step.done::before {
+    background: url('../images/vector/check-solid.svg') center center no-repeat;
+    content: '' !important;
+    background-size: 64%;
+}
+
+.step.wrong::before {
+    background: url('../images/vector/exclamation-solid.svg') center center no-repeat;
+    content: '' !important;
+    background-size: 64%;
+}
+
+@media(min-width:992px) {
+    ul.stepper.horizontal .step.done .step-title::before {
+        background: url('../images/vector/check-solid.svg') center center no-repeat;
+        content: '' !important;
+        background-size: 64%;
+    }
+
+    ul.stepper.horizontal .step.wrong .step-title::before {
+        background: url('../images/vector/exclamation-solid.svg') center center no-repeat;
+        content: '' !important;
+        background-size: 64%;
+    }
+}
+
+@media(max-width:992px) {
+    ul.stepper .step.done::before {
+        background: url('../images/vector/check-solid.svg') center center no-repeat;
+        content: '' !important;
+        background-size: 64%;
+    }
+
+    ul.stepper .step.wrong::before {
+        background: url('../images/vector/exclamation-solid.svg') center center no-repeat;
+        content: '' !important;
+        background-size: 64%;
+    }
+}

@@ -1,0 +1,277 @@
+﻿@using BLL.Tutor
+@using BLL.Shared
+@model LoginModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    IList<Country> countries = new List<Country>();
+    countries = INTO.Models.LoginModel.AllCountries.ToList();
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form id="contactATutorForm" name="contactATutorForm" method="post" action="/students/secure/contact-a-tutor.html?id=82684" class="row" enctype="application/x-www-form-urlencoded">
+                <section class="column-8 column-12-m u-padding-right--l--until-medium">
+                    <header>
+                        <h2>How can Abbie help?</h2>
+                        <p style="font-size:18px;color:silver;">
+                            Tell Abbie what you’re looking for.
+                            We’ll notify you via email when they respond (usually within 24hrs).
+                        </p>
+                    </header>
+                    <div class="row">
+                        <h6 class="header-margin-top headerStyle">Select subject</h6>
+                    </div>
+                    <div class="row">
+                        <div class="form-group selectDiv">
+                            <select id="txtCountry" name="txtCountry" class="country-select" data-role="select-country" style="width:749px;padding-top: 1em; padding-bottom: 1em; border-color: silver; padding-left: 1em;" required>
+                                <option value="">Select your country</option>
+                                @foreach (var country in countries)
+                                {
+                                    <option value="@country.Name">@country.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="header-margin-top headerStyle">How often would you like lessons?(optional)</h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 margin-bottom">
+                            <div class="lesson-time-radio rdDiv">
+                                <label for="rbOnce" class="lesson-time-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="Once a week" id="rbOnce" name="lessonTimeRadio" data-role="lesson-time" class="lesson-time" style="display:none;">
+                                    <span class="label-text"><b>Once a week</b></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <div class="lesson-time-radio rdDiv">
+                                <label for="rbTwice" class="lesson-time-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="Twice a week" id="rbTwice" name="lessonTimeRadio" data-role="lesson-time" class="lesson-time" style="display:none;">
+                                    <span class="label-text"><b>Twice a week</b></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <div class="lesson-time-radio rdDiv">
+                                <label for="rbFortnightly" class="lesson-time-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="Fortnightly" id="rbFortnightly" name="lessonTimeRadio" data-role="lesson-time" class="lesson-time" style="display:none;">
+                                    <span class="label-text"><b>Fortnightly</b></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <div class="lesson-time-radio rdDiv">
+                                <label for="rbLater" class="lesson-time-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="Decide Later" id="rbLater" name="lessonTimeRadio" data-role="lesson-time" class="lesson-time" style="display:none;">
+                                    <span class="label-text"><b>I'll Decide Later</b></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="header-margin-top headerStyle">Exam Board(optional)</h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 margin-bottom">
+                            <div class="board-radio rdDiv">
+                                <label for="rbAQA" class="board-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="AQA" id="rbAQA" name="examBoardRadio" data-role="choice-exam-board" class="choice-exam-board" style="display:none;">
+                                    <span class="label-text"><b>AQA</b></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <div class="board-radio rdDiv">
+                                <label for="rbOCR" class="board-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="OCR" id="rbOCR" name="examBoardRadio" data-role="choice-exam-board" class="choice-exam-board" style="display:none;">
+                                    <span class="label-text"><b>OCR</b></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <div class="board-radio rdDiv">
+                                <label for="rbSQA" class="board-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="SQA" id="rbSQA" name="examBoardRadio" data-role="choice-exam-board" class="choice-exam-board" style="display:none;">
+                                    <span class="label-text"><b>SQA</b></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <div class="board-radio rdDiv">
+                                <label for="rbOther" class="board-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="Other" id="rbOther" name="examBoardRadio" data-role="choice-exam-board" class="choice-exam-board" style="display:none;">
+                                    <span class="label-text"><b>Other</b></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="header-margin-top headerStyle">Add a message</h6>
+                    </div>
+                    <div class="row">
+                        <textarea style="width:95%;"></textarea>
+                    </div>
+                    <div class="row">
+                        <h6 class="header-margin-top headerStyle">Suggest a time</h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 margin-bottom">
+                            <label for="birthday">Pickup Day:</label>
+                            <input type="date" id="birthday" name="birthday">
+                        </div>
+                        <div class="col-md-3 margin-bottom">
+                            <label for="appt">Pickup Time</label>
+                            <input type="time" id="appt" name="appt">
+                        </div>
+                        <div class="col-md-3 margin-bottom margin-top">
+                            <div class="date-radio rdDiv">
+                                <label for="rbdate" class="date-radio-label" style="font-weight:bold;">
+                                    <input type="radio" value="Decide later" id="rbdate" name="DateRadio" class="choice-date" style="display:none;">
+                                    <span class="label-text"><b>Decide later</b></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 margin-bottom">
+                            <button class="btn btn-link" style="color:#1E90FF;">Send</button>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color:#FFEBCD;padding-bottom:1em;width:750px;">
+                        <div class="col-md-4" style="padding-top:4em;padding-left:4em;">
+                            <blockquote class="warning">
+                                <img src="https://cdn.mytutor.co.uk/icons/laptop-chat-faces-warning5.svg?1607553462000" alt="Laptop chat faces">
+                            </blockquote>
+                        </div>
+                        <div class="col-md-8" style="padding-top:2em;">
+                            <blockquote class="warning">
+                                <div>
+                                    <h3>Meet Abbie online for free</h3>
+                                    <p>Suggest a time to meet Abbie for a free 15 minute chat in our online lesson space (it’s a bit like Skype!).</p>
+                                    <p>It’s totally free and there’s no obligation to book lessons after!</p>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>                   
+                </section>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <img src="~/images/AnnaDoe.jpg" style="display:block;margin: 1.5em auto;width:80px;height:80px;border-radius:100%;" />
+                    <h6><b>Here’s what you’d like Abbie to help you with</b></h6>
+                    <ul id="list">
+                    </ul>
+
+                    <div class="faq">
+                        <h4>FAQs</h4>
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Collapsible Group Item #1
+                                        </button>
+                                    </h5>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Collapsible Group Item #2
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Collapsible Group Item #3
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('select').change(function () {
+            var mylist = $('#txtCountry').val();
+            $("#subjectChoice").css("display", "none");
+            $('#list').append('<li id="subjectChoice" style="margin-bottom:1em;"> <img src="https://cdn.mytutor.co.uk/icons/student-neutral5.svg?1607612826000" alt="Student icon" height="28" width="28" style="margin-right:1em;"><span style="font-size:18px;">' + mylist + '</span></li>');
+        });
+        $('[data-role="lesson-time"]').change(function () {
+            $("#lessonTime").css("display", "none"); 
+            var optionLesson = document.querySelector('input[name="lessonTimeRadio"]:checked').value;
+            $('#list').append('<li id="lessonTime" style="margin-bottom:1em;"><img src="https://cdn.mytutor.co.uk/icons/calendar-repeat-neutral5.svg?1607612826000" alt="Repeat calendar icon" height="28" width="28" style="margin-right:1em;"><span style="font-size:18px;">' + optionLesson + '</span></li>');
+        });
+        $('[data-role="choice-exam-board"]').change(function () {
+            $("#examBoard").css("display", "none");
+            var optionBoard = document.querySelector('input[name="examBoardRadio"]:checked').value;
+            $('#list').append('<li id="examBoard" style="margin-bottom:1em;"><img src="https://cdn.mytutor.co.uk/icons/school-neutral5.svg?1607612826000" alt="Repeat calendar icon" height="28" width="28" style="margin-right:1em;"><span style="font-size:18px;">' + optionBoard + '</span></li>');
+        });
+    });
+</script>
+<style>
+    .rdDiv {
+        border: 1px solid silver;
+        width: 160px;
+        color: black;
+        margin-left: -1em;
+        padding-left: 2em;
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
+    .margin-top {
+        margin-top: 1em;
+    }
+    .header-margin-top {
+        margin-top: 2em;
+    }
+    .headerStyle {
+        font-size: 14px;
+        font-weight: bold;
+        color: silver;
+    }
+    ul {
+        list-style: none;
+    }
+    .select .value {
+        border-bottom: 0px solid #d1d2dd !important;
+    }
+
+    label > input[type="radio"]:checked + * {
+        color: #1E90FF !important;
+        font-weight: bold;
+    }
+    .selectDiv {
+        margin-top: 1em;
+        border: 0.01px solid silver;
+    }
+</style>

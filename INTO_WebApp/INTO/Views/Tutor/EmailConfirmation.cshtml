@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Http
+@using BLL.Shared;
+ 
+@model TutorModel
+@{
+    ViewBag.Title = "Email Confirmation";
+    ViewData["PageName"] = "EmailConfirmation";
+    ViewData["StepId"] = 7;
+    Layout = "~/Views/Tutor/_LayoutWizardSteps.cshtml";
+}
+
+@section StepsTopScripts{ 
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#btnSendEmail').click(function () {
+            debugger;
+            $.ajax({
+                url: window.location.origin.concat("/Tutor/TutorEmailSending"),
+                type: 'post',
+                data: { TutorId:@NumberUtil.ToLong(@Context.Session.Get("TutorId"))},
+                success: function (data) {
+                    //alert(data);
+                    swal("Confirmation", data, {
+                        icon: "warning",
+                        buttons: {
+                            confirm: {
+                                className: 'btn btn-warning'
+                            }
+                        },
+                    });
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+    });
+
+
+    </script>
+}
+        
+        <div class="container">
+
+            <div class="row">
+                <p><b>@Model.contentStep6[0].LookupDetailsDescription</b>&nbsp;@Model.User.Email</p>
+            </div>
+            <div class="row">
+                <p>@Model.contentStep6[1].LookupDetailsDescription</p>
+            </div>
+            <div class="row">
+                <div class="pull-10">
+                    <button class="btn btn-warning btn-rounded" id="btnSendEmail">Resend Email</button>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="offset-8 col-4 text-center">
+                   
+                    <button class="btn btn-primary btn-rounded btn-login"  style="width:250px;" id="btnSave">
+                        Save
+                    </button>
+                </div>
+
+            </div>*@
+        </div> 
+    @*</form>*@
